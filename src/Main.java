@@ -10,13 +10,13 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            File inputFile = new File("input.txt");
+            File inputFile = new File("/home/izsof/Code/class.classdiagram");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-            NodeList nList = doc.getElementsByTagName("student");
+            NodeList nList = doc.getElementsByTagName("class");
             System.out.println("----------------------------");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -25,8 +25,8 @@ public class Main {
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                    System.out.println("Student roll no : "
-                            + eElement.getAttribute("rollno"));
+                    System.out.println("name : "
+                            + eElement.getAttribute("name"));
                     System.out.println("First Name : "
                             + eElement
                             .getElementsByTagName("firstname")

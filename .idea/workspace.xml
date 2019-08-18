@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fe6b2b3-816b-4060-86cc-5ef36f519352" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Analyser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ClassAnalyser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ClassDiagram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DiagramParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/XMLDiagramParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/XMLFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UMLAnalyser/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UMLAnalyser/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,12 +30,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1POCaEfJY7LqDsfDegoYreeO56R" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -77,7 +86,8 @@
       <workItem from="1565949985641" duration="54000" />
       <workItem from="1566057167468" duration="197000" />
       <workItem from="1566057608424" duration="375000" />
-      <workItem from="1566107052850" duration="291000" />
+      <workItem from="1566107052850" duration="463000" />
+      <workItem from="1566108201122" duration="1336000" />
     </task>
     <servers />
   </component>
@@ -96,5 +106,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
