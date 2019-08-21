@@ -1,11 +1,17 @@
 package parser;
-import java.io.File;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
-public class XMLClassDiagramParser extends DiagramParser {
+import javax.xml.parsers.*;
+import java.io.*;
 
-    XMLClassDiagramParser(File file) {
+public class XMLClassDiagramParser extends XMLDiagramParser {
+
+
+    XMLClassDiagramParser(File file) throws ParserConfigurationException, SAXException, IOException {
         super(file);
     }
+
 
     @Override
     public DiagramParser parse() {

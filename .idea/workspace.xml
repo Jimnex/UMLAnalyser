@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fe6b2b3-816b-4060-86cc-5ef36f519352" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_1_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/parser/NotSupportedXMLDiagramParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLAnalyser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UMLAnalyser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XMLFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/analyser/Analyser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/analyser/ClassAnalyser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diagram/ClassDiagram.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diagram/Diagram.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/DiagramParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/XMLDiagramParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/DiagramParserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/DiagramParserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/NotSupportedXMLDiagramParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/NotSupportedDiagramParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/XMLClassDiagramParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/XMLClassDiagramParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParserFactory.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,8 +52,8 @@
       <recent name="tests" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="" />
       <recent name="parser" />
+      <recent name="" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -118,7 +109,7 @@
       <workItem from="1566057608424" duration="375000" />
       <workItem from="1566107052850" duration="463000" />
       <workItem from="1566108201122" duration="1570000" />
-      <workItem from="1566402300688" duration="4625000" />
+      <workItem from="1566402300688" duration="5594000" />
     </task>
     <servers />
   </component>
@@ -137,16 +128,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
