@@ -1,5 +1,7 @@
 package parser;
 
+import diagram.Diagram;
+
 import java.io.File;
 
 public abstract class DiagramParser {
@@ -9,5 +11,5 @@ public abstract class DiagramParser {
         this.file = file;
     }
 
-    public abstract DiagramParser parse();
+    public abstract Diagram parse();
 }

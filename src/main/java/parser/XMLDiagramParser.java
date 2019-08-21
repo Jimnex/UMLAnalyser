@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public abstract class XMLDiagramParser extends DiagramParser{
-    private final Document doc;
+    protected final Document doc;
 
     XMLDiagramParser(File file) throws IOException, SAXException, ParserConfigurationException {
         super(file);

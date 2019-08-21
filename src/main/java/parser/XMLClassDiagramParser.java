@@ -1,9 +1,11 @@
 package parser;
-import org.w3c.dom.*;
+import diagram.umlclass.ClassDiagram;
+import diagram.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
 import java.io.*;
+import java.util.Collection;
 
 public class XMLClassDiagramParser extends XMLDiagramParser {
 
@@ -12,9 +14,21 @@ public class XMLClassDiagramParser extends XMLDiagramParser {
         super(file);
     }
 
-
     @Override
-    public DiagramParser parse() {
+    public Diagram parse() {
+        String diagramName = this.getDiagramName();
+        Diagram diagram = new ClassDiagram(diagramName);
+
+
+        return diagram;
+    }
+
+    private String getDiagramName() {
+        String name = super.doc.getDocumentElement().getAttribute("name");
+        return name;
+    }
+
+    private Collection<Class> getClasses(){
         return null;
     }
 }
