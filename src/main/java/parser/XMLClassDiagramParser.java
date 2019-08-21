@@ -23,12 +23,12 @@ public class XMLClassDiagramParser extends XMLDiagramParser {
         return diagram;
     }
 
-    private String getDiagramName() {
+    String getDiagramName() {
         String name = super.doc.getDocumentElement().getAttribute("name");
         return name;
     }
 
-    private Collection<Class> getClasses(){
+    Collection<Class> getClasses(){
         return null;
     }
 }

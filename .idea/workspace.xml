@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fe6b2b3-816b-4060-86cc-5ef36f519352" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/diagram/umlclass/Association.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/diagram/umlclass/Class.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/diagram/umlclass/ClassDiagram.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/diagram/umlclass/Dependency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/diagram/umlclass/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/diagram/umlclass/Method.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/parser/XMLClassDiagramParserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/class.classdiagram" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/XMLFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diagram/ClassDiagram.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diagram/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/DiagramParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/DiagramParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UMLAnalyser/Diagram.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UMLAnalyser/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/DiagramParserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/DiagramParserFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/parser/XMLClassDiagramParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/XMLClassDiagramParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/XMLDiagramParserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tests/XMLDiagramParserTest.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,9 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -57,14 +54,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="parser" />
       <recent name="tests" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="diagram.umlclass" />
       <recent name="parser" />
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -85,7 +83,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.XMLClassDiagramParserTest.getDiagramName">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="UMLAnalyser" />
@@ -96,8 +94,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="XMLClassDiagramParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UMLAnalyser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="parser" />
+      <option name="MAIN_CLASS_NAME" value="parser.XMLClassDiagramParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLClassDiagramParserTest.getDiagramName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UMLAnalyser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="parser" />
+      <option name="MAIN_CLASS_NAME" value="parser.XMLClassDiagramParserTest" />
+      <option name="METHOD_NAME" value="getDiagramName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.XMLClassDiagramParserTest" />
+      <item itemvalue="JUnit.XMLClassDiagramParserTest.getDiagramName" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.XMLClassDiagramParserTest.getDiagramName" />
+        <item itemvalue="JUnit.XMLClassDiagramParserTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -120,6 +156,7 @@
       <workItem from="1566107052850" duration="463000" />
       <workItem from="1566108201122" duration="1570000" />
       <workItem from="1566402300688" duration="8530000" />
+      <workItem from="1566411554677" duration="3138000" />
     </task>
     <servers />
   </component>
