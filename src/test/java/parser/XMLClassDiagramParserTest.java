@@ -1,6 +1,5 @@
 package parser;
 
-import diagram.Diagram;
 import org.junit.jupiter.api.*;
 import org.xml.sax.SAXException;
 

@@ -9,11 +9,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
-public abstract class XMLDiagramParser extends DiagramParser{
+public abstract class XMLFileParser implements DiagramParser {
     protected final Document doc;
 
-    XMLDiagramParser(File file) throws IOException, SAXException, ParserConfigurationException {
-        super(file);
+    XMLFileParser(File file) throws IOException, SAXException, ParserConfigurationException {
         this.doc = this.getXMLDocument(file);
     }
 
