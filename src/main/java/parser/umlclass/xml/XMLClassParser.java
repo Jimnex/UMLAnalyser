@@ -17,17 +17,46 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class XMLClassParser implements ClassParser {
+public class XMLClassParser extends XMLFileParser implements ClassParser {
+    private final Node classNode;
+    private Class c;
+
+    public Class getC() {
+        return c;
+    }
+
+    public XMLClassParser(Node classNode) {
+        this.classNode = classNode;
+    }
+
+    @Override
+    public void parse(){
+        String name = this.parseClassName();
+        this.c = new Class(name);
+        Visibility visibility = this.parseVisibility();
+        c.setVisibility(visibility);
+
+
+    }
 
     @Override
     public Visibility parseVisibility() {
-        return null;
+        String strVisibility = super.getValue(this.classNode, "visibility");
+        Visibility visibility = Visibility.createFromStr(strVisibility);
+        return visibility;
+    }
+
+    @Override
+    public Boolean parseIsAbstract() {
+        return false;
     }
 
     @Override
     public Collection<Association> getAssociations() {
         return null;
     }
+
+
 
     @Override
     public Collection<Field> getFields() {
@@ -46,7 +75,7 @@ public class XMLClassParser implements ClassParser {
 
     @Override
     public String parseClassName() {
-        return null;
+        return super.getValue(classNode, "name");
     }
 
 

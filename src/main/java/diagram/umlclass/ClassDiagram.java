@@ -5,6 +5,8 @@ import diagram.Diagram;
 import java.util.Collection;
 
 public class ClassDiagram extends Diagram {
+    private Collection<Class> classes;
+
     public Collection<Class> getClasses() {
         return classes;
     }
@@ -13,7 +15,7 @@ public class ClassDiagram extends Diagram {
         this.classes = classes;
     }
 
-    private Collection<Class> classes;
+
 
     public ClassDiagram(String name) {
         super(name);

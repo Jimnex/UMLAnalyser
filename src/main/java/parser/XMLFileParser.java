@@ -1,6 +1,8 @@
 package parser;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import parser.DiagramParser;
 
@@ -11,17 +13,15 @@ import java.io.File;
 import java.io.IOException;
 
 public abstract class XMLFileParser{
-    protected final Document doc;
-
-    public XMLFileParser(File file) throws IOException, SAXException, ParserConfigurationException {
-        this.doc = this.getXMLDocument(file);
+    protected String parseDiagramName(Document doc) {
+        String name = doc.getDocumentElement().getAttribute("name");
+        return name;
     }
 
-    private Document getXMLDocument(File file) throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(file);
-        return doc;
+    protected String getValue(Node node, String name){
+        Element e = (Element) node;
+        String value = e.getAttribute(name);
+        return value;
     }
 
 }
