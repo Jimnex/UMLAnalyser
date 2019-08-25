@@ -11,6 +11,15 @@ public class Class {
     private String name;
     private Boolean isAbstract;
     private String id;
+
+    public Visibility getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(Visibility visibility) {
+        this.visibility = visibility;
+    }
+
     private Visibility visibility;
     private Collection<Class> childs = new ArrayList<Class>();
     private Collection<Class> bases = new ArrayList<Class>();
