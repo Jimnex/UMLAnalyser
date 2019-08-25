@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
+import parser.umlclass.xml.XMLClassDiagramParser;
 
 import javax.xml.parsers.ParserConfigurationException;
 
