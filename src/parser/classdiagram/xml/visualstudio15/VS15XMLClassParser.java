@@ -38,7 +38,7 @@ public class VS15XMLClassParser extends XMLFileParser implements ClassParser {
 
     @Override
     public Boolean parseIsAbstract() {
-        return null;
+        return Boolean.parseBoolean(super.getValue(classNode, "isAbstract"));
     }
 
     @Override
@@ -46,9 +46,20 @@ public class VS15XMLClassParser extends XMLFileParser implements ClassParser {
         return null;
     }
 
+    private Association parseAssociation(Node node){
+        Association association = new Association();
+        return association;
+    }
+
     @Override
     public Collection<Field> getFields() {
         return null;
+    }
+
+    private Field parseField(Node node){
+        Field field = new Field();
+
+        return field;
     }
 
     @Override
