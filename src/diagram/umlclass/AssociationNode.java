@@ -1,15 +1,15 @@
 package diagram.umlclass;
 
-public class Field {
+public class AssociationNode {
     private String name;
-    private Type type;
-    private Visibility visibility;
     private Boolean isLeaf;
     private Boolean isStatic;
     private Boolean isReadOnly;
-    private Boolean isUnique;
     private Boolean isDerived;
     private Boolean isDerivedUnion;
-    private Aggregation aggregation;
     private Boolean isComposite;
+    private Aggregation aggregation;
+    private Boolean isNavigableOwned;
+    private Multiplicity lower;
+    private Multiplicity upper;
 }
