@@ -3,5 +3,7 @@ package parser;
 import java.io.File;
 
 public interface Parser {
-    void parse(File file);
+    void parse();
+
+    String parseName();
 }

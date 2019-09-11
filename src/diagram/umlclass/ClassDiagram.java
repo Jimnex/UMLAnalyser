@@ -10,8 +10,8 @@ import java.util.Collection;
 public class ClassDiagram extends Diagram {
     private Collection<Class> classes;
 
-    public ClassDiagram(Parser parser, Analyser analyser) {
-        super(parser, analyser);
+    public ClassDiagram(Parser diagramParser, Analyser analyser) {
+        super(diagramParser, analyser);
         classes = new ArrayList<Class>();
     }
 

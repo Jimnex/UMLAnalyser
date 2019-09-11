@@ -4,11 +4,11 @@ import analyser.Analyser;
 import parser.Parser;
 
 public abstract class Diagram {
-    private Parser parser;
+    private Parser diagramParser;
     private Analyser analyser;
 
-    public Diagram(Parser parser, Analyser analyser){
-        this.parser = parser;
+    public Diagram(Parser diagramParser, Analyser analyser){
+        this.diagramParser = diagramParser;
         this.analyser = analyser;
     }
 }
