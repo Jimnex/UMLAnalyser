@@ -24,9 +24,10 @@ class DiagramFactoryTest {
     }
 
     private Diagram createDiagram(String filePath){
-        File f = new File(filePath);
         DiagramFactory diagramFactory = new DiagramFactory();
-        return diagramFactory.createDiagram(f);
+        return diagramFactory.createDiagram(filePath);
     }
+
+
 
 }

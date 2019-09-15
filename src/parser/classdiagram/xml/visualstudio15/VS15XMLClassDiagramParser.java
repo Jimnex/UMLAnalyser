@@ -2,6 +2,7 @@ package parser.classdiagram.xml.visualstudio15;
 
 import diagram.umlclass.Class;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -27,7 +28,7 @@ public class VS15XMLClassDiagramParser extends ClassDiagramParser {
         List<Class> classes = new ArrayList<Class>();
         NodeList classNodes = this.getClassNodes();
         for (int i = 0; i < classNodes.getLength(); i++){
-            Node classNode = classNodes.item(i);
+            Element classNode = (Element) classNodes.item(i);
             VS15XMLClassParser classParser = new VS15XMLClassParser(classNode);
             classParser.parse();
             classes.add(classParser.getC());

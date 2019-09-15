@@ -9,10 +9,10 @@ import java.io.IOException;
 
 public abstract class DiagramParser implements Parser {
 
-    public DiagramParser(String filePath) throws ParserConfigurationException, IOException, SAXException {
+    public DiagramParser(String filePath){
         this.openFile(filePath);
     }
 
-    protected abstract void openFile(String filePath) throws ParserConfigurationException, IOException, SAXException;
+    protected abstract void openFile(String filePath);
 
 }
