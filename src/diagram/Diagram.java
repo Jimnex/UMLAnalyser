@@ -3,13 +3,17 @@ package diagram;
 import analyser.Analyser;
 import parser.Parser;
 
-public abstract class Diagram {
-    private Parser diagramParser;
-    private Analyser analyser;
+import java.io.File;
 
-    public Diagram(Parser diagramParser, Analyser analyser){
+public abstract class Diagram {
+    protected final Parser diagramParser;
+    protected final Analyser analyser;
+    protected final File file;
+
+    public Diagram(File file, Parser diagramParser, Analyser analyser){
         this.diagramParser = diagramParser;
         this.analyser = analyser;
+        this.file = file;
     }
 
     public Parser getDiagramParser() {
