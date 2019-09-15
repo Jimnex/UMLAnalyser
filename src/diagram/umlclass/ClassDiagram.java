@@ -1,6 +1,7 @@
 package diagram.umlclass;
 
 import analyser.Analyser;
+import analyser.ClassDiagramAnalyser;
 import diagram.Diagram;
 import parser.Parser;
 
@@ -10,9 +11,9 @@ import java.util.Collection;
 public class ClassDiagram extends Diagram {
     private Collection<Class> classes;
 
-    public ClassDiagram(Parser diagramParser, Analyser analyser) {
-        super(diagramParser, analyser);
-        classes = new ArrayList<Class>();
+    public ClassDiagram(Parser diagramParser) {
+        super(diagramParser, new ClassDiagramAnalyser());
+        classes = new ArrayList<>();
     }
 
     public void addClass(Class c){

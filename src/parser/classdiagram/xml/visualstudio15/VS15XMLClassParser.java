@@ -32,8 +32,8 @@ public class VS15XMLClassParser extends XMLFileParser implements ClassParser {
     @Override
     public Visibility parseVisibility() {
         String strVisibility = super.getValue(this.classNode, "visibility");
-        Visibility visibility = Visibility.createFromStr(strVisibility);
-        return visibility;
+        return Visibility.createFromStr(strVisibility);
+        //TODO: Should be exception handling here?
     }
 
     @Override
@@ -54,12 +54,6 @@ public class VS15XMLClassParser extends XMLFileParser implements ClassParser {
     @Override
     public Collection<Field> getFields() {
         return null;
-    }
-
-    private Field parseField(Node node){
-        Field field = new Field();
-
-        return field;
     }
 
     @Override

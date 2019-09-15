@@ -11,4 +11,12 @@ public abstract class Diagram {
         this.diagramParser = diagramParser;
         this.analyser = analyser;
     }
+
+    public Parser getDiagramParser() {
+        return diagramParser;
+    }
+
+    public Analyser getAnalyser() {
+        return analyser;
+    }
 }
