@@ -8,6 +8,9 @@ public class Main {
         File file = new File("/home/izsof/Code/UMLAnalyser/class.classdiagram");
         DiagramFactory diagramFactory = new DiagramFactory();
         Diagram diagram = diagramFactory.createDiagram(file);
+        diagram.parse();
+        diagram.analyse();
+        //TODO: diagram.visualize();
     }
 
 }

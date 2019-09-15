@@ -5,6 +5,7 @@ import analyser.ClassDiagramAnalyser;
 import diagram.Diagram;
 import parser.Parser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 

@@ -6,6 +6,7 @@ import parser.Parser;
 import java.util.Collection;
 
 public interface ClassParser extends Parser {
+
     Visibility parseVisibility();
 
     Boolean parseIsAbstract();
@@ -17,6 +18,4 @@ public interface ClassParser extends Parser {
     Collection<Method> getMethods();
 
     Collection<Dependency> getDependencies();
-
-    String parseClassName();
 }

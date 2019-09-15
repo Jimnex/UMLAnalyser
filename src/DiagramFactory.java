@@ -10,10 +10,10 @@ import java.util.*;
 
 class DiagramFactory {
 
-    Diagram createDiagram(File file){
-        switch (this.getExtension(file.getPath())){
+    Diagram createDiagram(String filePath){
+        switch (this.getExtension(filePath)){
             case "classdiagram":
-                return new ClassDiagram(new VS15XMLClassDiagramParser());
+                return new ClassDiagram(new VS15XMLClassDiagramParser(filePath));
             default:
                 return null;
         }
