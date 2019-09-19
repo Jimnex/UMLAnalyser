@@ -4,27 +4,13 @@ import analyser.Analyser;
 import parser.Parser;
 
 public abstract class Diagram {
-    protected final Parser parser;
-    protected final Analyser analyser;
+    protected final String name;
 
-    public Diagram(Parser diagramParser, Analyser analyser){
-        this.parser = diagramParser;
-        this.analyser = analyser;
+    public Diagram(String name){
+        this.name = name;
     }
 
-    public void parse(){
-        parser.parse();
-    }
-
-    public void analyse(){
+    public void analyse(Analyser analyser){
         analyser.analyse();
-    }
-
-    public Parser getParser() {
-        return parser;
-    }
-
-    public Analyser getAnalyser() {
-        return analyser;
     }
 }

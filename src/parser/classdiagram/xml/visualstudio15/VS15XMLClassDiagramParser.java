@@ -1,6 +1,7 @@
 package parser.classdiagram.xml.visualstudio15;
 
 import diagram.umlclass.Class;
+import diagram.umlclass.ClassDiagram;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,9 +19,11 @@ import java.util.List;
 
 public class VS15XMLClassDiagramParser extends ClassDiagramParser {
     private Document doc;
+    private String filePath;
 
     public VS15XMLClassDiagramParser(String filePath) {
-        super(filePath);
+        this.filePath = filePath;
+        this.openFile();
     }
 
     @Override
@@ -48,9 +51,8 @@ public class VS15XMLClassDiagramParser extends ClassDiagramParser {
         //TODO: exception handling
     }
 
-    @Override
-    public void openFile(String path){
-        File file = new File(path);
+    private void openFile(){
+        File file = new File(this.filePath);
         try {
             this.parseXMLDocWithDOM(file);
         }catch (Exception e){

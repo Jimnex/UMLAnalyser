@@ -7,13 +7,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.classdiagram.ClassParser;
 
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class VS15XMLClassParser implements ClassParser {
+public class VS15XMLClassParser extends ClassParser {
     private final Element classElement;
-    private Class c;
 
     public Class getC() {
         return c;
@@ -21,12 +24,6 @@ public class VS15XMLClassParser implements ClassParser {
 
     public VS15XMLClassParser(Element classElement) {
         this.classElement = classElement;
-    }
-
-    @Override
-    public void parse() {
-        String className = parseName();
-        this.c = new Class(className);
     }
 
     @Override
@@ -48,7 +45,7 @@ public class VS15XMLClassParser implements ClassParser {
 
     @Override
     public Collection<Association> getAssociations() {
-        List<Association> associations = new ArrayList<Association>();
+        List<Association> associations = new ArrayList<>();
         NodeList associationNodes = this.getAssociationsNodes();
         VS15XMLClassAssociationParser associationParser;
         for (int i = 0; i < associationNodes.getLength(); i++){
@@ -62,11 +59,16 @@ public class VS15XMLClassParser implements ClassParser {
 
     private NodeList getAssociationsNodes(){
         //TODO: Handling when there is no association
-        NodeList childNodes = this.classElement.getElementsByTagName("targetEnds/association");
-        return childNodes;
+        XPath xPath = XPathFactory.newInstance().newXPath();
+        NodeList associationNodes = null;
+        try {
+            associationNodes = (NodeList)xPath.evaluate("targetEnds/association",
+            (Node)this.classElement, XPathConstants.NODESET);
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return associationNodes;
     }
-
-
 
     @Override
     public Collection<Field> getFields() {
