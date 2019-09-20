@@ -1,14 +1,20 @@
 package parser.classdiagram;
 
+import diagram.Diagram;
 import diagram.umlclass.Class;
+import diagram.umlclass.ClassDiagram;
 import parser.Parser;
 
-import java.util.Collection;
+import java.util.List;
 
-public abstract class ClassDiagramParser implements Parser {
-    protected abstract Collection<Class> getClasses();
+public abstract class ClassDiagramParser implements Parser<ClassDiagram> {
+    protected ClassDiagram classDiagram;
 
-    public void parse(){
+    protected abstract List<Class> parseClasses();
 
+    @Override
+    public ClassDiagram parse(){
+        this.classDiagram = new ClassDiagram(this.parseName(),this.parseClasses());
+        return classDiagram;
     }
 }

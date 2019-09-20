@@ -6,11 +6,11 @@ public enum Visibility {
     INTERNAL;
 
     public static Visibility createFromStr(String str) throws EnumConstantNotPresentException{
-        if (str == "Public"){
+        if (str.equals("Public")){
             return Visibility.PUBLIC;
-        } else if (str == "Private"){
+        } else if (str.equals("Private")){
             return Visibility.PRIVATE;
-        } else if (str == "Internal") {
+        } else if (str.equals("Internal")) {
             return Visibility.INTERNAL;
         } else throw new EnumConstantNotPresentException(Visibility.class, str);
     }
