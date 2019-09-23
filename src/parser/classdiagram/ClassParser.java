@@ -2,11 +2,12 @@ package parser.classdiagram;
 
 import diagram.umlclass.*;
 import diagram.umlclass.Class;
+import parser.NameParser;
 import parser.Parser;
 
 import java.util.Collection;
 
-public abstract class ClassParser implements Parser<Class> {
+public abstract class ClassParser implements Parser<Class> , NameParser {
     protected Class c;
 
     @Override
