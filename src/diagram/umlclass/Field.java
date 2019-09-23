@@ -12,4 +12,14 @@ public class Field {
     private Boolean isDerivedUnion;
     private Aggregation aggregation;
     private Boolean isComposite;
+
+    public Field(String name, Type type, Visibility visibility, Boolean isStatic, Boolean isReadOnly, Aggregation aggregation, Boolean isComposite) {
+        this.name = name;
+        this.type = type;
+        this.visibility = visibility;
+        this.isStatic = isStatic;
+        this.isReadOnly = isReadOnly;
+        this.aggregation = aggregation;
+        this.isComposite = isComposite;
+    }
 }
