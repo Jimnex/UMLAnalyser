@@ -1,10 +1,8 @@
 package parser.classdiagram.xml.visualstudio15;
 
 import diagram.umlclass.Class;
-import diagram.umlclass.ClassDiagram;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import parser.classdiagram.ClassDiagramParser;
@@ -17,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VS15XMLClassDiagramParser extends ClassDiagramParser {
+public class VS15XMLClassDiagramParser<T> extends ClassDiagramParser {
     private Document doc;
     private String filePath;
 
@@ -26,15 +24,13 @@ public class VS15XMLClassDiagramParser extends ClassDiagramParser {
         this.openFile();
     }
 
-    @Override
     protected List<Class> parseClasses() {
         List<Class> classes = new ArrayList<Class>();
         NodeList classNodes = this.getClassNodes();
         for (int i = 0; i < classNodes.getLength(); i++){
             Element classNode = (Element) classNodes.item(i);
             VS15XMLClassParser classParser = new VS15XMLClassParser(classNode);
-            classParser.parse();
-            classes.add(classParser.getC());
+            classes.add(classParser.parse());
         }
         return classes;
     }

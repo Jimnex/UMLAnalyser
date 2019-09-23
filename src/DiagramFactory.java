@@ -1,9 +1,8 @@
 import diagram.Diagram;
 import org.apache.commons.io.FilenameUtils;
-import parser.Parser;
 import parser.classdiagram.xml.visualstudio15.VS15XMLClassDiagramParser;
 
-class DiagramFactory {
+public class DiagramFactory {
 
     Diagram createDiagram(String filePath){
         switch (this.getExtension(filePath)){
