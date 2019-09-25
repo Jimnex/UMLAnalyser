@@ -2,29 +2,36 @@ package parser.classdiagram;
 
 import diagram.umlclass.Aggregation;
 import diagram.umlclass.Association;
-import diagram.umlclass.AssociationNode;
 import diagram.umlclass.Multiplicity;
+import parser.NameParser;
 import parser.Parser;
 
-public abstract class AssociationParser implements Parser<Association> {
+public abstract class AssociationParser implements Parser<Association>, NameParser{
     protected Association association;
-    protected AssociationNode source;
-    protected AssociationNode target;
 
     @Override
     public Association parse() {
-        this.association = new Association(this.parseAssociationNode(true),
-                                           this.parseAssociationNode(false));
-        return this.association;
+        return this.association = new Association(this.parseNode(true), this.parseNode(false));
     }
 
-    protected abstract AssociationNode parseAssociationNode(Boolean isSource);
+    private Association.Node parseNode(boolean isSource) {
+        return new Association.Node(this.parseName(),
+                this.parseIsComposite(),
+                this.parseAggregation(),
+                this.parseIsNavigableOwned(),
+                this.parseMultiplicity(true),
+                this.parseMultiplicity(false));
+    }
 
     protected abstract boolean parseIsComposite();
 
     protected abstract Aggregation parseAggregation();
 
-    protected abstract boolean isNavigableOwned();
+    protected abstract boolean parseIsNavigableOwned();
 
-    protected abstract Multiplicity parseMultiplicity();
+    protected abstract Multiplicity parseMultiplicity(boolean isLower);
+
 }
+
+
+

@@ -2,34 +2,19 @@ package parser.classdiagram.xml.visualstudio15;
 
 import diagram.umlclass.Aggregation;
 import diagram.umlclass.Association;
-import diagram.umlclass.AssociationNode;
 import diagram.umlclass.Multiplicity;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import parser.Parser;
 import parser.XML;
 import parser.classdiagram.AssociationParser;
 
 public class VS15XMLClassAssociationParser extends AssociationParser {
-    private Node node;
-    private Node target;
-    private Node source;
+    private org.w3c.dom.Node node;
+    private org.w3c.dom.Node target;
+    private org.w3c.dom.Node source;
 
-    public VS15XMLClassAssociationParser(Node associationNode) {
+    public VS15XMLClassAssociationParser(org.w3c.dom.Node associationNode) {
         this.node = associationNode;
         this.source = XML.getNode(this.node,"relationshipOwnedElementsInternal/associationHasOwnedEnds[0]/memberEnd");
         this.target = XML.getNode(this.node,"relationshipOwnedElementsInternal/associationHasOwnedEnds[1]/memberEnd");
-    }
-
-
-    @Override
-    protected AssociationNode parseAssociationNode(Boolean isSource) {
-        if(isSource){
-            return this.parseAssociationNode(source);
-        } else {
-            return this.parseAssociationNode(target);
-        }
     }
 
     @Override
@@ -43,18 +28,19 @@ public class VS15XMLClassAssociationParser extends AssociationParser {
     }
 
     @Override
-    protected boolean isNavigableOwned() {
+    protected boolean parseIsNavigableOwned() {
         return XML.getBooleanValue(this.source, "isNavigableOwned");
     }
 
+
     @Override
-    protected Multiplicity parseMultiplicity() {
-        //return XML.getValue(this.source, )
-        return null;
+    protected Multiplicity parseMultiplicity(boolean isLower) {
+        return Multiplicity.createFromStr(XML.getValue(this.source, "value"));
     }
 
-    private AssociationNode parseAssociationNode(Node node){
-        //return new AssociationNode();
+
+    @Override
+    public String parseName() {
         return null;
     }
 }
