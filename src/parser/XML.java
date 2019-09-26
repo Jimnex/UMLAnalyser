@@ -1,13 +1,17 @@
 package parser;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+
+import static javax.xml.xpath.XPathConstants.*;
 
 public class XML{
 
@@ -15,7 +19,7 @@ public class XML{
         XPath xPath = XPathFactory.newInstance().newXPath();
         NodeList list = null;
         try {
-            list = (NodeList)xPath.evaluate(path, rootNode, XPathConstants.NODESET);
+            list = (NodeList)xPath.evaluate(path, rootNode, NODESET);
         } catch (XPathExpressionException e) {
             System.out.println("Error with getNodeList()");
             e.printStackTrace();
@@ -24,10 +28,12 @@ public class XML{
     }
 
     public static Node getNode(Node rootNode, String path){
-        XPath xPath = XPathFactory.newInstance().newXPath();
+        XPathFactory xPathfactory = XPathFactory.newInstance();
+        XPath xpath = xPathfactory.newXPath();
         Node node = null;
         try {
-            node = (Node)xPath.evaluate(path, rootNode, XPathConstants.NODE);
+            XPathExpression expr =  xpath.compile(path);
+            node = (Node) expr.evaluate(rootNode, XPathConstants.NODE);
         } catch (XPathExpressionException e) {
             System.out.println("Error with getNode()");
             e.printStackTrace();
