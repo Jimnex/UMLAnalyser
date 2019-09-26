@@ -46,10 +46,8 @@ public class VS15XMLClassParser extends ClassParser {
     public Collection<Association> getAssociations() {
         List<Association> associations = new ArrayList<>();
         NodeList associationNodes = XML.getNodeList(this.classElement,"targetEnds/association");
-        VS15XMLClassAssociationParser associationParser;
         for (int i = 0; i < associationNodes.getLength(); i++){
-            associationParser = new VS15XMLClassAssociationParser(associationNodes.item(i));
-            associations.add(associationParser.parse());
+            associations.add((new VS15XMLClassAssociationParser(associationNodes.item(i)).parse()));
         }
         return associations;
     }

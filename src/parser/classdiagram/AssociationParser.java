@@ -6,7 +6,7 @@ import diagram.umlclass.Multiplicity;
 import parser.NameParser;
 import parser.Parser;
 
-public abstract class AssociationParser implements Parser<Association>, NameParser{
+public abstract class AssociationParser implements Parser<Association>{
     protected Association association;
 
     @Override
@@ -14,23 +14,16 @@ public abstract class AssociationParser implements Parser<Association>, NamePars
         return this.association = new Association(this.parseNode(true), this.parseNode(false));
     }
 
-    private Association.Node parseNode(boolean isSource) {
-        return new Association.Node(this.parseName(),
-                this.parseIsComposite(),
-                this.parseAggregation(),
-                this.parseIsNavigableOwned(),
-                this.parseMultiplicity(true),
-                this.parseMultiplicity(false));
-    }
+    protected abstract Association.Node parseNode(boolean isSource);
+/*
+    protected abstract boolean parseIsComposite(boolean isSource);
 
-    protected abstract boolean parseIsComposite();
+    protected abstract Aggregation parseAggregation(boolean isSource);
 
-    protected abstract Aggregation parseAggregation();
-
-    protected abstract boolean parseIsNavigableOwned();
+    protected abstract boolean parseIsNavigableOwned(boolean isSource);
 
     protected abstract Multiplicity parseMultiplicity(boolean isLower);
-
+*/
 }
 
 

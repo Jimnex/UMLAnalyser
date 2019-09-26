@@ -3,45 +3,50 @@ package parser.classdiagram.xml.visualstudio15;
 import diagram.umlclass.Aggregation;
 import diagram.umlclass.Association;
 import diagram.umlclass.Multiplicity;
+import org.w3c.dom.Node;
 import parser.XML;
 import parser.classdiagram.AssociationParser;
 
-public class VS15XMLClassAssociationParser extends AssociationParser {
+public class VS15XMLClassAssociationParser  extends AssociationParser{
     private org.w3c.dom.Node node;
-    private org.w3c.dom.Node target;
-    private org.w3c.dom.Node source;
 
     public VS15XMLClassAssociationParser(org.w3c.dom.Node associationNode) {
         this.node = associationNode;
-        this.source = XML.getNode(this.node,"relationshipOwnedElementsInternal/associationHasOwnedEnds[0]/memberEnd");
-        this.target = XML.getNode(this.node,"relationshipOwnedElementsInternal/associationHasOwnedEnds[1]/memberEnd");
     }
 
-    @Override
-    protected boolean parseIsComposite() {
-        return XML.getBooleanValue(this.source, "isComposite");
+    protected Association.Node parseNode(boolean isSource) {
+        Node xmlNode;
+        if (isSource){
+            xmlNode = XML.getNode(this.node,"relationshipOwnedElementsInternal/associationHasOwnedEnds[1]/memberEnd");
+        } else {
+            xmlNode = XML.getNode(this.node,"relationshipOwnedElementsInternal/associationHasOwnedEnds[2]/memberEnd");
+        }
+        return new Association.Node(this.parseName(xmlNode),
+                this.parseIsComposite(xmlNode),
+                this.parseAggregation(xmlNode),
+                this.parseIsNavigableOwned(xmlNode),
+                this.parseMultiplicity(XML.getNode(xmlNode,"lowerValueInternal/literalString")),
+                this.parseMultiplicity(XML.getNode(xmlNode,"upperValueInternal/literalString")));
     }
 
-    @Override
-    protected Aggregation parseAggregation() {
-        return Aggregation.createFromStr(XML.getValue(this.source, "aggregation"));
+    protected boolean parseIsComposite(Node node) {
+        return XML.getBooleanValue(node, "isComposite");
     }
 
-    @Override
-    protected boolean parseIsNavigableOwned() {
-        return XML.getBooleanValue(this.source, "isNavigableOwned");
+    protected Aggregation parseAggregation(Node node) {
+        return Aggregation.createFromStr(XML.getValue(node, "aggregation"));
     }
 
-
-    @Override
-    protected Multiplicity parseMultiplicity(boolean isLower) {
-        return Multiplicity.createFromStr(XML.getValue(this.source, "value"));
+    protected boolean parseIsNavigableOwned(Node node) {
+        return XML.getBooleanValue(node, "isNavigableOwned");
     }
 
+    protected Multiplicity parseMultiplicity(Node node) {
+        return Multiplicity.createFromStr(XML.getValue(node, "value"));
+    }
 
-    @Override
-    public String parseName() {
-        return null;
+    public String parseName(Node node) {
+        return XML.getValue(node,"name");
     }
 }
 

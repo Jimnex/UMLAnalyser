@@ -6,7 +6,6 @@ import diagram.umlclass.Visibility;
 import org.w3c.dom.Node;
 import parser.XML;
 import parser.classdiagram.FieldParser;
-import org.apache.*;
 
 public class VS15XMLClassFieldParser extends FieldParser {
     private Node node;
