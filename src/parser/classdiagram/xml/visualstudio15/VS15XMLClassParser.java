@@ -46,7 +46,7 @@ public class VS15XMLClassParser extends ClassParser {
     public Collection<Association> getAssociations() {
         List<Association> associations = new ArrayList<>();
         NodeList associationNodes = XML.getNodeList(this.classElement,"targetEnds/association");
-        for (int i = 0; i < associationNodes.getLength(); i++){
+        for (int i = 0; i < associationNodes.getLength(); ++i){
             associations.add((new VS15XMLClassAssociationParser(associationNodes.item(i)).parse()));
         }
         return associations;
@@ -54,7 +54,12 @@ public class VS15XMLClassParser extends ClassParser {
 
     @Override
     public Collection<Field> getFields() {
-        return null;
+        List<Field> fields = new ArrayList<>();
+        NodeList fieldNodes = XML.getNodeList(this.classElement, "ownedAttributesInternal/property");
+        for (int i = 0; i < fieldNodes.getLength(); ++i){
+            fields.add((new VS15XMLClassFieldParser(fieldNodes.item(i)).parse()));
+        }
+        return fields;
     }
 
     @Override
