@@ -1,51 +1,49 @@
 package parser.classdiagram.xml.visualstudio15;
 
 import diagram.umlclass.*;
-import diagram.umlclass.Class;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.ClassParser;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
 public class VS15XMLClassParser extends ClassParser {
-    private final Element classElement;
+    private final Node classNode;
 
 //region Completed Implementation
-    public VS15XMLClassParser(Element classElement) {
-        this.classElement = classElement;
+    public VS15XMLClassParser(Node classNode) {
+        this.classNode = classNode;
     }
 
     @Override
     public String parseName() {
-        return XML.getValue(this.classElement, "name");
+        return XML.getValue(this.classNode, "name");
+    }
+
+    @Override
+    protected Boolean parseIsStatic() {
+        return null;
     }
 
     @Override
     public Visibility parseVisibility() {
-        return Visibility.createFromStr(XML.getValue(this.classElement, "visibility"));
+        return Visibility.createFromStr(XML.getValue(this.classNode, "visibility"));
         //TODO: Should be exception handling here?
     }
 
     @Override
     public Boolean parseIsAbstract() {
-        return Boolean.parseBoolean(XML.getValue(classElement, "isAbstract"));
+        return Boolean.parseBoolean(XML.getValue(classNode, "isAbstract"));
     }
     //endregion
 
     @Override
-    public Collection<Association> getAssociations() {
+    public List<Association> getAssociations() {
         List<Association> associations = new ArrayList<>();
-        NodeList associationNodes = XML.getNodeList(this.classElement,"targetEnds/association");
+        NodeList associationNodes = XML.getNodeList(this.classNode,"targetEnds/association");
         for (int i = 0; i < associationNodes.getLength(); ++i){
             associations.add((new VS15XMLClassAssociationParser(associationNodes.item(i)).parse()));
         }
@@ -53,9 +51,9 @@ public class VS15XMLClassParser extends ClassParser {
     }
 
     @Override
-    public Collection<Field> getFields() {
+    public List<Field> getFields() {
         List<Field> fields = new ArrayList<>();
-        NodeList fieldNodes = XML.getNodeList(this.classElement, "ownedAttributesInternal/property");
+        NodeList fieldNodes = XML.getNodeList(this.classNode, "ownedAttributesInternal/property");
         for (int i = 0; i < fieldNodes.getLength(); ++i){
             fields.add((new VS15XMLClassFieldParser(fieldNodes.item(i)).parse()));
         }
@@ -63,12 +61,26 @@ public class VS15XMLClassParser extends ClassParser {
     }
 
     @Override
-    public Collection<Method> getMethods() {
-        return null;
+    public List<Method> getMethods() {
+        List<Method> methods = new ArrayList<>();
+        NodeList methodNodes = XML.getNodeList(this.classNode, "ownedOperationsInternal/operation");
+        for (int i = 0; i < methodNodes.getLength(); ++i){
+            methods.add((new VS15XMLClassMethodParser(methodNodes.item(i)).parse()));
+        }
+        return methods;
+    }
+    
+    private <T> List<T> collect(String xpath, Object parser){
+        List<T> list = new ArrayList<>();
+        NodeList nodeList = XML.getNodeList(this.classNode, xpath);
+        for (int i = 0; i < nodeList.getLength(); ++i){
+            //list.add((parser(nodeList.item(i)).parse()));
+        }
+        return list;
     }
 
     @Override
-    public Collection<Dependency> getDependencies() {
+    public List<Dependency> getDependencies() {
         return null;
     }
 
