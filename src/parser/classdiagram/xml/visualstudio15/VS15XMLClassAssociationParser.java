@@ -49,18 +49,3 @@ public class VS15XMLClassAssociationParser  extends AssociationParser{
         return XML.getValue(node,"name");
     }
 }
-
-
-
-
-
-//XmlNode sourceNode = aNode.SelectSingleNode("cd:relationshipOwnedElementsInternal",nsmgr).ChildNodes.Item(0).FirstChild;
-//XmlNode targetNode = aNode.SelectSingleNode("cd:relationshipOwnedElementsInternal", nsmgr).ChildNodes.Item(1).FirstChild;
-
-//a.Source = getCommonAssociationMemberAttributes(sourceNode);
-//a.Source.ClassName = className;
-//a.Source.ClassID = id;
-
-//a.Target = getCommonAssociationMemberAttributes(targetNode);
-//a.Target.ClassName = getAttribute(aNode.SelectSingleNode("cd:classMoniker",nsmgr),"LastKnownName");
-//a.Target.ClassID = getAttribute(aNode.SelectSingleNode("cd:classMoniker",nsmgr),"Id");
