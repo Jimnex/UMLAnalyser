@@ -7,8 +7,8 @@ import org.w3c.dom.Node;
 import parser.XML;
 import parser.classdiagram.AssociationParser;
 
-public class VS15XMLClassAssociationParser  extends AssociationParser{
-    private org.w3c.dom.Node node;
+class VS15XMLClassAssociationParser  extends AssociationParser{
+    private final org.w3c.dom.Node node;
 
     public VS15XMLClassAssociationParser(org.w3c.dom.Node associationNode) {
         this.node = associationNode;

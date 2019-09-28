@@ -8,11 +8,10 @@ import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.MethodParser;
 
-import javax.xml.bind.annotation.XmlAccessOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VS15XMLClassMethodParser extends MethodParser {
+class VS15XMLClassMethodParser extends MethodParser {
     private final Node node;
 
     public VS15XMLClassMethodParser(Node methodNode) {

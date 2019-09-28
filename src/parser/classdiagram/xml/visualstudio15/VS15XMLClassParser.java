@@ -31,7 +31,6 @@ public class VS15XMLClassParser extends ClassParser {
     @Override
     public Visibility parseVisibility() {
         return Visibility.createFromStr(XML.getValue(this.node, "visibility"));
-        //TODO: Should be exception handling here?
     }
 
     @Override

@@ -7,8 +7,8 @@ import org.w3c.dom.Node;
 import parser.XML;
 import parser.classdiagram.FieldParser;
 
-public class VS15XMLClassFieldParser extends FieldParser {
-    private Node node;
+class VS15XMLClassFieldParser extends FieldParser {
+    private final Node node;
 
     public VS15XMLClassFieldParser(Node fieldNode) {
         this.node = fieldNode;
