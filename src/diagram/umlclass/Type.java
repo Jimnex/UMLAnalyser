@@ -1,7 +1,11 @@
 package diagram.umlclass;
 
 public class Type {
-    private String id;
-    private String name;
-    private String type;
+    private final String id;
+    private final String name;
+
+    public Type(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

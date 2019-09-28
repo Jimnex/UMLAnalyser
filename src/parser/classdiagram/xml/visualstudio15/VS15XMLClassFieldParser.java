@@ -16,11 +16,8 @@ public class VS15XMLClassFieldParser extends FieldParser {
 
     @Override
     protected Type parseType() {
-        Node typeNode = XML.getNode(this.node, "type_NamedElement");
-        String name = XML.getValue(typeNode,"LastKnownName");
-
-
-        return new Type();
+        Node typeNode = XML.getNode(this.node, "type_NamedElement/referencedTypeMoniker");
+        return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
     }
 
     @Override
