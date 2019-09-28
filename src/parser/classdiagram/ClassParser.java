@@ -5,33 +5,32 @@ import diagram.umlclass.Class;
 import parser.NameParser;
 import parser.Parser;
 
-import java.util.Collection;
+import java.util.List;
 
 public abstract class ClassParser implements Parser<Class> , NameParser {
-    protected Class c;
 
     @Override
     public Class parse() {
-        this.c = new Class(this.parseName());
-        this.c.setVisibility(this.parseVisibility());
-        this.c.setAbstract(this.parseIsAbstract());
-        this.c.setAssociations(this.getAssociations());
-        this.c.setFields(this.getFields());
-        this.c.setMethods(this.getMethods());
-        this.c.setDependencies(this.getDependencies());
-
-        return this.c;
+        return new Class(this.parseName(),
+                this.parseIsAbstract(),
+                this.parseIsStatic(),
+                this.parseVisibility(),
+                this.getAssociations(),
+                this.getFields(),
+                this.getMethods());
     }
+
+    protected abstract Boolean parseIsStatic();
 
     abstract protected Visibility parseVisibility();
 
     abstract protected Boolean parseIsAbstract();
 
-    abstract protected Collection<Association> getAssociations();
+    abstract protected List<Association> getAssociations();
 
-    abstract protected Collection<Field> getFields();
+    abstract protected List<Field> getFields();
 
-    abstract protected Collection<Method> getMethods();
+    abstract protected List<Method> getMethods();
 
-    abstract protected Collection<Dependency> getDependencies();
+    abstract protected List<Dependency> getDependencies();
 }
