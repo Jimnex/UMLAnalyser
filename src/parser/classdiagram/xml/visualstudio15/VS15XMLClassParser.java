@@ -11,16 +11,16 @@ import java.util.List;
 
 
 public class VS15XMLClassParser extends ClassParser {
-    private final Node classNode;
+    private final Node node;
 
 //region Completed Implementation
-    public VS15XMLClassParser(Node classNode) {
-        this.classNode = classNode;
+    public VS15XMLClassParser(Node node) {
+        this.node = node;
     }
 
     @Override
     public String parseName() {
-        return XML.getValue(this.classNode, "name");
+        return XML.getValue(this.node, "name");
     }
 
     @Override
@@ -30,20 +30,20 @@ public class VS15XMLClassParser extends ClassParser {
 
     @Override
     public Visibility parseVisibility() {
-        return Visibility.createFromStr(XML.getValue(this.classNode, "visibility"));
+        return Visibility.createFromStr(XML.getValue(this.node, "visibility"));
         //TODO: Should be exception handling here?
     }
 
     @Override
     public Boolean parseIsAbstract() {
-        return Boolean.parseBoolean(XML.getValue(classNode, "isAbstract"));
+        return Boolean.parseBoolean(XML.getValue(node, "isAbstract"));
     }
     //endregion
 
     @Override
     public List<Association> getAssociations() {
         List<Association> associations = new ArrayList<>();
-        NodeList associationNodes = XML.getNodeList(this.classNode,"targetEnds/association");
+        NodeList associationNodes = XML.getNodeList(this.node,"targetEnds/association");
         for (int i = 0; i < associationNodes.getLength(); ++i){
             associations.add((new VS15XMLClassAssociationParser(associationNodes.item(i)).parse()));
         }
@@ -53,7 +53,7 @@ public class VS15XMLClassParser extends ClassParser {
     @Override
     public List<Field> getFields() {
         List<Field> fields = new ArrayList<>();
-        NodeList fieldNodes = XML.getNodeList(this.classNode, "ownedAttributesInternal/property");
+        NodeList fieldNodes = XML.getNodeList(this.node, "ownedAttributesInternal/property");
         for (int i = 0; i < fieldNodes.getLength(); ++i){
             fields.add((new VS15XMLClassFieldParser(fieldNodes.item(i)).parse()));
         }
@@ -63,27 +63,43 @@ public class VS15XMLClassParser extends ClassParser {
     @Override
     public List<Method> getMethods() {
         List<Method> methods = new ArrayList<>();
-        NodeList methodNodes = XML.getNodeList(this.classNode, "ownedOperationsInternal/operation");
+        NodeList methodNodes = XML.getNodeList(this.node, "ownedOperationsInternal/operation");
         for (int i = 0; i < methodNodes.getLength(); ++i){
             methods.add((new VS15XMLClassMethodParser(methodNodes.item(i)).parse()));
         }
         return methods;
     }
-    
+
+    @Override
+    protected List<String> getBaseIDs() {
+        return this.getIDs("generalsInternal/generalization/classMoniker");
+    }
+
+    private List<String> getIDs(String xpath){
+        List<String> ids = new ArrayList<>();
+        NodeList baseIDNodes = XML.getNodeList(this.node,xpath);
+        for (int i = 0; i < baseIDNodes.getLength(); ++i) {
+            ids.add(getID(baseIDNodes.item(i)));
+        }
+        return ids;
+    }
+
+    private String getID(Node node){
+        return XML.getValue(node, "Id");
+    }
+
     private <T> List<T> collect(String xpath, Object parser){
         List<T> list = new ArrayList<>();
-        NodeList nodeList = XML.getNodeList(this.classNode, xpath);
+        NodeList nodeList = XML.getNodeList(this.node, xpath);
         for (int i = 0; i < nodeList.getLength(); ++i){
             //list.add((parser(nodeList.item(i)).parse()));
         }
         return list;
     }
 
+
     @Override
-    public List<Dependency> getDependencies() {
-        return null;
+    public String parseID() {
+        return XML.getValue(this.node, "Id");
     }
-
-
-
 }
