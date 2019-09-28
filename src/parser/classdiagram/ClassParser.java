@@ -2,12 +2,13 @@ package parser.classdiagram;
 
 import diagram.umlclass.*;
 import diagram.umlclass.Class;
+import parser.IDParser;
 import parser.NameParser;
 import parser.Parser;
 
 import java.util.List;
 
-public abstract class ClassParser implements Parser<Class> , NameParser {
+public abstract class ClassParser implements Parser<Class> , NameParser, IDParser {
 
     @Override
     public Class parse() {
@@ -17,7 +18,8 @@ public abstract class ClassParser implements Parser<Class> , NameParser {
                 this.parseVisibility(),
                 this.getAssociations(),
                 this.getFields(),
-                this.getMethods());
+                this.getMethods(),
+                this.getBaseIDs());
     }
 
     protected abstract Boolean parseIsStatic();
@@ -32,5 +34,5 @@ public abstract class ClassParser implements Parser<Class> , NameParser {
 
     abstract protected List<Method> getMethods();
 
-    abstract protected List<Dependency> getDependencies();
+    abstract protected List<String> getBaseIDs();
 }
