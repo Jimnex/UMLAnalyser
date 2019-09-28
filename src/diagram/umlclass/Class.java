@@ -7,20 +7,18 @@ public class Class {
     private String name;
     private Boolean isAbstract;
     private Boolean isStatic;
-    private String id;
     private Visibility visibility;
-    private List<String> childIds = new ArrayList<>();
-    private List<String> baseIds = new ArrayList<>();
+    private List<String> baseClassIDs = new ArrayList<>();
+    private List<String> baseInterfaceIDs = new ArrayList<>();
     private List<Association> associations = new ArrayList<Association>();
     private List<Field> fields = new ArrayList<Field>();
-    private List<Method> methods = new ArrayList<Method>();
-    private List<Dependency> dependencies = new ArrayList<Dependency>();
+    private List<Method> methods = new ArrayList<Method>();;
 
     public Class(String name) {
         this.name = name;
     }
 
-    public Class(String name, Boolean isAbstract, Boolean isStatic, Visibility visibility, List<Association> associations, List<Field> fields, List<Method> methods) {
+    public Class(String name, Boolean isAbstract, Boolean isStatic, Visibility visibility, List<Association> associations, List<Field> fields, List<Method> methods, List<String> baseClassIDs) {
         this.name = name;
         this.isAbstract = isAbstract;
         this.isStatic = isStatic;
@@ -28,6 +26,7 @@ public class Class {
         this.associations = associations;
         this.fields = fields;
         this.methods = methods;
+        this.baseClassIDs = baseClassIDs;
     }
 
     public Visibility getVisibility() {
@@ -42,16 +41,8 @@ public class Class {
         return isAbstract;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public List<String> getChilds() {
-        return new ArrayList<>(this.childIds);
-    }
-
-    public List<String> getBaseIds() {
-        return new ArrayList<>(this.baseIds);
+    public List<String> getBaseClassIDs() {
+        return new ArrayList<>(this.baseClassIDs);
     }
 
     public List<Association> getAssociations() {
@@ -66,8 +57,7 @@ public class Class {
         return new ArrayList<>(this.methods);
     }
 
-    public List<Dependency> getDependencies() {
-        return dependencies;
+    public List<String> getBaseInterfaceIDs() {
+        return new ArrayList<>(this.baseInterfaceIDs);
     }
-
 }
