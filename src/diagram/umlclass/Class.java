@@ -7,9 +7,9 @@ public class Class {
     public Class(String name) {
         this.name = name;
     }
-
     private String name;
     private Boolean isAbstract;
+    private Boolean isStatic;
     private String id;
 
     public Visibility getVisibility() {
@@ -108,5 +108,15 @@ public class Class {
 
     public void setDependencies(Collection<Dependency> dependencies) {
         this.dependencies = dependencies;
+    }
+
+    public Class(String name, Boolean isAbstract, Boolean isStatic, Visibility visibility, Collection<Association> associations, Collection<Field> fields, Collection<Method> methods) {
+        this.name = name;
+        this.isAbstract = isAbstract;
+        this.isStatic = isStatic;
+        this.visibility = visibility;
+        this.associations = associations;
+        this.fields = fields;
+        this.methods = methods;
     }
 }
