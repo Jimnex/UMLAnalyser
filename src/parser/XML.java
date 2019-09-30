@@ -21,7 +21,7 @@ import java.io.IOException;
 
 import static javax.xml.xpath.XPathConstants.*;
 
-public  class XML{
+public class XML{
 
     public static NodeList getNodeList(Node rootNode, String path){
         XPath xPath = XPathFactory.newInstance().newXPath();
@@ -50,8 +50,11 @@ public  class XML{
     }
 
     public static String getValue(Node node, String name){
-        Element e = (Element) node;
-        String value = e.getAttribute(name);
+        String value = "";
+        if(node != null){
+            Element e = (Element) node;
+            value = e.getAttribute(name);
+        }
         return value;
     }
 
@@ -59,9 +62,9 @@ public  class XML{
         return Boolean.parseBoolean(XML.getValue(node, name));
     }
 
-      public static Document parseXMLDocWithDOM(File file) throws ParserConfigurationException, IOException, SAXException {
+    public static Document parseXMLDocWithDOM(File file) throws ParserConfigurationException, IOException, SAXException {
           DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
           DocumentBuilder builder = factory.newDocumentBuilder();
           return builder.parse(file);
-      }
+    }
 }
