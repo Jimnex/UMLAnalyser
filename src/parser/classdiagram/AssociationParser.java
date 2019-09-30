@@ -11,8 +11,10 @@ public abstract class AssociationParser implements Parser<Association>{
 
     @Override
     public Association parse() {
-        return this.association = new Association(this.parseNode(true), this.parseNode(false));
+        return this.association = new Association(this.parseNode(true), this.parseNode(false), this.parseTargetID());
     }
+
+    protected abstract String parseTargetID();
 
     protected abstract Association.Node parseNode(boolean isSource);
 /*

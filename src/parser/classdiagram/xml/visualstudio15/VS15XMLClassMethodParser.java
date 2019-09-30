@@ -26,7 +26,11 @@ class VS15XMLClassMethodParser extends MethodParser {
     @Override
     protected Type parseReturnType() {
         Node typeNode = XML.getNode(this.node, "ownedParameters/operationHasOwnedParameters/parameter[@direction='Return']/type_NamedElement/referencedTypeMoniker");
-        return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+        if(typeNode != null){
+            return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+        } else {
+            return null;
+        }
     }
 
     @Override

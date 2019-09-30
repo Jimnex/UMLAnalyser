@@ -37,8 +37,7 @@ public class VS15XMLClassDiagramParser extends ClassDiagramParser {
         for (int i = 0; i < interfaceNodeList.getLength(); i++){
             interfaceParser = new VS15XMLInterfaceParser(interfaceNodeList.item(i));
             interfaces.put(interfaceParser.parseID(), interfaceParser.parse());
-        }
-        return interfaces;
+        }return interfaces;
     }
 
     private NodeList getInterfaceNodes() {

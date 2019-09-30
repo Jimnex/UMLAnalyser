@@ -29,7 +29,7 @@ class VS15XMLInterfaceParser extends InterfaceParser {
 
     @Override
     protected List<String> parseBaseIDs() {
-        throw new NotImplementedException();
+        return new ArrayList<>();
     }
 
     @Override

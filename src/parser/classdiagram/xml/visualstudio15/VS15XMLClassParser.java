@@ -71,20 +71,7 @@ public class VS15XMLClassParser extends ClassParser {
 
     @Override
     protected List<String> getBaseIDs() {
-        return this.getIDs("generalsInternal/generalization/classMoniker");
-    }
-
-    private List<String> getIDs(String xpath){
-        List<String> ids = new ArrayList<>();
-        NodeList baseIDNodes = XML.getNodeList(this.node,xpath);
-        for (int i = 0; i < baseIDNodes.getLength(); ++i) {
-            ids.add(getID(baseIDNodes.item(i)));
-        }
-        return ids;
-    }
-
-    private String getID(Node node){
-        return XML.getValue(node, "Id");
+        return XML.getIDs("generalsInternal/generalization/classMoniker",this.node);
     }
 
     private <T> List<T> collect(String xpath, Object parser){
