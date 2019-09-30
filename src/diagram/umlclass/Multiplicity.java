@@ -8,15 +8,15 @@ public enum Multiplicity {
     MANY;
 
     public static Multiplicity createFromStr(String str) throws EnumConstantNotPresentException{
-        if (str.equals("-")){
+        if (str.equalsIgnoreCase("0")){
             return Multiplicity.ZERO;
-        } else if (str.equals("-")){
+        } else if (str.equalsIgnoreCase("-")){
             return Multiplicity.ZERO_ONE;
-        } else if (str.equals("1")) {
+        } else if (str.equalsIgnoreCase("1")) {
             return Multiplicity.ONE;
-        } else if (str.equals("-")){
+        } else if (str.equalsIgnoreCase("-")){
             return Multiplicity.ONE_MANY;
-        } else if (str.equals("*")){
+        } else if (str.equalsIgnoreCase("*")){
             return Multiplicity.MANY;
         } else throw new EnumConstantNotPresentException(Visibility.class, str);
     }

@@ -7,13 +7,13 @@ public enum Visibility {
     PACKAGE;
 
     public static Visibility createFromStr(String str) throws EnumConstantNotPresentException{
-        if (str.equals("")){
+        if (str.equalsIgnoreCase("")){
             return Visibility.PUBLIC;
-        } else if (str.equals("Private")){
+        } else if (str.equalsIgnoreCase("Private")){
             return Visibility.PRIVATE;
-        } else if (str.equals("Internal")) {
+        } else if (str.equalsIgnoreCase("Internal")) {
             return Visibility.INTERNAL;
-        } else if (str.equals("Package")) {
+        } else if (str.equalsIgnoreCase("Package")) {
             return Visibility.PACKAGE;
         }
             throw new EnumConstantNotPresentException(Visibility.class, str);
