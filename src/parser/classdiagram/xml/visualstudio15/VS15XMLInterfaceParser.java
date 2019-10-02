@@ -10,7 +10,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VS15XMLInterfaceParser extends InterfaceParser {
+class VS15XMLInterfaceParser extends InterfaceParser {
     private final Node node;
 
     public VS15XMLInterfaceParser(Node interfaceNode) {
@@ -29,7 +29,7 @@ public class VS15XMLInterfaceParser extends InterfaceParser {
 
     @Override
     protected List<String> parseBaseIDs() {
-        throw new NotImplementedException();
+        return new ArrayList<>();
     }
 
     @Override

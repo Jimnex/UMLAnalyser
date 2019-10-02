@@ -3,23 +3,15 @@ package parser.classdiagram.xml.visualstudio15;
 import diagram.umlclass.Class;
 import diagram.umlclass.Interface;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import parser.XML;
-import parser.classdiagram.ClassDiagramParser;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import parser.classdiagram.ClassDiagramParser;;
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
-public class VS15XMLClassDiagramParser<T> extends ClassDiagramParser {
+public class VS15XMLClassDiagramParser extends ClassDiagramParser {
     private Document doc;
-    private String filePath;
+    private final String filePath;
 
     public VS15XMLClassDiagramParser(String filePath) {
         this.filePath = filePath;
@@ -45,8 +37,7 @@ public class VS15XMLClassDiagramParser<T> extends ClassDiagramParser {
         for (int i = 0; i < interfaceNodeList.getLength(); i++){
             interfaceParser = new VS15XMLInterfaceParser(interfaceNodeList.item(i));
             interfaces.put(interfaceParser.parseID(), interfaceParser.parse());
-        }
-        return interfaces;
+        }return interfaces;
     }
 
     private NodeList getInterfaceNodes() {
@@ -54,28 +45,19 @@ public class VS15XMLClassDiagramParser<T> extends ClassDiagramParser {
     }
 
     private NodeList getClassNodes() {
-        //TODO: exception handling
         return this.doc.getElementsByTagName("class");
     }
 
     @Override
     public String parseName() {
         return this.doc.getDocumentElement().getAttribute("name");
-        //TODO: exception handling
     }
 
     private void openFile(){
         File file = new File(this.filePath);
         try {
-            this.parseXMLDocWithDOM(file);
+            doc = XML.parseXMLDocWithDOM(file);
         }catch (Exception e){
-            //TODO: exception handling
         }
-    }
-
-    private void parseXMLDocWithDOM(File file) throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        this.doc = builder.parse(file);
     }
 }

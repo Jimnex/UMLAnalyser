@@ -56,6 +56,50 @@
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="9b86bc98-f3dc-415d-b431-69668f91d7e7" name="mate" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d1b4b669-0c25-448a-9995-42e3710d726f" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2c381656-d77f-4888-a55c-08bd36bded03" direction="Return" isUnique="false">
+                  <elementDefinition Id="3d33ab8b-d564-43ef-bb82-820d447995a2" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="bd9f4251-1d77-4636-bcf5-bca84df41e9f" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e7ab3df8-2096-43ac-ada6-e1a8be8c56d0" name="animal" direction="In" isUnique="false">
+                  <elementDefinition Id="d09c8960-d11b-4d68-b692-60675ff7c409" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="86433c26-a7eb-4b83-a57b-358e12e2675c" LastKnownName="Animal" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="77b2ac02-0f2e-4b76-8ad5-699b1b548d6e" name="eat" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="faceee33-4216-40b4-993e-cbbc414b4b53" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="46c78d24-5729-48a1-9dc8-a18529f380fe" name="food" direction="In" isUnique="false">
+                  <elementDefinition Id="50984f62-ad4c-40cb-b12e-815e011ac49f" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9bfe9863-799c-4af6-8100-c37967c66121" LastKnownName="Food" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a9ca72ab-7ea6-494f-af37-671a4b0fc6d8" direction="Return" isUnique="false">
+                  <elementDefinition Id="f0e77ab9-ca59-4c51-b026-eef4d6650163" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="bd9f4251-1d77-4636-bcf5-bca84df41e9f" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>

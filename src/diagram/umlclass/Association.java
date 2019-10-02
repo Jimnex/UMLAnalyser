@@ -3,10 +3,12 @@ package diagram.umlclass;
 public class Association {
     Node source;
     Node target;
+    private final String targetID;
 
-    public Association(Node source, Node target){
+    public Association(Node source, Node target, String targetID){
         this.source = source;
         this.target = target;
+        this.targetID = targetID;
     }
 
     public static class Node {

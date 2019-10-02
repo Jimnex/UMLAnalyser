@@ -8,11 +8,10 @@ import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.MethodParser;
 
-import javax.xml.bind.annotation.XmlAccessOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VS15XMLClassMethodParser extends MethodParser {
+class VS15XMLClassMethodParser extends MethodParser {
     private final Node node;
 
     public VS15XMLClassMethodParser(Node methodNode) {
@@ -27,7 +26,11 @@ public class VS15XMLClassMethodParser extends MethodParser {
     @Override
     protected Type parseReturnType() {
         Node typeNode = XML.getNode(this.node, "ownedParameters/operationHasOwnedParameters/parameter[@direction='Return']/type_NamedElement/referencedTypeMoniker");
-        return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+        if(typeNode != null){
+            return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+        } else {
+            return null;
+        }
     }
 
     @Override
