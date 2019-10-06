@@ -1,10 +1,6 @@
-import analyser.ClassDiagramAnalyser;
 import diagram.Diagram;
 import diagram.umlclass.ClassDiagram;
 import org.junit.jupiter.api.Test;
-import parser.classdiagram.xml.visualstudio15.VS15XMLClassDiagramParser;
-
-import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 

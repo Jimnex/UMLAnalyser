@@ -1,11 +1,7 @@
 package diagram.umlclass;
 
-import analyser.Analyser;
-import analyser.ClassDiagramAnalyser;
 import diagram.Diagram;
-import parser.Parser;
 
-import java.io.File;
 import java.util.*;
 
 public class ClassDiagram extends Diagram {
