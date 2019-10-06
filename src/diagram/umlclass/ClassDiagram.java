@@ -18,7 +18,15 @@ public class ClassDiagram extends Diagram {
         classes.put(id, c);
     }
 
-    public Class getClass(int index){
-        return classes.remove(index);
+    public Set<String> getIDs(){
+        return this.classes.keySet();
+    }
+
+    public Class getClass(String id){
+        return this.classes.get(id);
+    }
+
+    public int getNuClasses(){
+        return this.classes.size();
     }
 }

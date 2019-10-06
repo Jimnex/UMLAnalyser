@@ -1,9 +1,21 @@
 package diagram.umlclass;
 
 public class Association {
-    Node source;
-    Node target;
+    private Node source;
+    private Node target;
     private final String targetID;
+
+    public Node getSource() {
+        return source;
+    }
+
+    public Node getTarget() {
+        return target;
+    }
+
+    public String getTargetID() {
+        return targetID;
+    }
 
     public Association(Node source, Node target, String targetID){
         this.source = source;
@@ -11,14 +23,13 @@ public class Association {
         this.targetID = targetID;
     }
 
-    public static class Node {
-        public Node(String name, Boolean isComposite, Aggregation aggregation, Boolean isNavigableOwned, Multiplicity lower, Multiplicity upper) {
+    public class Node {
+        public Node(String name, Boolean isComposite, Aggregation aggregation, Boolean isNavigableOwned, Multiplicity multiplicity) {
             this.name = name;
             this.isComposite = isComposite;
             this.aggregation = aggregation;
             this.isNavigableOwned = isNavigableOwned;
-            this.lower = lower;
-            this.upper = upper;
+            this.multiplicity = multiplicity;
         }
 
         public Node(String name) {
@@ -34,7 +45,48 @@ public class Association {
         private Boolean isComposite;
         private Aggregation aggregation;
         private Boolean isNavigableOwned;
-        private Multiplicity lower;
-        private Multiplicity upper;
+        private Multiplicity multiplicity;
+
+
+        public String getName() {
+            return name;
+        }
+
+        public Boolean getLeaf() {
+            return isLeaf;
+        }
+
+        public Boolean getStatic() {
+            return isStatic;
+        }
+
+        public Boolean getReadOnly() {
+            return isReadOnly;
+        }
+
+        public Boolean getDerived() {
+            return isDerived;
+        }
+
+        public Boolean getDerivedUnion() {
+            return isDerivedUnion;
+        }
+
+        public Boolean getComposite() {
+            return isComposite;
+        }
+
+        public Aggregation getAggregation() {
+            return aggregation;
+        }
+
+        public Boolean getNavigableOwned() {
+            return isNavigableOwned;
+        }
+
+        public Multiplicity getMultiplicity() {
+            return multiplicity;
+        }
+
     }
 }

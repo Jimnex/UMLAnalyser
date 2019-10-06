@@ -2,6 +2,7 @@ package diagram.umlclass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Method {
     private final String name;
@@ -31,6 +32,20 @@ public class Method {
 
     public void addParameter(String parameterName, Type parameterType){
         this.parameters.add(new Parameter(parameterName,parameterType));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Method method = (Method) o;
+        return Objects.equals(name, method.name) &&
+                Objects.equals(returnType, method.returnType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, returnType);
     }
 
     public Parameter getParameter(int index){
