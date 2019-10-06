@@ -19,11 +19,11 @@ public class ClassAnalyser implements Analyser {
             reporter.addReport("Név konvenció", String.format("s% osztály nem nagybetűvel kezdődik", this.c.getName()));
         }
 
-        reporter.addReports(this.createAnalyser(new AssociationAnalyser()));
+        //reporter.addReports(this.createAnalyser(new AssociationAnalyser()));
 
-        reporter.addReports(this.createAnalyser(new FieldAnalyser()));
+        //reporter.addReports(this.createAnalyser(new FieldAnalyser()));
 
-        reporter.addReports(this.createAnalyser(new MethodAnalyser()));
+        //reporter.addReports(this.createAnalyser(new MethodAnalyser()));
 
         return reporter;
     }
