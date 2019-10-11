@@ -21,7 +21,8 @@ public class ClassDiagramAnalyser implements Analyser {
     public Reporter analyse() {
         ClassAnalyser classAnalyser;
         for (String id : this.diagram.getIDs()) {
-            analyseClass(this.diagram.getClass(id));
+            classAnalyser = new ClassAnalyser(this.diagram.getClass(id));
+            reporter.addReports(classAnalyser.analyse());
         }
         return reporter;
     }
@@ -102,49 +103,7 @@ public class ClassDiagramAnalyser implements Analyser {
 
     //endregion
 
-    //region Association
 
-    private void analyseAssociation (Association association, List<Field> fields) {
-        if(isClassMeetsAssociationRequirement1(association, fields) == false) {
-            this.reporter.addReport(association.getSource().getAggregation() == Aggregation.SHARED ? "Aggregáció" : "Kompozíció","A Tartalmazott osztály nincsen a tartalmazó osztályban");
-        }
-        if(isClassMeetsAssociationRequirement2(association, fields) == false){
-            this.reporter.addReport(association.getSource().getAggregation() == Aggregation.SHARED ? "Aggregáció" : "Kompozíció", "A Tartalmazott osztály multiplicitása != kapcsolat multiplicitásával");
-        }
-    }
-
-    /**
-     * Returns true if the owner class declares the owned class.
-     * @param association
-     * @param fields
-     * @return boolean
-     */
-    private boolean isClassMeetsAssociationRequirement1(Association association, List<Field> fields) {
-        Class targetClass = diagram.getClass(association.getTargetID());
-        for (int i = 0; i < fields.size(); i++) {
-            if(fields.get(i).getType().getName().equalsIgnoreCase(targetClass.getName())) { //TODO: can we use id?
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if the owned class's multiplicity in the owner class equals with association target multiplicity.
-     * @param association
-     * @return
-     */
-    private boolean isClassMeetsAssociationRequirement2 (Association association, List<Field> fields) {
-        Class targetClass = diagram.getClass(association.getTargetID());
-        for (int i = 0; i < fields.size(); i++) {
-            if(fields.get(i).getType().getName().equalsIgnoreCase(targetClass.getName())) { //TODO: can we use id?
-                return fields.get(i).getMultiplicity() == association.getTarget().getMultiplicity();
-            }
-        }
-        return false;
-    }
-
-    //endregion
 
 
 

@@ -23,7 +23,7 @@ public class Association {
         this.targetID = targetID;
     }
 
-    public class Node {
+    public static class Node {
         public Node(String name, Boolean isComposite, Aggregation aggregation, Boolean isNavigableOwned, Multiplicity multiplicity) {
             this.name = name;
             this.isComposite = isComposite;
@@ -46,6 +46,9 @@ public class Association {
         private Aggregation aggregation;
         private Boolean isNavigableOwned;
         private Multiplicity multiplicity;
+
+        public Node(String parseName, boolean parseIsComposite, Aggregation parseAggregation, boolean parseIsNavigableOwned, Multiplicity parseMultiplicity, Multiplicity parseMultiplicity1) {
+        }
 
 
         public String getName() {

@@ -15,7 +15,7 @@ public class Reporter{
         this.reports.put(type,description);
     }
 
-    public void addReports(HashMap<String, String> externalReports){
-        reports.putAll(externalReports);
+    public void addReports(Reporter reporter){
+        this.reports.putAll(reporter.reports);
     }
 }

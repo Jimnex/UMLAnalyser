@@ -67,4 +67,8 @@ public class XML{
           DocumentBuilder builder = factory.newDocumentBuilder();
           return builder.parse(file);
     }
+
+    public static String getID(Node node) {
+        return XML.getValue(node, "id");
+    }
 }
