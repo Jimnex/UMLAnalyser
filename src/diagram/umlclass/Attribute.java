@@ -1,8 +1,9 @@
 package diagram.umlclass;
 
-import java.util.Objects;
+import diagram.*;
 
-public class Field {
+public class Attribute implements StructuralFeature {
+    private String id;
     private String name;
     private Type type;
     private Visibility visibility;
@@ -10,13 +11,11 @@ public class Field {
     private Boolean isStatic;
     private Boolean isReadOnly;
     private Boolean isUnique;
-    private Boolean isDerived;
-    private Boolean isDerivedUnion;
-    private Aggregation aggregation;
+    private AggregationType aggregation;
     private Boolean isComposite;
     private Multiplicity multiplicity;
 
-    public Field(String name, Type type, Visibility visibility, Boolean isStatic, Boolean isReadOnly, Aggregation aggregation, Boolean isComposite) {
+    public Attribute(String name, Type type, Visibility visibility, Boolean isStatic, Boolean isReadOnly, AggregationType aggregation, Boolean isComposite) {
         this.name = name;
         this.type = type;
         this.visibility = visibility;
@@ -29,7 +28,7 @@ public class Field {
     @Override
     public boolean equals(Object o) {
         if (Object.class.equals(this.getClass())){
-            Field f = (Field) o;
+            Attribute f = (Attribute) o;
             return f.name.equalsIgnoreCase(this.name) &&
                     f.type.getName().equalsIgnoreCase(this.type.getName());
         } else {
@@ -38,35 +37,37 @@ public class Field {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, type);
+    public boolean isReadOnly() {
+        return this.isReadOnly;
     }
 
+    @Override
+    public boolean checkIsStatic() {
+        return this.isStatic;
+    }
+
+    @Override
+    public boolean checkIsLeaf() {
+        return this.checkIsLeaf();
+    }
+
+    @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public Type getType() {
-        return type;
-    }
-
+    @Override
     public Visibility getVisibility() {
-        return visibility;
+        return this.getVisibility();
     }
 
-    public Boolean getStatic() {
-        return isStatic;
+    @Override
+    public String getIdientifier() {
+        return this.id;
     }
 
-    public Aggregation getAggregation() {
-        return aggregation;
-    }
-
-    public Boolean getComposite() {
-        return isComposite;
-    }
-
-    public Multiplicity getMultiplicity() {
-        return multiplicity;
+    @Override
+    public Multiplicity getMultiplicityBound() {
+        return null;
     }
 }

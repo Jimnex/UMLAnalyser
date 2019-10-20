@@ -1,7 +1,7 @@
 package parser.classdiagram;
 
 import diagram.umlclass.Interface;
-import diagram.umlclass.Method;
+import diagram.umlclass.Operation;
 import parser.IDParser;
 import parser.NameParser;
 import parser.Parser;
@@ -14,7 +14,7 @@ public abstract class InterfaceParser implements Parser<Interface>, NameParser, 
         return new Interface(this.parseName(), this.parseBaseIDs(), this.parseMethods());
     }
 
-    protected abstract List<Method> parseMethods();
+    protected abstract List<Operation> parseMethods();
 
     protected abstract List<String> parseBaseIDs();
 }

@@ -1,14 +1,14 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.umlclass.Method;
+import diagram.umlclass.Operation;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.InterfaceParser;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 class VS15XMLInterfaceParser extends InterfaceParser {
     private final Node node;
@@ -18,13 +18,15 @@ class VS15XMLInterfaceParser extends InterfaceParser {
     }
 
     @Override
-    protected List<Method> parseMethods() {
-        List<Method> methods = new ArrayList<>();
-        NodeList methodNodes = XML.getNodeList(this.node, "ownedOperations/operation");
-        for (int i = 0; i < methodNodes.getLength(); ++i){
-            methods.add((new VS15XMLClassMethodParser(methodNodes.item(i)).parse()));
+    protected List<Operation> parseMethods() {
+        List<Operation> operations = new ArrayList<>();
+        Optional<NodeList> methodNodes = XML.getNodeList(this.node, "ownedOperations/operation");
+        if(methodNodes.isPresent()){
+            for (int i = 0; i < methodNodes.get().getLength(); ++i){
+                operations.add((new VS15XMLClassOperationParser(methodNodes.get().item(i)).parse()));
+            }
         }
-        return methods;
+        return operations;
     }
 
     @Override

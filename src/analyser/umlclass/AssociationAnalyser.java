@@ -2,7 +2,6 @@ package analyser.umlclass;
 
 import analyser.Analyser;
 import analyser.Reporter;
-import diagram.umlclass.Aggregation;
 import diagram.umlclass.Association;
 
 public class AssociationAnalyser implements Analyser {

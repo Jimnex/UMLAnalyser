@@ -1,16 +1,16 @@
 package parser.classdiagram;
 
-import diagram.umlclass.Aggregation;
-import diagram.umlclass.Field;
-import diagram.umlclass.Type;
-import diagram.umlclass.Visibility;
+import diagram.AggregationType;
+import diagram.umlclass.Attribute;
+import diagram.Type;
+import diagram.Visibility;
 import parser.NameParser;
 import parser.Parser;
 
-public abstract class FieldParser implements Parser<Field>, NameParser {
+public abstract class AttributeParser implements Parser<Attribute>, NameParser {
     @Override
-    public Field parse() {
-        return new Field(this.parseName(),
+    public Attribute parse() {
+        return new Attribute(this.parseName(),
                 this.parseType(),
                 this.parseVisibility(),
                 this.parseIsStatic(),
@@ -26,7 +26,7 @@ public abstract class FieldParser implements Parser<Field>, NameParser {
 
     protected abstract Boolean parseIsReadOnly();
 
-    protected abstract Aggregation parseAggregation();
+    protected abstract AggregationType parseAggregation();
 
     protected abstract Boolean parseIsComposite();
 

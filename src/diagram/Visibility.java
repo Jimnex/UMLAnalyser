@@ -1,4 +1,4 @@
-package diagram.umlclass;
+package diagram;
 
 public enum Visibility {
     PUBLIC,
