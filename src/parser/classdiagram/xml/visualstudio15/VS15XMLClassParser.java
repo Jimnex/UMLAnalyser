@@ -6,6 +6,7 @@ import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.ClassParser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,13 +15,15 @@ public class VS15XMLClassParser extends ClassParser {
     private Optional<NodeList> attributesNodeList;
     private Optional<NodeList> operationsNodeList;
     private Optional<NodeList> associationsNodeList;
+    private Optional<NodeList> baseNodeList;
 
 
     VS15XMLClassParser(Node classnode){
         this.classnode = classnode;
-        attributesNodeList = this.getNodeList("ownedAttributesInternal/property");
-        operationsNodeList = this.getNodeList("ownedOperationsInternal/operation");
-        associationsNodeList = this.getNodeList("targetEnds/association");
+        this.attributesNodeList = this.getNodeList("ownedAttributesInternal/property");
+        this.operationsNodeList = this.getNodeList("ownedOperationsInternal/operation");
+        this.associationsNodeList = this.getNodeList("targetEnds/association");
+        this.baseNodeList = this.getNodeList("generalsInternal/generalization/classMoniker");
     }
 
     private Optional<NodeList> getNodeList(String xPath){
@@ -49,14 +52,16 @@ public class VS15XMLClassParser extends ClassParser {
 
     //region bases
 
-    @Override
-    protected List<String> getBaseIDs() {
-        return null;
-    }
 
     @Override
     protected List<String> parseBaseClasses() {
-        return null;
+        List<String> ids = new ArrayList<>();
+        if(this.baseNodeList.isPresent()){
+            for (int i = 0; i < this.baseNodeList.get().getLength(); i++) {
+                ids.add(XML.getValue(this.baseNodeList.get().item(i),"Id"));
+            }
+        }
+        return ids;
     }
 
 //endregion

@@ -13,9 +13,9 @@ public class VS15XMLClassDiagramParser extends ClassDiagramParser {
     private Optional<NodeList> interfacesNodeList;
     private Optional<Document> doc;
 
-    VS15XMLClassDiagramParser(File file){
+    public VS15XMLClassDiagramParser(File file){
         try {
-            doc = Optional.ofNullable(XML.parseXMLDocWithDOM(file.getAbsoluteFile()));
+            doc = Optional.ofNullable(XML.parseXMLDocWithDOM(file));
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -45,12 +45,16 @@ public class VS15XMLClassDiagramParser extends ClassDiagramParser {
 
     @Override
     protected int getNumberOfInterfaces() {
-        return 0;
+        if(this.interfacesNodeList.isPresent()){
+            return this.interfacesNodeList.get().getLength();
+        } else {
+            return 0;
+        }
     }
 
     @Override
     protected void setInterfaceParserWithData(int index) {
-        super.classParser = Optional.ofNullable(new VS15XMLClassParser(this.interfacesNodeList.get().item(index)));
+        super.interfaceParser = Optional.ofNullable(new VS15XMLInterfaceParser(this.interfacesNodeList.get().item(index)));
     }
 
 

@@ -54,10 +54,10 @@ class VS15XMLClassAssociationParser extends AssociationParser{
     protected Multiplicity parseMultiplicity(Node node) {
         Optional<Node> lowerNode = XML.getNode(node,"lowerValueInternal/literalString");
         Optional<Node> upperNode = XML.getNode(node,"upperValueInternal/literalString");
-        int lowerValue = -1;
+        String lowerValue = "";
         String upperValue = "";
         if(lowerNode.isPresent()){
-            lowerValue = Integer.parseInt(XML.getValue(lowerNode,"value"));
+            lowerValue = XML.getValue(lowerNode,"value");
         }
         if(upperNode.isPresent()){
             upperValue = XML.getValue(upperNode,"value");

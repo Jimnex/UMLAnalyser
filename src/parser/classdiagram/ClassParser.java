@@ -21,10 +21,8 @@ public abstract class ClassParser implements Parser<Class> {
                 this.parseAssociations(),
                 this.parseAttributes(),
                 this.parseOperations(),
-                this.getBaseIDs());
+                this.parseBaseClasses());
     }
-
-    protected abstract List<String> getBaseIDs();
 
     protected abstract String parseID();
 

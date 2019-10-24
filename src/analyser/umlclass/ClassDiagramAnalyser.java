@@ -20,9 +20,9 @@ public class ClassDiagramAnalyser implements Analyser {
     @Override
     public Reporter analyse() {
         ClassAnalyser classAnalyser;
-        for (String id : this.diagram.getIDs()) {
-            analyseClass(this.diagram.getClass(id));
-        }
+        //for (String id : this.diagram.getIDs()) {
+         //   analyseClass(this.diagram.getClass(id));
+        //}
         return reporter;
     }
 
@@ -88,8 +88,9 @@ public class ClassDiagramAnalyser implements Analyser {
      * @return boolean
      */
     private boolean isClassMeetsInheritanceRequirementuirement2(Class c) {
-        Class baseClassifier = diagram.getClass(c.getBaseClassIDs().get(0));
-        return anyCommonItem(c.getAttributes(), baseClassifier.getAttributes()) && anyCommonItem(c.getOperations(), c.getOperations());
+        //Class baseClassifier = diagram.getClass(c.getBaseClassIDs().get(0));
+
+        return true;// return anyCommonItem(c.getAttributes(), baseClassifier.getAttributes()) && anyCommonItem(c.getOperations(), c.getOperations());
     }
 
     /**
@@ -106,10 +107,10 @@ public class ClassDiagramAnalyser implements Analyser {
 
     private void analyseAssociation (Association association, List<Attribute> attributes) {
         if(isClassMeetsAssociationRequirement1(association, attributes) == false) {
-            this.reporter.addReport(association.getSource().getAggregation() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció","A Tartalmazott osztály nincsen a tartalmazó osztályban");
+            //this.reporter.addReport(association.getSource().getAggregation() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció","A Tartalmazott osztály nincsen a tartalmazó osztályban");
         }
         if(isClassMeetsAssociationRequirement2(association, attributes) == false){
-            this.reporter.addReport(association.getSource().getAggregation() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció", "A Tartalmazott osztály multiplicitása != kapcsolat multiplicitásával");
+            //this.reporter.addReport(association.getSource().getAggregation() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció", "A Tartalmazott osztály multiplicitása != kapcsolat multiplicitásával");
         }
     }
 
@@ -120,11 +121,11 @@ public class ClassDiagramAnalyser implements Analyser {
      * @return boolean
      */
     private boolean isClassMeetsAssociationRequirement1(Association association, List<Attribute> attributes) {
-        Class targetClassifier = diagram.getClass(association.getTargetID());
+        //Class targetClassifier = diagram.getClass(association.getTargetID());
         for (int i = 0; i < attributes.size(); i++) {
-            if(attributes.get(i).getType().getName().equalsIgnoreCase(targetClassifier.getName())) { //TODO: can we use id?
+            //if(attributes.get(i).getType().getName().equalsIgnoreCase(targetClassifier.getName())) { //TODO: can we use id?
                 return true;
-            }
+            //}
         }
         return false;
     }
@@ -135,11 +136,11 @@ public class ClassDiagramAnalyser implements Analyser {
      * @return
      */
     private boolean isClassMeetsAssociationRequirement2 (Association association, List<Attribute> attributes) {
-        Class targetClassifier = diagram.getClass(association.getTargetID());
+        //Class targetClassifier = diagram.getClass(association.getTargetID());
         for (int i = 0; i < attributes.size(); i++) {
-            if(attributes.get(i).getType().getName().equalsIgnoreCase(targetClassifier.getName())) { //TODO: can we use id?
-                return attributes.get(i).getMultiplicity() == association.getTarget().getMultiplicity();
-            }
+           // if(attributes.get(i).getType().getName().equalsIgnoreCase(targetClassifier.getName())) { //TODO: can we use id?
+            //    return attributes.get(i).getMultiplicity() == association.getTarget().getMultiplicity();
+            //}
         }
         return false;
     }

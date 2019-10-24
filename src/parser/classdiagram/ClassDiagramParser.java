@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class ClassDiagramParser implements Parser<ClassDiagram>, NameParser {
-    protected Optional<Parser<Interface>> interfaceParser;
-    protected Optional<Parser<Class>> classParser;
+    protected Optional<Parser<Interface>> interfaceParser = Optional.empty();
+    protected Optional<Parser<Class>> classParser = Optional.empty();
 
 
     @Override
