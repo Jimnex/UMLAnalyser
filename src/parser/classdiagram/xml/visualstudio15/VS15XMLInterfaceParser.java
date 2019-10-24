@@ -1,35 +1,26 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.umlclass.Method;
+import diagram.umlclass.Interface;
+import diagram.umlclass.Operation;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import parser.IDParser;
+import parser.NameParser;
+import parser.Parser;
 import parser.XML;
 import parser.classdiagram.InterfaceParser;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 class VS15XMLInterfaceParser extends InterfaceParser {
     private final Node node;
+    private final Optional<NodeList> operationsNodeList;
 
     public VS15XMLInterfaceParser(Node interfaceNode) {
         this.node = interfaceNode;
-    }
-
-    @Override
-    protected List<Method> parseMethods() {
-        List<Method> methods = new ArrayList<>();
-        NodeList methodNodes = XML.getNodeList(this.node, "ownedOperations/operation");
-        for (int i = 0; i < methodNodes.getLength(); ++i){
-            methods.add((new VS15XMLClassMethodParser(methodNodes.item(i)).parse()));
-        }
-        return methods;
-    }
-
-    @Override
-    protected List<String> parseBaseIDs() {
-        return new ArrayList<>();
+        this.operationsNodeList = XML.getNodeList(this.node, "ownedOperations/operation");
     }
 
     @Override
@@ -40,5 +31,24 @@ class VS15XMLInterfaceParser extends InterfaceParser {
     @Override
     public String parseID() {
         return XML.getValue(this.node,"Id");
+    }
+
+    @Override
+    protected List<String> parseBases() {
+        return null;
+    }
+
+    @Override
+    protected int getNumberOfOperations() {
+        if(this.operationsNodeList.isPresent()){
+            return this.operationsNodeList.get().getLength();
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    protected void getDataForOperation(int index) {
+        super.operationParser = new VS15XMLClassOperationParser(this.operationsNodeList.get().item(index));
     }
 }

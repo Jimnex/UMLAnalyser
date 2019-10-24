@@ -13,7 +13,7 @@ public class Association implements BinaryAssociation {
     }
 
     @Override
-    public AssociationEnd getsourceEnd() {
+    public AssociationEnd getSourceEnd() {
         return this.source;
     }
 

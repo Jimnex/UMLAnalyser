@@ -1,63 +1,69 @@
 package parser.classdiagram.xml.visualstudio15;
-
-import diagram.umlclass.Class;
-import diagram.umlclass.Interface;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import parser.XML;
-import parser.classdiagram.ClassDiagramParser;;
+import parser.classdiagram.ClassDiagramParser;;import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.util.*;
+import java.io.IOException;
+import java.util.Optional;
 
 public class VS15XMLClassDiagramParser extends ClassDiagramParser {
-    private Document doc;
-    private final String filePath;
+    private Optional<NodeList> classesNodeList;
+    private Optional<NodeList> interfacesNodeList;
+    private Optional<Document> doc;
 
-    public VS15XMLClassDiagramParser(String filePath) {
-        this.filePath = filePath;
-        this.openFile();
-    }
-
-    protected AbstractMap<String, Class> parseClasses() {
-        AbstractMap<String, Class> classes = new HashMap<>();
-        NodeList classNodes = this.getClassNodes();
-        VS15XMLClassParser classParser;
-        for (int i = 0; i < classNodes.getLength(); i++){
-            classParser = new VS15XMLClassParser(classNodes.item(i));
-            classes.put(classParser.parseID(), classParser.parse());
+    public VS15XMLClassDiagramParser(File file){
+        try {
+            doc = Optional.ofNullable(XML.parseXMLDocWithDOM(file));
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
         }
-        return classes;
+        if(doc.isPresent()){
+            this.classesNodeList = Optional.ofNullable(doc.get().getElementsByTagName("class"));
+            this.interfacesNodeList = Optional.ofNullable(doc.get().getElementsByTagName("Interface"));
+        }
     }
 
     @Override
-    protected AbstractMap<String, Interface> parseInterfaces() {
-        AbstractMap<String, Interface> interfaces = new HashMap<>();
-        NodeList interfaceNodeList = this.getInterfaceNodes();
-        VS15XMLInterfaceParser interfaceParser;
-        for (int i = 0; i < interfaceNodeList.getLength(); i++){
-            interfaceParser = new VS15XMLInterfaceParser(interfaceNodeList.item(i));
-            interfaces.put(interfaceParser.parseID(), interfaceParser.parse());
-        }return interfaces;
+    protected int getNumberOfClasses() {
+        if (classesNodeList.isPresent()){
+            return classesNodeList.get().getLength();
+        } else {
+            return 0;
+        }
     }
 
-    private NodeList getInterfaceNodes() {
-        return this.doc.getElementsByTagName("Interface");
+    @Override
+    protected void setClassParserParserWithData(int index) {
+        super.classParser = Optional.ofNullable(new VS15XMLClassParser(this.classesNodeList.get().item(index)));
     }
 
-    private NodeList getClassNodes() {
-        return this.doc.getElementsByTagName("class");
+    @Override
+    protected int getNumberOfInterfaces() {
+        if(this.interfacesNodeList.isPresent()){
+            return this.interfacesNodeList.get().getLength();
+        } else {
+            return 0;
+        }
     }
+
+    @Override
+    protected void setInterfaceParserWithData(int index) {
+        super.interfaceParser = Optional.ofNullable(new VS15XMLInterfaceParser(this.interfacesNodeList.get().item(index)));
+    }
+
 
     @Override
     public String parseName() {
-        return this.doc.getDocumentElement().getAttribute("name");
+        if(this.doc.isPresent()){
+            return this.doc.get().getDocumentElement().getAttribute("name");
+        }
+        return "N/A";
     }
 
-    private void openFile(){
-        File file = new File(this.filePath);
-        try {
-            doc = XML.parseXMLDocWithDOM(file);
-        }catch (Exception e){
-        }
-    }
 }

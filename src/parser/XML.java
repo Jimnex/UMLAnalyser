@@ -18,48 +18,62 @@ import javax.xml.xpath.XPathFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 import static javax.xml.xpath.XPathConstants.*;
 
 public class XML{
 
-    public static NodeList getNodeList(Node rootNode, String path){
+    public static Optional<NodeList> getNodeList(Node rootNode, String path){
         XPath xPath = XPathFactory.newInstance().newXPath();
         NodeList list = null;
         try {
             list = (NodeList)xPath.evaluate(path, rootNode, NODESET);
         } catch (XPathExpressionException e) {
-            System.out.println("Error with getNodeList()");
+            System.out.println("Error with getNodeList()"); //TODO: just add to the logger
             e.printStackTrace();
         }
-        return list;
+        return Optional.ofNullable(list);
     }
 
-    public static Node getNode(Node rootNode, String path){
-        XPathFactory xPathfactory = XPathFactory.newInstance();
-        XPath xpath = xPathfactory.newXPath();
+    public static Optional<Node> getNode(Node rootNode, String path){
+        XPath xPath = XPathFactory.newInstance().newXPath();
         Node node = null;
         try {
-            XPathExpression expr =  xpath.compile(path);
+            XPathExpression expr =  xPath.compile(path);
             node = (Node) expr.evaluate(rootNode, XPathConstants.NODE);
         } catch (XPathExpressionException e) {
             System.out.println("Error with getNode()");
             e.printStackTrace();
         }
-        return node;
+        return Optional.ofNullable(node);
     }
 
     public static String getValue(Node node, String name){
-        String value = "";
-        if(node != null){
-            Element e = (Element) node;
+        Element e = (Element) node;
+        String value = e.getAttribute(name);
+        return value;
+    }
+
+    public static String getValue(Optional<Node> node, String name){
+        String value = "N/A";
+        if(node.isPresent()){
+            Element e = (Element) node.get();
             value = e.getAttribute(name);
+        } else {
+            System.out.println("There was no node, value set to N/A");
         }
         return value;
     }
 
     public static boolean getBooleanValue(Node node, String name){
-        return Boolean.parseBoolean(XML.getValue(node, name));
+        String value = XML.getValue(node,name);
+        if(value == "N/A"){
+            System.out.println("there was no value set to false");
+            return false;
+        }
+        return Boolean.parseBoolean(value);
     }
 
     public static Document parseXMLDocWithDOM(File file) throws ParserConfigurationException, IOException, SAXException {

@@ -1,9 +1,7 @@
 package parser.classdiagram;
 
-import diagram.umlclass.Aggregation;
+import diagram.AssociationEnd;
 import diagram.umlclass.Association;
-import diagram.umlclass.Multiplicity;
-import parser.NameParser;
 import parser.Parser;
 
 public abstract class AssociationParser implements Parser<Association>{
@@ -11,12 +9,10 @@ public abstract class AssociationParser implements Parser<Association>{
 
     @Override
     public Association parse() {
-        return this.association = new Association(this.parseNode(true), this.parseNode(false), this.parseTargetID());
+        return this.association = new Association(this.parseEnd(true), this.parseEnd(false));
     }
 
-    protected abstract String parseTargetID();
-
-    protected abstract Association.Node parseNode(boolean isSource);
+    protected abstract AssociationEnd parseEnd(boolean isSource);
 /*
     protected abstract boolean parseIsComposite(boolean isSource);
 
