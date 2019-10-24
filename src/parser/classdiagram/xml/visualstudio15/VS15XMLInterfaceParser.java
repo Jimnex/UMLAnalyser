@@ -1,8 +1,12 @@
 package parser.classdiagram.xml.visualstudio15;
 
+import diagram.umlclass.Interface;
 import diagram.umlclass.Operation;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import parser.IDParser;
+import parser.NameParser;
+import parser.Parser;
 import parser.XML;
 import parser.classdiagram.InterfaceParser;
 
@@ -12,26 +16,11 @@ import java.util.Optional;
 
 class VS15XMLInterfaceParser extends InterfaceParser {
     private final Node node;
+    private final Optional<NodeList> operationsNodeList;
 
     public VS15XMLInterfaceParser(Node interfaceNode) {
         this.node = interfaceNode;
-    }
-
-    @Override
-    protected List<Operation> parseMethods() {
-        List<Operation> operations = new ArrayList<>();
-        Optional<NodeList> methodNodes = XML.getNodeList(this.node, "ownedOperations/operation");
-        if(methodNodes.isPresent()){
-            for (int i = 0; i < methodNodes.get().getLength(); ++i){
-                operations.add((new VS15XMLClassOperationParser(methodNodes.get().item(i)).parse()));
-            }
-        }
-        return operations;
-    }
-
-    @Override
-    protected List<String> parseBaseIDs() {
-        return new ArrayList<>();
+        this.operationsNodeList = XML.getNodeList(this.node, "ownedOperations/operation");
     }
 
     @Override
@@ -42,5 +31,24 @@ class VS15XMLInterfaceParser extends InterfaceParser {
     @Override
     public String parseID() {
         return XML.getValue(this.node,"Id");
+    }
+
+    @Override
+    protected List<String> parseBases() {
+        return null;
+    }
+
+    @Override
+    protected int getNumberOfOperations() {
+        if(this.operationsNodeList.isPresent()){
+            return this.operationsNodeList.get().getLength();
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    protected void getDataForOperation(int index) {
+        super.operationParser = new VS15XMLClassOperationParser(this.operationsNodeList.get().item(index));
     }
 }

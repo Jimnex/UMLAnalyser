@@ -11,7 +11,8 @@ public class Interface implements Classifier {
     private List<String> baseIDs;
     private List<Operation> operations;
 
-    public Interface(String name, List<String> baseIDs, List<Operation> operations) {
+    public Interface(String id, String name, List<String> baseIDs, List<Operation> operations) {
+        this.id = id;
         this.name = name;
         this.baseIDs = baseIDs;
         this.operations = operations;
