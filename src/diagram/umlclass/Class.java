@@ -32,6 +32,7 @@ public class Class implements Classifier {
         this.operations = operations;
         this.baseClassIDs = baseClassIDs;
     }
+
     @Override
     public Visibility getVisibility() {
         return visibility;

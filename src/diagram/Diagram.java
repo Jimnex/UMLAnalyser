@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class Diagram  {
+public abstract class Diagram implements Analyser {
     private final String name;
 
     public Diagram(String name){

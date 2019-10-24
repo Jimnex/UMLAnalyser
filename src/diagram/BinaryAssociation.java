@@ -1,6 +1,6 @@
 package diagram;
 
 public interface BinaryAssociation {
-    AssociationEnd getsourceEnd();
+    AssociationEnd getSourceEnd();
     AssociationEnd getTargetEnd();
 }
