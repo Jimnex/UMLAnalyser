@@ -17,7 +17,6 @@ public class VS15XMLClassesParser extends ClassesParser {
         } else {
             return 0;
         }
-
     }
 
     @Override

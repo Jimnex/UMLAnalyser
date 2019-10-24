@@ -12,16 +12,21 @@ public class ClassDiagram extends Diagram {
     private Parser<Collection<Element>> realizationsParser;
 
 
-    public ClassDiagram(String name, Parser<Collection<Element>> classifierParser, Parser<Collection<Element>> realizationParser) {
-        super(name);
+    public ClassDiagram(String filePath, Parser<Collection<Element>> classifierParser, Parser<Collection<Element>> realizationParser) {
+        super(filePath);
         this.classifiersParser = classifierParser;
         this.realizationsParser = realizationParser;
     }
 
     @Override
-    public void parse() throws Exception {
+    public void parse() {
         super.addRootStructure(classifiersParser.parse());
         super.addRootStructure(realizationsParser.parse());
+    }
+
+    @Override
+    protected String parseName() {
+        return null;
     }
 
     @Override

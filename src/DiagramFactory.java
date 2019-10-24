@@ -1,13 +1,17 @@
 import diagram.Diagram;
+import diagram.umlclass.ClassDiagram;
 import org.apache.commons.io.FilenameUtils;
 import parser.classdiagram.xml.visualstudio15.VS15XMLClassDiagramParser;
+
+import java.util.Optional;
 
 public class DiagramFactory {
 
     Diagram createDiagram(String filePath){
+        Optional<Diagram> diagram;
         switch (this.getExtension(filePath)){
             case "classdiagram":
-                VS15XMLClassDiagramParser diagramParser = new VS15XMLClassDiagramParser(filePath);
+                diagram = new ClassDiagram();
                 diagramParser.parse();
             default:
                 return null;
