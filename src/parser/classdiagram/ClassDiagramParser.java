@@ -8,6 +8,7 @@ import parser.NameParser;
 import parser.Parser;
 
 import java.util.AbstractMap;
+import java.util.List;
 
 public abstract class ClassDiagramParser implements Parser<ClassDiagram> , NameParser{
 
@@ -16,7 +17,7 @@ public abstract class ClassDiagramParser implements Parser<ClassDiagram> , NameP
         return new ClassDiagram(this.parseName(), parseClasses(), this.parseInterfaces());
     }
 
-    protected abstract AbstractMap<String, Interface> parseInterfaces();
+    protected abstract List<Interface> parseInterfaces();
 
-    protected abstract AbstractMap<String, Class> parseClasses();
+    protected abstract List<Class> parseClasses();
 }
