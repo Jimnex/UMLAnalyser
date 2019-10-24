@@ -70,4 +70,8 @@ public class Attribute implements StructuralFeature {
     public Multiplicity getMultiplicityBound() {
         return null;
     }
+
+    public Type getType() {
+        return type;
+    }
 }

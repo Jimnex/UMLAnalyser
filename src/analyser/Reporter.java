@@ -15,7 +15,11 @@ public class Reporter{
         this.reports.put(type,description);
     }
 
-    public void addReports(HashMap<String, String> externalReports){
-        reports.putAll(externalReports);
+    public HashMap<String, String> getReports(){
+        return new HashMap<String, String>(this.reports);
+    }
+
+    public void addReports(Reporter externalReports){
+        reports.putAll(externalReports.getReports());
     }
 }

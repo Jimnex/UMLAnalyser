@@ -11,6 +11,14 @@ public class AssociationEnd implements Element {
         return ownerIdentifier;
     }
 
+    public AggregationType getAggregationType(){
+        return this.aggregationType;
+    }
+
+    public Multiplicity getMultiplicity(){
+        return this.multiplicity;
+    }
+
     public AssociationEnd(String ownerIdentifier, AggregationType aggregationType, Boolean isNavigableOwned, Multiplicity multiplicity) {
         this.ownerIdentifier = ownerIdentifier;
         this.aggregationType = aggregationType;
