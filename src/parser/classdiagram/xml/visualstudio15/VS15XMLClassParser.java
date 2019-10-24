@@ -1,6 +1,6 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.umlclass.*;
+import diagram.Visibility;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;
@@ -8,84 +8,109 @@ import parser.classdiagram.ClassParser;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 public class VS15XMLClassParser extends ClassParser {
-    private final Node node;
+    private final Node classnode;
+    private Optional<NodeList> attributesNodeList;
+    private Optional<NodeList> operationsNodeList;
+    private Optional<NodeList> associationsNodeList;
+    private Optional<NodeList> baseNodeList;
 
-//region Completed Implementation
-    public VS15XMLClassParser(Node node) {
-        this.node = node;
+
+    VS15XMLClassParser(Node classnode){
+        this.classnode = classnode;
+        this.attributesNodeList = this.getNodeList("ownedAttributesInternal/property");
+        this.operationsNodeList = this.getNodeList("ownedOperationsInternal/operation");
+        this.associationsNodeList = this.getNodeList("targetEnds/association");
+        this.baseNodeList = this.getNodeList("generalsInternal/generalization/classMoniker");
+    }
+
+    private Optional<NodeList> getNodeList(String xPath){
+        return XML.getNodeList(this.classnode, xPath);
     }
 
     @Override
-    public String parseName() {
-        return XML.getValue(this.node, "name");
+    protected String parseID() {
+        return XML.getValue(this.classnode, "Id");
     }
 
     @Override
-    protected Boolean parseIsStatic() {
-        return null;
+    protected String parseName() {
+        return XML.getValue(this.classnode, "name");
     }
 
     @Override
-    public Visibility parseVisibility() {
-        return Visibility.createFromStr(XML.getValue(this.node, "visibility"));
+    protected Visibility parseVisibility() {
+        return Visibility.createFromStr(XML.getValue(this.classnode, "visibility"));
     }
 
     @Override
-    public Boolean parseIsAbstract() {
-        return Boolean.parseBoolean(XML.getValue(node, "isAbstract"));
+    protected Boolean parseIsAbstract() {
+        return Boolean.parseBoolean(XML.getValue(classnode, "isAbstract"));
     }
+
+    //region bases
+
+
+    @Override
+    protected List<String> parseBaseClasses() {
+        List<String> ids = new ArrayList<>();
+        if(this.baseNodeList.isPresent()){
+            for (int i = 0; i < this.baseNodeList.get().getLength(); i++) {
+                ids.add(XML.getValue(this.baseNodeList.get().item(i),"Id"));
+            }
+        }
+        return ids;
+    }
+
+//endregion
+
+    //region getNumberOfNodes
+
+    @Override
+    protected int getNumberOfAttributes() {
+        return getNumberOfNodes(this.attributesNodeList);
+    }
+
+    @Override
+    protected int getNumberOfAssociations() {
+        return getNumberOfNodes(this.associationsNodeList);
+    }
+
+    @Override
+    protected int getNumberOfOperations() {
+        return getNumberOfNodes(this.operationsNodeList);
+    }
+
+    private int getNumberOfNodes(Optional<NodeList> nodeList){
+        if(nodeList.isPresent()){
+            return nodeList.get().getLength();
+        } else {
+            return 0;
+        }
+    }
+
     //endregion
 
-    @Override
-    public List<Association> getAssociations() {
-        List<Association> associations = new ArrayList<>();
-        NodeList associationNodes = XML.getNodeList(this.node,"targetEnds/association");
-        for (int i = 0; i < associationNodes.getLength(); ++i){
-            associations.add((new VS15XMLClassAssociationParser(associationNodes.item(i)).parse()));
-        }
-        return associations;
-    }
+    //region getDataForSubParsers
+
+    //TODO: take a look at Template Method Pattern --> https://stackoverflow.com/questions/19666652/changing-the-value-of-superclass-instance-variables-from-a-subclass
 
     @Override
-    public List<Field> getFields() {
-        List<Field> fields = new ArrayList<>();
-        NodeList fieldNodes = XML.getNodeList(this.node, "ownedAttributesInternal/property");
-        for (int i = 0; i < fieldNodes.getLength(); ++i){
-            fields.add((new VS15XMLClassFieldParser(fieldNodes.item(i)).parse()));
-        }
-        return fields;
+    protected void getDataForAttribute(int index) {
+        super.attributeParser = new VS15XMLClassAttributeParser(this.attributesNodeList.get().item(index));
     }
 
     @Override
-    public List<Method> getMethods() {
-        List<Method> methods = new ArrayList<>();
-        NodeList methodNodes = XML.getNodeList(this.node, "ownedOperationsInternal/operation");
-        for (int i = 0; i < methodNodes.getLength(); ++i){
-            methods.add((new VS15XMLClassMethodParser(methodNodes.item(i)).parse()));
-        }
-        return methods;
+    protected void getDataForOperation(int index) {
+        super.operationParser = new VS15XMLClassOperationParser(this.operationsNodeList.get().item(index));
     }
 
     @Override
-    protected List<String> getBaseIDs() {
-        return XML.getIDs("generalsInternal/generalization/classMoniker",this.node);
+    protected void getDataForAssociation(int index) {
+        super.associationParser = new VS15XMLClassAssociationParser(this.associationsNodeList.get().item(index));
     }
 
-    private <T> List<T> collect(String xpath, Object parser){
-        List<T> list = new ArrayList<>();
-        NodeList nodeList = XML.getNodeList(this.node, xpath);
-        for (int i = 0; i < nodeList.getLength(); ++i){
-            //list.add((parser(nodeList.item(i)).parse()));
-        }
-        return list;
-    }
-
-
-    @Override
-    public String parseID() {
-        return XML.getValue(this.node, "Id");
-    }
+    //endregion
 }

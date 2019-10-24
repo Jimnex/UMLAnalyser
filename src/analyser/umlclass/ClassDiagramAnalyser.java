@@ -2,11 +2,11 @@ package analyser.umlclass;
 
 import analyser.Analyser;
 import analyser.Reporter;
+import diagram.AggregationType;
 import diagram.umlclass.*;
 import diagram.umlclass.Class;
 
 import java.util.List;
-import java.util.stream.*;
 
 public class ClassDiagramAnalyser implements Analyser {
     private final ClassDiagram diagram;
@@ -20,9 +20,9 @@ public class ClassDiagramAnalyser implements Analyser {
     @Override
     public Reporter analyse() {
         ClassAnalyser classAnalyser;
-        for (String id : this.diagram.getIDs()) {
-            analyseClass(this.diagram.getClass(id));
-        }
+        //for (String id : this.diagram.getIDs()) {
+         //   analyseClass(this.diagram.getClass(id));
+        //}
         return reporter;
     }
 
@@ -80,7 +80,7 @@ public class ClassDiagramAnalyser implements Analyser {
      * @return boolean
      */
     private boolean isClassMeetsInheritanceRequirementuirement1(Class c){
-        return c.getMethods().isEmpty() == false || c.getMethods().isEmpty() == false;
+        return c.getOperations().isEmpty() == false || c.getOperations().isEmpty() == false;
     }
 
     /**
@@ -88,8 +88,9 @@ public class ClassDiagramAnalyser implements Analyser {
      * @return boolean
      */
     private boolean isClassMeetsInheritanceRequirementuirement2(Class c) {
-        Class baseClass = diagram.getClass(c.getBaseClassIDs().get(0));
-        return anyCommonItem(c.getFields(), baseClass.getFields()) && anyCommonItem(c.getMethods(), c.getMethods());
+        //Class baseClassifier = diagram.getClass(c.getBaseClassIDs().get(0));
+
+        return true;// return anyCommonItem(c.getAttributes(), baseClassifier.getAttributes()) && anyCommonItem(c.getOperations(), c.getOperations());
     }
 
     /**
@@ -104,27 +105,27 @@ public class ClassDiagramAnalyser implements Analyser {
 
     //region Association
 
-    private void analyseAssociation (Association association, List<Field> fields) {
-        if(isClassMeetsAssociationRequirement1(association, fields) == false) {
-            this.reporter.addReport(association.getSource().getAggregation() == Aggregation.SHARED ? "Aggregáció" : "Kompozíció","A Tartalmazott osztály nincsen a tartalmazó osztályban");
+    private void analyseAssociation (Association association, List<Attribute> attributes) {
+        if(isClassMeetsAssociationRequirement1(association, attributes) == false) {
+            //this.reporter.addReport(association.getSource().getAggregation() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció","A Tartalmazott osztály nincsen a tartalmazó osztályban");
         }
-        if(isClassMeetsAssociationRequirement2(association, fields) == false){
-            this.reporter.addReport(association.getSource().getAggregation() == Aggregation.SHARED ? "Aggregáció" : "Kompozíció", "A Tartalmazott osztály multiplicitása != kapcsolat multiplicitásával");
+        if(isClassMeetsAssociationRequirement2(association, attributes) == false){
+            //this.reporter.addReport(association.getSource().getAggregation() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció", "A Tartalmazott osztály multiplicitása != kapcsolat multiplicitásával");
         }
     }
 
     /**
      * Returns true if the owner class declares the owned class.
      * @param association
-     * @param fields
+     * @param attributes
      * @return boolean
      */
-    private boolean isClassMeetsAssociationRequirement1(Association association, List<Field> fields) {
-        Class targetClass = diagram.getClass(association.getTargetID());
-        for (int i = 0; i < fields.size(); i++) {
-            if(fields.get(i).getType().getName().equalsIgnoreCase(targetClass.getName())) { //TODO: can we use id?
+    private boolean isClassMeetsAssociationRequirement1(Association association, List<Attribute> attributes) {
+        //Class targetClassifier = diagram.getClass(association.getTargetID());
+        for (int i = 0; i < attributes.size(); i++) {
+            //if(attributes.get(i).getType().getName().equalsIgnoreCase(targetClassifier.getName())) { //TODO: can we use id?
                 return true;
-            }
+            //}
         }
         return false;
     }
@@ -134,12 +135,12 @@ public class ClassDiagramAnalyser implements Analyser {
      * @param association
      * @return
      */
-    private boolean isClassMeetsAssociationRequirement2 (Association association, List<Field> fields) {
-        Class targetClass = diagram.getClass(association.getTargetID());
-        for (int i = 0; i < fields.size(); i++) {
-            if(fields.get(i).getType().getName().equalsIgnoreCase(targetClass.getName())) { //TODO: can we use id?
-                return fields.get(i).getMultiplicity() == association.getTarget().getMultiplicity();
-            }
+    private boolean isClassMeetsAssociationRequirement2 (Association association, List<Attribute> attributes) {
+        //Class targetClassifier = diagram.getClass(association.getTargetID());
+        for (int i = 0; i < attributes.size(); i++) {
+           // if(attributes.get(i).getType().getName().equalsIgnoreCase(targetClassifier.getName())) { //TODO: can we use id?
+            //    return attributes.get(i).getMultiplicity() == association.getTarget().getMultiplicity();
+            //}
         }
         return false;
     }

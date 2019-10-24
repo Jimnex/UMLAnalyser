@@ -1,24 +1,31 @@
 package parser.classdiagram;
 
-import diagram.umlclass.Method;
-import diagram.umlclass.Type;
-import diagram.umlclass.Visibility;
+import diagram.umlclass.Operation;
+import diagram.Type;
+import diagram.Visibility;
+import diagram.umlclass.OperationParameter;
 import parser.NameParser;
 import parser.Parser;
 
 import java.util.List;
 
-public abstract class MethodParser implements Parser<Method> , NameParser {
+public abstract class OperationParser implements Parser<Operation> , NameParser {
 
     @Override
-    public Method parse() {
-        return new Method(this.parseName(),
+    public Operation parse() {
+        return new Operation(this.parseID(),
+                this.parseName(),
                 this.parseVisibility(),
                 this.parseIsStatic(),
                 this.parseIsAbstract(),
+                this.parseIsLeaf(),
                 this.parseReturnType(),
                 this.parseParameters());
     }
+
+    protected abstract Boolean parseIsLeaf();
+
+    protected  abstract String parseID();
 
     protected abstract Boolean parseIsAbstract();
 
@@ -28,6 +35,6 @@ public abstract class MethodParser implements Parser<Method> , NameParser {
 
     protected abstract Visibility parseVisibility();
 
-    protected abstract List<Method.Parameter> parseParameters();
+    protected abstract List<OperationParameter> parseParameters();
 
 }

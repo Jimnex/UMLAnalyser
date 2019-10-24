@@ -1,16 +1,19 @@
 package diagram;
 
 import analyser.Analyser;
+import com.sun.xml.internal.ws.api.model.Parameter;
+import parser.NameParser;
 import parser.Parser;
+import visualizer.Visualizer;
 
-public abstract class Diagram {
-    protected final String name;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public abstract class Diagram  {
+    private final String name;
 
     public Diagram(String name){
         this.name = name;
-    }
-
-    public void analyse(Analyser analyser){
-        analyser.analyse();
     }
 }

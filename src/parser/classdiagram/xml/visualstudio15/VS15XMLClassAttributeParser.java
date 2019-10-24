@@ -1,23 +1,30 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.umlclass.Aggregation;
-import diagram.umlclass.Type;
-import diagram.umlclass.Visibility;
+import diagram.AggregationType;
+import diagram.Type;
+import diagram.Visibility;
 import org.w3c.dom.Node;
 import parser.XML;
-import parser.classdiagram.FieldParser;
+import parser.classdiagram.AttributeParser;
 
-class VS15XMLClassFieldParser extends FieldParser {
+import java.util.Optional;
+
+class VS15XMLClassAttributeParser extends AttributeParser {
     private final Node node;
 
-    public VS15XMLClassFieldParser(Node fieldNode) {
+    public VS15XMLClassAttributeParser(Node fieldNode) {
         this.node = fieldNode;
     }
 
     @Override
     protected Type parseType() {
-        Node typeNode = XML.getNode(this.node, "type_NamedElement/referencedTypeMoniker");
-        return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+        Optional<Node> typeNode = XML.getNode(this.node, "type_NamedElement/referencedTypeMoniker");
+        if(typeNode.isPresent()){
+            return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+        } else {
+            System.out.println("There was no typeNode, Type set to N/A");
+            return new Type();
+        }
     }
 
     @Override
@@ -36,8 +43,8 @@ class VS15XMLClassFieldParser extends FieldParser {
     }
 
     @Override
-    protected Aggregation parseAggregation() {
-        return Aggregation.createFromStr(XML.getValue(this.node, "aggregation"));
+    protected AggregationType parseAggregation() {
+        return AggregationType.createFromStr(XML.getValue(this.node, "aggregation"));
     }
 
     @Override

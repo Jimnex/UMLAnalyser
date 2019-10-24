@@ -1,92 +1,24 @@
 package diagram.umlclass;
 
-public class Association {
-    private Node source;
-    private Node target;
-    private final String targetID;
+import diagram.AssociationEnd;
+import diagram.BinaryAssociation;
 
-    public Node getSource() {
-        return source;
-    }
+public class Association implements BinaryAssociation {
+    private AssociationEnd source;
+    private AssociationEnd target;
 
-    public Node getTarget() {
-        return target;
-    }
-
-    public String getTargetID() {
-        return targetID;
-    }
-
-    public Association(Node source, Node target, String targetID){
+    public Association(AssociationEnd source, AssociationEnd target){
         this.source = source;
         this.target = target;
-        this.targetID = targetID;
     }
 
-    public class Node {
-        public Node(String name, Boolean isComposite, Aggregation aggregation, Boolean isNavigableOwned, Multiplicity multiplicity) {
-            this.name = name;
-            this.isComposite = isComposite;
-            this.aggregation = aggregation;
-            this.isNavigableOwned = isNavigableOwned;
-            this.multiplicity = multiplicity;
-        }
+    @Override
+    public AssociationEnd getsourceEnd() {
+        return this.source;
+    }
 
-        public Node(String name) {
-            this.name = name;
-        }
-
-        private String name;
-        private Boolean isLeaf;
-        private Boolean isStatic;
-        private Boolean isReadOnly;
-        private Boolean isDerived;
-        private Boolean isDerivedUnion;
-        private Boolean isComposite;
-        private Aggregation aggregation;
-        private Boolean isNavigableOwned;
-        private Multiplicity multiplicity;
-
-
-        public String getName() {
-            return name;
-        }
-
-        public Boolean getLeaf() {
-            return isLeaf;
-        }
-
-        public Boolean getStatic() {
-            return isStatic;
-        }
-
-        public Boolean getReadOnly() {
-            return isReadOnly;
-        }
-
-        public Boolean getDerived() {
-            return isDerived;
-        }
-
-        public Boolean getDerivedUnion() {
-            return isDerivedUnion;
-        }
-
-        public Boolean getComposite() {
-            return isComposite;
-        }
-
-        public Aggregation getAggregation() {
-            return aggregation;
-        }
-
-        public Boolean getNavigableOwned() {
-            return isNavigableOwned;
-        }
-
-        public Multiplicity getMultiplicity() {
-            return multiplicity;
-        }
-
+    @Override
+    public AssociationEnd getTargetEnd() {
+        return this.target;
     }
 }

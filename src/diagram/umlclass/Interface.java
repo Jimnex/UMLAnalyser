@@ -1,16 +1,45 @@
 package diagram.umlclass;
 
-import java.util.ArrayList;
+import diagram.Classifier;
+import diagram.Visibility;
+
 import java.util.List;
 
-public class Interface {
+public class Interface implements Classifier {
+    private String id;
     private String name;
     private List<String> baseIDs;
-    private List<Method> methods;
+    private List<Operation> operations;
 
-    public Interface(String name, List<String> baseIDs, List<Method> methods) {
+    public Interface(String id, String name, List<String> baseIDs, List<Operation> operations) {
+        this.id = id;
         this.name = name;
         this.baseIDs = baseIDs;
-        this.methods = methods;
+        this.operations = operations;
+    }
+
+    @Override
+    public String getIdientifier() {
+        return id;
+    }
+
+    @Override
+    public boolean checkIsAbstract() {
+        return false;
+    }
+
+    @Override
+    public boolean checkIsLeaf() {
+        return false;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public Visibility getVisibility() {
+        return null;
     }
 }

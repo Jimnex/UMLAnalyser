@@ -1,38 +1,101 @@
 package parser.classdiagram;
 
+import diagram.Visibility;
 import diagram.umlclass.*;
 import diagram.umlclass.Class;
-import parser.IDParser;
-import parser.NameParser;
 import parser.Parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ClassParser implements Parser<Class> , NameParser, IDParser {
+public abstract class ClassParser implements Parser<Class> {
+    protected Parser<Operation> operationParser;
+    protected Parser<Attribute> attributeParser;
+    protected Parser<Association> associationParser;
 
-    @Override
-    public Class parse() {
-        return new Class(this.parseName(),
+    public Class parse(){
+        return new Class(this.parseID(),
+                this.parseName(),
                 this.parseIsAbstract(),
-                this.parseIsStatic(),
                 this.parseVisibility(),
-                this.getAssociations(),
-                this.getFields(),
-                this.getMethods(),
-                this.getBaseIDs());
+                this.parseAssociations(),
+                this.parseAttributes(),
+                this.parseOperations(),
+                this.parseBaseClasses());
     }
 
-    protected abstract Boolean parseIsStatic();
+    protected abstract String parseID();
+
+    protected abstract List<String> parseBaseClasses();
+
+    protected abstract String parseName();
 
     abstract protected Visibility parseVisibility();
 
     abstract protected Boolean parseIsAbstract();
 
-    abstract protected List<Association> getAssociations();
+    //region Attributes
 
-    abstract protected List<Field> getFields();
+    private List<Attribute> parseAttributes() {
+        List<Attribute> attributes = new ArrayList<>();
+        for (int i = 0; i < getNumberOfAttributes(); i++) {
+            attributes.add(parseAttribute(i));
+        }
+        return attributes;
+    }
 
-    abstract protected List<Method> getMethods();
+    protected abstract int getNumberOfAttributes();
 
-    abstract protected List<String> getBaseIDs();
+    protected Attribute parseAttribute(int index) {
+        getDataForAttribute(index);
+        return attributeParser.parse();
+    }
+
+    protected abstract void getDataForAttribute(int index);
+
+    //endregion
+
+    //region Operations
+
+    private List<Operation> parseOperations() {
+        List<Operation> operations = new ArrayList<>();
+        for (int i = 0; i < getNumberOfOperations(); i++) {
+            operations.add(parseOperation(i));
+        }
+        return operations;
+    }
+
+    protected abstract int getNumberOfOperations();
+
+    protected Operation parseOperation(int index) {
+        getDataForOperation(index);
+        return operationParser.parse();
+    }
+
+    protected abstract void getDataForOperation(int index);
+
+
+    //endregion
+
+    //region Associations
+
+    private List<Association> parseAssociations() {
+        List<Association> attributes = new ArrayList<>();
+        for (int i = 0; i < getNumberOfAssociations(); i++) {
+            attributes.add(parseAssociation(i));
+        }
+        return attributes;
+    }
+
+    protected abstract int getNumberOfAssociations();
+
+    protected Association parseAssociation(int index){
+        getDataForAssociation(index);
+        return this.associationParser.parse();
+    }
+
+    protected abstract void getDataForAssociation(int index);
+
+    //endregion
+
 }

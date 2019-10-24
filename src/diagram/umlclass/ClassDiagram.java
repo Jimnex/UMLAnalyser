@@ -1,32 +1,21 @@
 package diagram.umlclass;
 
+import analyser.Reporter;
+import diagram.Element;
 import diagram.Diagram;
+import parser.Parser;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 
 public class ClassDiagram extends Diagram {
-    private final AbstractMap<String, Class> classes;
-    private final AbstractMap<String, Interface> interfaces;
+    private final List<Interface> interfaces;
+    private final List<Class> classes;
 
-    public ClassDiagram(String name, AbstractMap<String, Class> classes, AbstractMap<String, Interface> interfaces) {
+
+    public ClassDiagram(String name, List<Interface> interfaces, List<Class> classes) {
         super(name);
-        this.classes = classes;
         this.interfaces = interfaces;
-    }
-
-    public void addClass(String id, Class c){
-        classes.put(id, c);
-    }
-
-    public Set<String> getIDs(){
-        return this.classes.keySet();
-    }
-
-    public Class getClass(String id){
-        return this.classes.get(id);
-    }
-
-    public int getNuClasses(){
-        return this.classes.size();
+        this.classes = classes;
     }
 }
