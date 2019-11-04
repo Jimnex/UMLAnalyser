@@ -25,7 +25,6 @@ public class ClassAnalyser implements Analyser {
         this.reporter = new Reporter();
     }
 
-    @Override
     public Reporter analyse() {
         if(meetsClassNamingConvention() == false){
             reporter.addReport("Név konvenció", String.format("s% osztály nem nagybetűvel kezdődik", this.c.getName()));
@@ -187,6 +186,11 @@ public class ClassAnalyser implements Analyser {
             }
         }
         return true;
+    }
+
+    @Override
+    public <T> Reporter analyse(T structure) {
+        return null;
     }
 
     //endregion

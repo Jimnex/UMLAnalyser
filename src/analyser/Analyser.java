@@ -1,5 +1,5 @@
 package analyser;
 
 public interface Analyser {
-    public Reporter analyse();
+    public <T> Reporter analyse(T structure);
 }

@@ -1,19 +1,27 @@
 package diagram;
 
 import analyser.Analyser;
-import com.sun.xml.internal.ws.api.model.Parameter;
-import parser.NameParser;
-import parser.Parser;
-import visualizer.Visualizer;
+import analyser.Reporter;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public abstract class Diagram implements Analyser {
-    private final String name;
+public abstract class Diagram {
+    protected String name;
+    protected Structure structure;
 
-    public Diagram(String name){
-        this.name = name;
+    public abstract String getDisplayedName();
+
+    public void parse(){
+        this.name = parseName();
+    }
+
+    public abstract String parseName();
+
+    public Reporter analyse(List<Analyser> analysers){
+        Reporter reporter = new Reporter();
+        for (Analyser analyser : analysers) {
+            reporter.addReports(analyser.analyse(this.structure));
+        }
+        return reporter;
     }
 }

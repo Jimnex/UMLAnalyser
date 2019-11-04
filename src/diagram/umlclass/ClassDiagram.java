@@ -1,38 +1,30 @@
 package diagram.umlclass;
-
-import analyser.Reporter;
-import analyser.umlclass.ClassAnalyser;
-import analyser.umlclass.InterfaceAnalyser;
 import diagram.Diagram;
+import parser.Parser;
+import parser.classdiagram.ClassDiagramStructureParser;
 
 import java.util.List;
 
-public class ClassDiagram extends Diagram {
-    private final List<Interface> interfaces;
-    private final List<Class> classes;
+public class ClassDiagram extends Diagram { ;
+    private ClassDiagramStructureParser classDiagramStructureParser;
 
-
-    public ClassDiagram(String name, List<Interface> interfaces, List<Class> classes) {
-        super(name);
-        this.interfaces = interfaces;
-        this.classes = classes;
+    public ClassDiagram(ClassDiagramStructureParser classDiagramStructureParser) {
+        this.classDiagramStructureParser = classDiagramStructureParser;
     }
 
     @Override
-    public Reporter analyse() {
-        Reporter reporter = new Reporter();
-        ClassAnalyser classAnalyser;
+    public String getDisplayedName() {
+        return "Class diagram";
+    }
 
-        for (Class c: this.classes) {
-            classAnalyser = new ClassAnalyser(c, classes);
-            reporter.addReports(classAnalyser.analyse());
-        }
-        InterfaceAnalyser interfaceAnalyser;
-        for (Interface i: this.interfaces) {
-            interfaceAnalyser = new InterfaceAnalyser(i, interfaces);
-            reporter.addReports(interfaceAnalyser.analyse());
-        }
+    @Override
+    public void parse() {
+        super.parse();
+        super.structure = classDiagramStructureParser.parse();
+    }
 
-        return reporter;
+    @Override
+    public String parseName() {
+        return classDiagramStructureParser.parseName();
     }
 }

@@ -3,17 +3,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import parser.XML;
-import parser.classdiagram.ClassDiagramParser;;import javax.xml.parsers.ParserConfigurationException;
+import parser.classdiagram.ClassDiagramStructureParser;;import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-public class VS15XMLClassDiagramParser extends ClassDiagramParser {
+public class VS15XMLClassDiagramStructureParser extends ClassDiagramStructureParser {
     private Optional<NodeList> classesNodeList;
     private Optional<NodeList> interfacesNodeList;
     private Optional<Document> doc;
 
-    public VS15XMLClassDiagramParser(File file){
+    public VS15XMLClassDiagramStructureParser(File file){
         try {
             doc = Optional.ofNullable(XML.parseXMLDocWithDOM(file));
         } catch (ParserConfigurationException e) {

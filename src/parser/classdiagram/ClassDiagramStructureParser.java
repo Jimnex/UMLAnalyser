@@ -1,9 +1,7 @@
 package parser.classdiagram;
 
+import diagram.umlclass.*;
 import diagram.umlclass.Class;
-import diagram.umlclass.ClassDiagram;
-import diagram.umlclass.Interface;
-import diagram.umlclass.Operation;
 import parser.NameParser;
 import parser.Parser;
 
@@ -11,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class ClassDiagramParser implements Parser<ClassDiagram>, NameParser {
+public abstract class ClassDiagramStructureParser implements Parser<ClassDiagramStructure>, NameParser {
     protected Optional<Parser<Interface>> interfaceParser = Optional.empty();
     protected Optional<Parser<Class>> classParser = Optional.empty();
 
 
     @Override
-    public ClassDiagram parse(){
-        return new ClassDiagram(this.parseName(), this.parseInterfaces(), this.parseClasses());
+    public ClassDiagramStructure parse(){
+        return new ClassDiagramStructure(this.parseInterfaces(), this.parseClasses());
     }
 
     protected List<Interface> parseInterfaces(){

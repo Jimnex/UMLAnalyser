@@ -1,16 +1,36 @@
+import analyser.Analyser;
 import diagram.Diagram;
+import factory.AnalysersFactory;
+import factory.ClassDiagramAnalysersFactory;
+import factory.DiagramFactory;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Main {
 
     public static void main(String[] args) {
-        DiagramFactory diagramFactory = new DiagramFactory();
-        Optional<Diagram> diagram = diagramFactory.createDiagram("/home/izsof/Code/UMLAnalyser/class2.classdiagram");
+        DiagramFactory diagramFactory = new DiagramFactory("/home/izsof/Code/UMLAnalyser/class2.classdiagram");
+        Optional<Diagram> diagram = diagramFactory.create();
         if(diagram.isPresent()){
-
+            diagram.get().parse();
         }
+        List<String> conventions = new ArrayList<>();
+        AnalysersFactory analysersFactory = new ClassDiagramAnalysersFactory(conventions);
+
+        List<Analyser> analysers = analysersFactory.create();
+        diagram.get().analyse(new ArrayList<>());
+
+
+
+
+        /*
+        Analyser analyser = new ClassDiagramAnalyser();
+        analyser = new xConvetion(analyser);
+        analyser = new yConvention(analyser);
+        analyser.analyse();
+        */
     }
 
 }
