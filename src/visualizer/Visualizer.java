@@ -1,5 +1,12 @@
 package visualizer;
 
+import analyser.Reporter;
+
 public interface Visualizer {
-   void visualize();
+   void visualize(Reporter reporter);
 }
+
+
+
+
+

@@ -1,10 +1,8 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.AggregationType;
-import diagram.umlclass.Association;
-import diagram.AssociationEnd;
-import diagram.Multiplicity;
-import diagram.umlclass.Interface;
+import uml.metaclasses.relationship.association.AggregationType;
+import uml.metaclasses.relationship.association.AssociationEnd;
+import uml.metaclasses.Multiplicity;
 import org.w3c.dom.Node;
 import parser.XML;
 import parser.classdiagram.AssociationParser;

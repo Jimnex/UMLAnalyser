@@ -1,7 +1,7 @@
 package parser.classdiagram;
 
-import diagram.umlclass.Interface;
-import diagram.umlclass.Operation;
+import uml.diagrams.umlclass.Interface;
+import uml.diagrams.umlclass.Operation;
 import parser.IDParser;
 import parser.NameParser;
 import parser.Parser;

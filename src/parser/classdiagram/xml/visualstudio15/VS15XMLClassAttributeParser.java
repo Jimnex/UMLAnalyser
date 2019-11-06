@@ -1,8 +1,9 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.AggregationType;
-import diagram.Type;
-import diagram.Visibility;
+import uml.metaclasses.Multiplicity;
+import uml.metaclasses.relationship.association.AggregationType;
+import uml.metaclasses.Type;
+import uml.metaclasses.Visibility;
 import org.w3c.dom.Node;
 import parser.XML;
 import parser.classdiagram.AttributeParser;
@@ -14,6 +15,16 @@ class VS15XMLClassAttributeParser extends AttributeParser {
 
     public VS15XMLClassAttributeParser(Node fieldNode) {
         this.node = fieldNode;
+    }
+
+    @Override
+    protected Multiplicity parseMultiplicity() {
+        return null;
+    }
+
+    @Override
+    protected Boolean parseIsLeaf() {
+        return null;
     }
 
     @Override

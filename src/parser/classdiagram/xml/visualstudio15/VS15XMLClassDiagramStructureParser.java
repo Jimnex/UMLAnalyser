@@ -2,6 +2,7 @@ package parser.classdiagram.xml.visualstudio15;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import parser.StructureParser;
 import parser.XML;
 import parser.classdiagram.ClassDiagramStructureParser;;import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

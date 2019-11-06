@@ -2,13 +2,10 @@ package analyser.umlclass;
 
 import analyser.Analyser;
 import analyser.Reporter;
-import diagram.AggregationType;
-import diagram.umlclass.Association;
-import diagram.umlclass.Attribute;
-import diagram.umlclass.Class;
-import parser.classdiagram.AttributeParser;
+import uml.metaclasses.relationship.association.AggregationType;
+import uml.metaclasses.relationship.association.Association;
+import uml.diagrams.umlclass.Class;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -64,7 +61,7 @@ public class ClassAnalyser implements Analyser {
      * @return boolean
      */
     private boolean isClassMeetsAssociationRequirement1(Association association) {
-        Optional<Class> targetClass = getClass(association.getTargetEnd().getIdientifier());
+        Optional<Class> targetClass = getClass(association.getTargetEnd().getIdentifier());
         if(targetClass.isPresent()) {
             for (int i = 0; i < this.c.getAttributes().size(); i++) {
                 if (this.c.getAttributes().get(i).getType().getName().equalsIgnoreCase(targetClass.get().getName())) { //TODO: can we use id?
@@ -81,7 +78,7 @@ public class ClassAnalyser implements Analyser {
      * @return
      */
     private boolean isClassMeetsAssociationRequirement2 (Association association) {
-        Optional<Class> targetClass = getClass(association.getTargetEnd().getIdientifier());
+        Optional<Class> targetClass = getClass(association.getTargetEnd().getIdentifier());
         if(targetClass.isPresent()){
             for (int i = 0; i < this.c.getAttributes().size(); i++) {
                 if(this.c.getAttributes().get(i).getType().getName().equalsIgnoreCase(targetClass.get().getName())) { //TODO: can we use id?
@@ -106,7 +103,7 @@ public class ClassAnalyser implements Analyser {
 
     private Optional<Class> getClass(String identifier){
         for (Class c: this.classes) {
-            if(c.equals(c.getIdientifier()))
+            if(c.equals(c.getIdentifier()))
                 return Optional.ofNullable(c);
         }
         return Optional.empty();
@@ -169,7 +166,7 @@ public class ClassAnalyser implements Analyser {
      */
     private boolean isClassMeetsInheritanceRequirementuirement3() {
         List<Class> siblingClasses = this.classes.stream().filter(x -> x.getBaseInterfaceIDs().get(0) == this.c.getBaseInterfaceIDs().get(0)
-                                                               && x.getIdientifier() != c.getIdientifier())
+                                                               && x.getIdentifier() != c.getIdentifier())
                                                                .collect(Collectors.toList());
         for (Class sibling: siblingClasses) {
             if(anyCommonItem(sibling.getOperations(), c.getOperations()) || anyCommonItem(sibling.getAttributes(), sibling.getAttributes())){

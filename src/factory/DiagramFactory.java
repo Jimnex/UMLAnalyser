@@ -1,7 +1,6 @@
 package factory;
 
-import diagram.Diagram;
-import diagram.umlclass.ClassDiagram;
+import uml.diagrams.Diagram;
 import org.apache.commons.io.FilenameUtils;
 import parser.classdiagram.xml.visualstudio15.VS15XMLClassDiagramStructureParser;
 
@@ -26,7 +25,8 @@ public class DiagramFactory implements Factory<Optional<Diagram>> {
         Optional<Diagram> diagram;
         switch (this.getExtension(filePath)){
             case "classdiagram":
-                diagram = Optional.ofNullable(new ClassDiagram(new VS15XMLClassDiagramStructureParser(new File(filePath))));
+                diagram = Optional.ofNullable(new Diagram("Class diagram",
+                                                           new VS15XMLClassDiagramStructureParser(new File(filePath))));
                 break;
             default:
                 diagram = Optional.empty();

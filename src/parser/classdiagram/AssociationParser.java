@@ -1,7 +1,7 @@
 package parser.classdiagram;
 
-import diagram.AssociationEnd;
-import diagram.umlclass.Association;
+import uml.metaclasses.relationship.association.AssociationEnd;
+import uml.metaclasses.relationship.association.Association;
 import parser.Parser;
 
 public abstract class AssociationParser implements Parser<Association>{

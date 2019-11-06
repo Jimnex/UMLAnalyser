@@ -1,5 +1,7 @@
 package analyser;
 
+import uml.diagrams.Structure;
+
 public interface Analyser {
-    public <T> Reporter analyse(T structure);
+    Reporter analyse(Structure structure);
 }

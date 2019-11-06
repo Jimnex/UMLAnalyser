@@ -1,9 +1,8 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.umlclass.Operation;
-import diagram.Type;
-import diagram.Visibility;
-import diagram.umlclass.OperationParameter;
+import uml.metaclasses.Type;
+import uml.metaclasses.Visibility;
+import uml.diagrams.umlclass.OperationParameter;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;

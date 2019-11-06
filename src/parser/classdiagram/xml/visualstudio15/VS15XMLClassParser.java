@@ -1,6 +1,6 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import diagram.Visibility;
+import uml.metaclasses.Visibility;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;

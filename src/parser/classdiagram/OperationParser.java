@@ -1,9 +1,9 @@
 package parser.classdiagram;
 
-import diagram.umlclass.Operation;
-import diagram.Type;
-import diagram.Visibility;
-import diagram.umlclass.OperationParameter;
+import uml.diagrams.umlclass.Operation;
+import uml.metaclasses.Type;
+import uml.metaclasses.Visibility;
+import uml.diagrams.umlclass.OperationParameter;
 import parser.NameParser;
 import parser.Parser;
 

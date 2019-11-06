@@ -1,5 +1,5 @@
 import analyser.Analyser;
-import diagram.Diagram;
+import uml.diagrams.Diagram;
 import factory.AnalysersFactory;
 import factory.ClassDiagramAnalysersFactory;
 import factory.DiagramFactory;

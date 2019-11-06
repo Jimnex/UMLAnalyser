@@ -1,9 +1,10 @@
 package parser.classdiagram;
 
-import diagram.Visibility;
-import diagram.umlclass.*;
-import diagram.umlclass.Class;
+import uml.metaclasses.Visibility;
+import uml.diagrams.umlclass.*;
+import uml.diagrams.umlclass.Class;
 import parser.Parser;
+import uml.metaclasses.relationship.association.Association;
 
 import java.util.ArrayList;
 import java.util.List;
