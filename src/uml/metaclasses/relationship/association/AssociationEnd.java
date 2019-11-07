@@ -1,17 +1,17 @@
 package uml.metaclasses.relationship.association;
 
+import uml.metaclasses.Classifier;
 import uml.metaclasses.Element;
 import uml.metaclasses.Multiplicity;
 
 public class AssociationEnd implements Element {
-    private String ownerIdentifier;
+    private Classifier owner;
     private Multiplicity multiplicity;
     public final AggregationType aggregationType;
     public final Boolean isNavigableOwned;
 
-    @Override
-    public String getIdentifier() {
-        return ownerIdentifier;
+    public Classifier getOwner() {
+        return owner;
     }
 
     public AggregationType getAggregationType(){
@@ -22,8 +22,8 @@ public class AssociationEnd implements Element {
         return this.multiplicity;
     }
 
-    public AssociationEnd(String ownerIdentifier, AggregationType aggregationType, Boolean isNavigableOwned, Multiplicity multiplicity) {
-        this.ownerIdentifier = ownerIdentifier;
+    public AssociationEnd(Classifier owner, AggregationType aggregationType, Boolean isNavigableOwned, Multiplicity multiplicity) {
+        this.owner = owner;
         this.aggregationType = aggregationType;
         this.isNavigableOwned = isNavigableOwned;
         this.multiplicity = multiplicity;

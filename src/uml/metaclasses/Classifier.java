@@ -4,9 +4,10 @@ import uml.metaclasses.feature.BehavioralFeature;
 import uml.metaclasses.feature.StructuralFeature;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface Classifier extends RedefinableElement, Namespace{
     boolean checkIsAbstract();
-    Collection<StructuralFeature> getStructuralFeatures();
-    Collection<BehavioralFeature> getBehaviorFeatures();
+    List<StructuralFeature> getStructuralFeatures();
+    List<BehavioralFeature> getBehaviorFeatures();
 }

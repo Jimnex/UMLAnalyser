@@ -68,11 +68,6 @@ public class Attribute implements StructuralFeature {
     }
 
     @Override
-    public String getIdentifier() {
-        return this.id;
-    }
-
-    @Override
     public Multiplicity getMultiplicityBound() {
         return this.multiplicity;
     }

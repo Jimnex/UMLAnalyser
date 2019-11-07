@@ -1,8 +1,5 @@
 package uml.metaclasses.relationship.association;
 
-import uml.metaclasses.relationship.association.AssociationEnd;
-import uml.metaclasses.relationship.association.BinaryAssociation;
-
 public class Association implements BinaryAssociation {
     private AssociationEnd source;
     private AssociationEnd target;
@@ -20,4 +17,5 @@ public class Association implements BinaryAssociation {
     public AssociationEnd getTargetEnd() {
         return this.target;
     }
+
 }

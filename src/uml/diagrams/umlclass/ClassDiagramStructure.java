@@ -1,6 +1,8 @@
 package uml.diagrams.umlclass;
 
 import uml.diagrams.Structure;
+import uml.metaclasses.relationship.association.BinaryAssociation;
+import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 public class ClassDiagramStructure implements Structure {
     private final List<Interface> interfaces;
     private final List<Class> classes;
+    private List<Generalization> generalizations;
+    private List<BinaryAssociation> binaryAssociations;
     private final String name;
 
     public ClassDiagramStructure(String name, List<Class> classes, List<Interface> interfaces) {
@@ -27,5 +31,15 @@ public class ClassDiagramStructure implements Structure {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public List<BinaryAssociation> getBinaryAssociation() {
+        return binaryAssociations;
+    }
+
+    @Override
+    public List<Generalization> getGeneralization() {
+        return generalizations;
     }
 }

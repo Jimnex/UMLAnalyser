@@ -72,11 +72,6 @@ public class Class implements Classifier {
     }
 
     @Override
-    public String getIdentifier() {
-        return id;
-    }
-
-    @Override
     public boolean checkIsAbstract() {
         return this.isAbstract;
     }

@@ -7,7 +7,6 @@ import uml.metaclasses.Visibility;
 import uml.metaclasses.feature.BehavioralFeature;
 import uml.metaclasses.feature.StructuralFeature;
 
-import javax.naming.directory.AttributeInUseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,9 +28,7 @@ public class Interface implements Classifier {
         this.staticAttributes = staticAttributes;
     }
 
-    @Override
-    public String getIdentifier() {
-        return id;
+    public Interface(String parseID, String parseName, List<String> parseBases, List<Operation> parseOperations) {
     }
 
     @Override
