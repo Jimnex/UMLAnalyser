@@ -67,6 +67,11 @@ public class Operation implements BehavioralFeature {
     }
 
     @Override
+    public String getIndentifier() {
+        return id;
+    }
+
+    @Override
     public String getName() {
         return this.name;
     }
@@ -75,13 +80,5 @@ public class Operation implements BehavioralFeature {
     public Visibility getVisibility() {
         return this.visibility;
     }
-
-    @Override
-    public String getIdentifier() {
-        return this.id;
     }
 
-    public class Parameter {
-
-    }
-}

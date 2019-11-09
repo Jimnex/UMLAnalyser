@@ -1,5 +1,6 @@
 package uml.diagrams.umlclass;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import uml.metaclasses.feature.BehavioralFeature;
 import uml.metaclasses.feature.StructuralFeature;
 import uml.metaclasses.Classifier;
@@ -14,27 +15,20 @@ import java.util.List;
 public class Class implements Classifier {
     private String id;
     private String name;
-    private Boolean isAbstract;
+    private boolean isAbstract;
+    private boolean isLeaf;
     private Visibility visibility;
-    private List<String> baseClassIDs = new ArrayList<>();
-    private List<String> baseInterfaceIDs;
-    private List<Association> associations;
     private List<Attribute> attributes;
-    private Collection<Operation> operations;
+    private List<Operation> operations;
 
-    public Class(String name) {
-        this.name = name;
-    }
-
-    public Class(String id, String name, Boolean isAbstract, Visibility visibility, List<Association> associations, List<Attribute> attributes, List<Operation> operations, List<String> baseClassIDs) {
+    public Class(String id, String name, boolean isAbstract, boolean isLeaf, Visibility visibility, List<Attribute> attributes, List<Operation> operations) {
         this.id = id;
         this.name = name;
         this.isAbstract = isAbstract;
+        this.isLeaf = isLeaf;
         this.visibility = visibility;
-        this.associations = associations;
         this.attributes = attributes;
         this.operations = operations;
-        this.baseClassIDs = baseClassIDs;
     }
 
     @Override
@@ -43,32 +37,13 @@ public class Class implements Classifier {
     }
 
     @Override
+    public String getIndentifier() {
+        return id;
+    }
+
+    @Override
     public String getName() {
         return name;
-    }
-
-    public Boolean getAbstract() {
-        return isAbstract;
-    }
-
-    public List<String> getBaseClassIDs() {
-        return new ArrayList<>(this.baseClassIDs);
-    }
-
-    public List<Association> getAssociations() {
-        return new ArrayList<>(this.associations);
-    }
-
-    public List<Attribute> getAttributes() {
-        return new ArrayList<>(this.attributes);
-    }
-
-    public List<Operation> getOperations() {
-        return new ArrayList<>(this.operations);
-    }
-
-    public List<String> getBaseInterfaceIDs() {
-        return new ArrayList<>(this.baseInterfaceIDs);
     }
 
     @Override
@@ -77,22 +52,22 @@ public class Class implements Classifier {
     }
 
     @Override
-    public Collection<StructuralFeature> getStructuralFeatures() {
+    public List<StructuralFeature> getStructuralFeatures() {
         return new ArrayList<>(this.attributes);
     }
 
     @Override
-    public Collection<BehavioralFeature> getBehaviorFeatures() {
-        return null;
+    public List<BehavioralFeature> getBehaviorFeatures() {
+        return new ArrayList<>(operations);
     }
 
     @Override
     public boolean checkIsLeaf() {
-        return false;
+        return isLeaf;
     }
 
     @Override
     public Collection<NamedElement> getOwnedNamedElements() {
-        return null;
+        throw new NotImplementedException();
     }
 }

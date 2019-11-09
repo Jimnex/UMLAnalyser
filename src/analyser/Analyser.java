@@ -9,5 +9,5 @@ public abstract class Analyser {
         this.reporter = new Reporter();
     }
 
-    abstract Reporter analyse(Structure structure);
+    public abstract Reporter analyse(Structure structure);
 }

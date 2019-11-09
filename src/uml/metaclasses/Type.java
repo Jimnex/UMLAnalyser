@@ -26,8 +26,4 @@ public class Type implements NamedElement {
         return Visibility.NONE;
     }
 
-    @Override
-    public String getIdentifier() {
-        return this.id;
-    }
 }

@@ -1,5 +1,6 @@
 package uml.diagrams.umlclass;
 
+import uml.metaclasses.NamedElement;
 import uml.metaclasses.Type;
 
 public class OperationParameter {

@@ -19,8 +19,9 @@ public class Attribute implements StructuralFeature {
     private AggregationType aggregation;
     private Boolean isComposite;
 
-    public Attribute(String name, Type type, Visibility visibility, Boolean isStatic, Boolean isReadOnly, Boolean isLeaf, Multiplicity multiplicity,  AggregationType aggregation, Boolean isComposite) {
+    public Attribute(String name, String id, Type type, Visibility visibility, Boolean isStatic, Boolean isReadOnly, Boolean isLeaf, Multiplicity multiplicity,  AggregationType aggregation, Boolean isComposite) {
         this.name = name;
+        this.id = id;
         this.type = type;
         this.visibility = visibility;
         this.isStatic = isStatic;
@@ -55,6 +56,11 @@ public class Attribute implements StructuralFeature {
     @Override
     public boolean checkIsLeaf() {
         return this.isLeaf;
+    }
+
+    @Override
+    public String getIndentifier() {
+        return id;
     }
 
     @Override

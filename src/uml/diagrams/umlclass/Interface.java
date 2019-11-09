@@ -15,15 +15,13 @@ public class Interface implements Classifier {
     private String id;
     private String name;
     private Visibility visibility;
-    private List<String> baseIDs;
     private List<Operation> operations;
     private List<Attribute> staticAttributes;
 
-    public Interface(String id, String name, Visibility visibility, List<String> baseIDs, List<Operation> operations, List<Attribute> staticAttributes) {
+    public Interface(String id, String name, Visibility visibility, List<Operation> operations, List<Attribute> staticAttributes) {
         this.id = id;
         this.name = name;
         this.visibility = visibility;
-        this.baseIDs = baseIDs;
         this.operations = operations;
         this.staticAttributes = staticAttributes;
     }
@@ -37,18 +35,23 @@ public class Interface implements Classifier {
     }
 
     @Override
-    public Collection<StructuralFeature> getStructuralFeatures() {
+    public List<StructuralFeature> getStructuralFeatures() {
         return new ArrayList<>(staticAttributes);
     }
 
     @Override
-    public Collection<BehavioralFeature> getBehaviorFeatures() {
+    public List<BehavioralFeature> getBehaviorFeatures() {
         return new ArrayList<>(operations);
     }
 
     @Override
     public boolean checkIsLeaf() {
         return false;
+    }
+
+    @Override
+    public String getIndentifier() {
+        return id;
     }
 
     @Override

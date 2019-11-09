@@ -18,6 +18,7 @@ public abstract class ClassParser implements Parser<Class> {
         return new Class(this.parseID(),
                 this.parseName(),
                 this.parseIsAbstract(),
+                this.parseIsLeaf(),
                 this.parseVisibility(),
                 this.parseAssociations(),
                 this.parseAttributes(),
