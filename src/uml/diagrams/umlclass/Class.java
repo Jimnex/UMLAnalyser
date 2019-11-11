@@ -7,6 +7,9 @@ import uml.metaclasses.Classifier;
 import uml.metaclasses.NamedElement;
 import uml.metaclasses.Visibility;
 import uml.metaclasses.relationship.association.Association;
+import uml.metaclasses.relationship.association.BinaryAssociation;
+import uml.metaclasses.relationship.directed.Dependency;
+import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,8 +23,11 @@ public class Class implements Classifier {
     private Visibility visibility;
     private List<Attribute> attributes;
     private List<Operation> operations;
+    private List<Association> associations;
+    private List<Generalization> generalizations;
+    private List<Dependency> dependencies;
 
-    public Class(String id, String name, boolean isAbstract, boolean isLeaf, Visibility visibility, List<Attribute> attributes, List<Operation> operations) {
+    public Class(String id, String name, boolean isAbstract, boolean isLeaf, Visibility visibility, List<Attribute> attributes, List<Operation> operations, List<Association> associations, List<Generalization> generalizations, List<Dependency> dependencies) {
         this.id = id;
         this.name = name;
         this.isAbstract = isAbstract;
@@ -29,6 +35,9 @@ public class Class implements Classifier {
         this.visibility = visibility;
         this.attributes = attributes;
         this.operations = operations;
+        this.associations = associations;
+        this.generalizations = generalizations;
+        this.dependencies = dependencies;
     }
 
     @Override
@@ -62,12 +71,23 @@ public class Class implements Classifier {
     }
 
     @Override
+    public List<BinaryAssociation> getBinaryAssocations() {
+        return new ArrayList<>(associations);
+    }
+
+    @Override
+    public List<Generalization> getGeneralizations() {
+        return generalizations;
+    }
+
+    @Override
+    public List<Dependency> getDependencies() {
+        return dependencies;
+    }
+
+    @Override
     public boolean checkIsLeaf() {
         return isLeaf;
     }
 
-    @Override
-    public Collection<NamedElement> getOwnedNamedElements() {
-        throw new NotImplementedException();
-    }
 }

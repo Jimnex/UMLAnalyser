@@ -5,6 +5,8 @@ import uml.diagrams.umlclass.*;
 import uml.diagrams.umlclass.Class;
 import parser.Parser;
 import uml.metaclasses.relationship.association.Association;
+import uml.metaclasses.relationship.directed.Dependency;
+import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,28 +15,26 @@ public abstract class ClassParser implements Parser<Class> {
     protected Parser<Operation> operationParser;
     protected Parser<Attribute> attributeParser;
     protected Parser<Association> associationParser;
+    protected Parser<Generalization> generalizationParser;
+    protected Parser<Dependency> dependencyParser;
 
     public Class parse(){
-        return new Class(this.parseID(),
-                this.parseName(),
-                this.parseIsAbstract(),
-                this.parseIsLeaf(),
-                this.parseVisibility(),
-                this.parseAssociations(),
-                this.parseAttributes(),
-                this.parseOperations(),
-                this.parseBaseClasses());
+        return new Class(this.parseID(),this.parseName(),this.parseIsAbstract(),this.parseIsLeaf(),this.parseVisibility(),this.parseAttributes(),this.parseOperations(),this.parseAssociations(),this.parseGeneralization(),this.parseDependencies());
     }
 
-    protected abstract String parseID();
+    protected abstract List<Dependency> parseDependencies();
 
-    protected abstract List<String> parseBaseClasses();
+    protected abstract List<Generalization> parseGeneralization();
+
+    protected abstract String parseID();
 
     protected abstract String parseName();
 
     abstract protected Visibility parseVisibility();
 
     abstract protected Boolean parseIsAbstract();
+
+    abstract protected Boolean parseIsLeaf();
 
     //region Attributes
 

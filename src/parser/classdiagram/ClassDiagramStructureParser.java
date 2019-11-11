@@ -16,7 +16,7 @@ public abstract class ClassDiagramStructureParser implements StructureParser {
 
     @Override
     public ClassDiagramStructure parse(){
-        return new ClassDiagramStructure(this.parseName(), this.parseClasses(), this.parseInterfaces());
+        return new ClassDiagramStructure(this.parseName(),this.parseInterfaces(),this.parseClasses());
     }
 
     protected List<Interface> parseInterfaces(){

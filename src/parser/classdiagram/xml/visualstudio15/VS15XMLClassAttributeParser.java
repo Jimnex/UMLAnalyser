@@ -23,6 +23,11 @@ class VS15XMLClassAttributeParser extends AttributeParser {
     }
 
     @Override
+    protected String parseId() {
+        return XML.getValue(node,"Id");
+    }
+
+    @Override
     protected Boolean parseIsLeaf() {
         return null;
     }

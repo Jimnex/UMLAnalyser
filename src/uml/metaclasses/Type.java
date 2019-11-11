@@ -17,6 +17,11 @@ public class Type implements NamedElement {
     }
 
     @Override
+    public String getIndentifier() {
+        return id;
+    }
+
+    @Override
     public String getName() {
         return this.name;
     }

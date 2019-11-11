@@ -12,6 +12,7 @@ public abstract class AttributeParser implements Parser<Attribute>, NameParser {
     @Override
     public Attribute parse() {
         return new Attribute(this.parseName(),
+                this.parseId(),
                 this.parseType(),
                 this.parseVisibility(),
                 this.parseIsStatic(),
@@ -23,6 +24,8 @@ public abstract class AttributeParser implements Parser<Attribute>, NameParser {
     }
 
     protected abstract Multiplicity parseMultiplicity();
+
+    protected abstract String parseId();
 
     protected abstract Boolean parseIsLeaf();
 

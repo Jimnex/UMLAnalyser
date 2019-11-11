@@ -1,10 +1,13 @@
 package parser.classdiagram.xml.visualstudio15;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import uml.metaclasses.Visibility;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.ClassParser;
+import uml.metaclasses.relationship.directed.Dependency;
+import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,22 @@ public class VS15XMLClassParser extends ClassParser {
     }
 
     @Override
+    protected List<Dependency> parseDependencies() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    protected List<Generalization> parseGeneralization() {
+        List<Generalization> generalizations = new ArrayList<>();
+        if(this.baseNodeList.isPresent()){
+            for (int i = 0; i < this.baseNodeList.get().getLength(); i++) {
+                generalizations.add(new Generalization(XML.getValue(this.baseNodeList.get().item(i),"Id")));
+            }
+        }
+        return generalizations;
+    }
+
+    @Override
     protected String parseID() {
         return XML.getValue(this.classnode, "Id");
     }
@@ -50,19 +69,12 @@ public class VS15XMLClassParser extends ClassParser {
         return Boolean.parseBoolean(XML.getValue(classnode, "isAbstract"));
     }
 
-    //region bases
-
-
     @Override
-    protected List<String> parseBaseClasses() {
-        List<String> ids = new ArrayList<>();
-        if(this.baseNodeList.isPresent()){
-            for (int i = 0; i < this.baseNodeList.get().getLength(); i++) {
-                ids.add(XML.getValue(this.baseNodeList.get().item(i),"Id"));
-            }
-        }
-        return ids;
+    protected Boolean parseIsLeaf() {
+        return null;
     }
+
+    //region bases
 
 //endregion
 
