@@ -1,5 +1,6 @@
 package parser.classdiagram.xml.visualstudio15;
 
+import com.sun.xml.internal.org.jvnet.mimepull.DecodingException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import uml.metaclasses.Visibility;
 import org.w3c.dom.Node;
@@ -35,7 +36,7 @@ public class VS15XMLClassParser extends ClassParser {
 
     @Override
     protected List<Dependency> parseDependencies() {
-        throw new NotImplementedException();
+        return new ArrayList<Dependency>();
     }
 
     @Override
@@ -71,7 +72,7 @@ public class VS15XMLClassParser extends ClassParser {
 
     @Override
     protected Boolean parseIsLeaf() {
-        return null;
+        return Boolean.parseBoolean(XML.getValue(classnode,"isLeaf"));
     }
 
     //region bases

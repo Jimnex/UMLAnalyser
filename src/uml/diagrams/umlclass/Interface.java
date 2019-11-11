@@ -35,8 +35,6 @@ public class Interface implements Classifier {
         this.dependencies = dependencies;
     }
 
-    public Interface(String parseID, String parseName, List<String> parseBases, List<Operation> parseOperations) {
-    }
 
     @Override
     public boolean checkIsAbstract() {

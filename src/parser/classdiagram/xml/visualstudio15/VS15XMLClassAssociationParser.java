@@ -1,7 +1,5 @@
 package parser.classdiagram.xml.visualstudio15;
 
-import org.junit.jupiter.api.extension.ExtensionConfigurationException;
-import uml.diagrams.umlclass.Class;
 import uml.metaclasses.relationship.association.AggregationType;
 import uml.metaclasses.relationship.association.AssociationEnd;
 import uml.metaclasses.Multiplicity;
@@ -30,15 +28,15 @@ class VS15XMLClassAssociationParser extends AssociationParser{
         if(xmlNode.isPresent()){
             Multiplicity multiplicity = this.parseMultiplicity(xmlNode.get());
 
-            return new AssociationEnd(new Class(),
-                    this.parseName(xmlNode.get()),
-                    this.parseAggregation(xmlNode.get()),
+            return new AssociationEnd(this.parseAggregation(xmlNode.get()),
                     this.parseIsNavigableOwned(xmlNode.get()),
-                    this.parseMultiplicity(xmlNode.get()));
+                    multiplicity);
         } else {
-
+            return null;
         }
     }
+
+
 
     protected boolean parseIsComposite(Node node) {
         return XML.getBooleanValue(node, "isComposite");

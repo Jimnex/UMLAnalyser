@@ -3,8 +3,6 @@ package uml.diagrams;
 import analyser.Analyser;
 import analyser.Reporter;
 import parser.Parser;
-import parser.StructureParser;
-import uml.diagrams.Structure;
 import visualizer.Visualizer;
 
 import java.util.List;
@@ -27,7 +25,7 @@ public class Diagram<T extends Structure> {
     public void analyse(List<Analyser> analysers){
         this.reporter = new Reporter();
         for (Analyser analyser : analysers) {
-            reporter.addReports(analyser.analyse());
+            reporter.addReports(analyser.analyse(structure));
         }
     }
 

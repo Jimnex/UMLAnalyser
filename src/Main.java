@@ -13,40 +13,6 @@ import java.util.Optional;
 
 public class Main {
 
-    public enum WordClass{
-        NOUN,
-        VERB,
-        ADJECTIVE,
-        ADVERB
-    }
-
-    public class Word{
-        private WordClass wordClass;
-        private String value;
-    }
-
-   public class Name{
-        String value;
-        Collection<Word> words;
-   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static void main(String[] args) {
@@ -56,10 +22,10 @@ public class Main {
             diagram.get().parse();
         }
         List<String> conventions = new ArrayList<>();
-        AnalysersFactory analysersFactory = new ClassDiagramAnalysersFactory(conventions);
+        //AnalysersFactory analysersFactory = new ClassDiagramAnalysersFactory(conventions);
 
-        List<Analyser> analysers = analysersFactory.create();
-        diagram.get().analyse(analysers);
+        //List<Analyser> analysers = analysersFactory.create();
+       // diagram.get().analyse(analysers);
 
 
 

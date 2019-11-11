@@ -1,9 +1,10 @@
 package analyser.umlclass.association;
 
-import analyser.BinaryAssociationsAnalyser;
+import analyser.Analyser;
 import analyser.Reporter;
 import uml.diagrams.umlclass.Attribute;
 import uml.diagrams.umlclass.Class;
+import uml.diagrams.umlclass.ClassDiagramStructure;
 import uml.metaclasses.Classifier;
 import uml.metaclasses.feature.BehavioralFeature;
 import uml.metaclasses.relationship.association.AggregationType;
@@ -13,9 +14,9 @@ import uml.metaclasses.relationship.association.BinaryAssociation;
 import java.util.List;
 import java.util.Optional;
 
-public class AssociationConvention1Analyser extends BinaryAssociationsAnalyser {
+public class AssociationConvention1Analyser extends Analyser<ClassDiagramStructure> {
 
-    @Override
+
     protected Reporter analyseAssociation(BinaryAssociation binaryAssociation) {
         if(isClassMeetsAssociationRequirement1(binaryAssociation) == false) {
             reporter.addReport(binaryAssociation.getSourceEnd().getAggregationType() == AggregationType.SHARED ? "Aggregáció" : "Kompozíció","A Tartalmazott osztály nincsen a tartalmazó osztályban");
@@ -25,10 +26,11 @@ public class AssociationConvention1Analyser extends BinaryAssociationsAnalyser {
 
     /**
      * Returns true if the owner class declares the owned class.
-     * @param  association
-     * @return boolean
      */
+
+
     private boolean isClassMeetsAssociationRequirement1(BinaryAssociation association) {
+        /*
         Classifier targetClass = association.getTargetEnd().getOwner();
         List<BehavioralFeature> ownerClassAttributes =  association.getSourceEnd().getOwner().getBehaviorFeatures();
             for (int i = 0; i < ownerClassAttributes.size(); i++) {
@@ -37,9 +39,14 @@ public class AssociationConvention1Analyser extends BinaryAssociationsAnalyser {
                     return true;
                 }
             }
+
+         */
         return false;
     }
 
 
-
+    @Override
+    public Reporter analyse(ClassDiagramStructure structure) {
+        return null;
+    }
 }

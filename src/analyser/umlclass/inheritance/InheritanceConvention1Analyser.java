@@ -1,15 +1,15 @@
 package analyser.umlclass.inheritance;
 
-import analyser.GeneralizationsAnalyser;
+import analyser.Analyser;
 import analyser.Reporter;
+import uml.diagrams.umlclass.ClassDiagramStructure;
 import uml.metaclasses.Classifier;
 import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.List;
 
-public class InheritanceConvention1Analyser extends GeneralizationsAnalyser {
+public class InheritanceConvention1Analyser extends Analyser<ClassDiagramStructure> {
 
-    @Override
     protected Reporter analyseGeneralization(Generalization generalization) {
         checkAreSubclassifiersMeetsInheritanceRequirementuirement1(generalization);
 
@@ -34,11 +34,14 @@ public class InheritanceConvention1Analyser extends GeneralizationsAnalyser {
      * @param generalization
      */
     private void checkAreSubclassifiersMeetsInheritanceRequirementuirement1(Generalization generalization){
+        /*
         for (Classifier subClassifier: generalization.getSubClassifiers()) {
             if(isSubclassifierMeetsInheritanceRequirementuirement1(subClassifier) == false){
                 this.reporter.addReport("Öröklés", "Osztálynak nincsen egy tulajdonsága és viselkedése sem");
             }
         }
+
+         */
     }
 
     private boolean isSubclassifierMeetsInheritanceRequirementuirement1(Classifier subClassifier){
@@ -46,4 +49,8 @@ public class InheritanceConvention1Analyser extends GeneralizationsAnalyser {
     }
 
 
+    @Override
+    public Reporter analyse(ClassDiagramStructure structure) {
+        return null;
+    }
 }

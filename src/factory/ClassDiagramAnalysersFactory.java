@@ -3,12 +3,14 @@ package factory;
 import analyser.Analyser;
 import analyser.umlclass.association.AssociationConvention1Analyser;
 import analyser.umlclass.inheritance.InheritanceConvention1Analyser;
+import uml.diagrams.Structure;
+import uml.diagrams.umlclass.ClassDiagramStructure;
 
 import java.util.List;
 import java.util.Optional;
 
 public class ClassDiagramAnalysersFactory extends AnalysersFactory{
-    public ClassDiagramAnalysersFactory(List<String> conventions) {
+    public ClassDiagramAnalysersFactory(List<String> conventions, ClassDiagramStructure classDiagramStructure) {
         super(conventions);
     }
 
@@ -17,10 +19,10 @@ public class ClassDiagramAnalysersFactory extends AnalysersFactory{
         Optional<Analyser> analyser = Optional.empty();
         switch (convention){
             case "a":
-                Optional.of(new AssociationConvention1Analyser());
+                //Optional.of(new AssociationConvention1Analyser());
                 break;
             case "b":
-                Optional.of(new InheritanceConvention1Analyser());
+                //Optional.of(new InheritanceConvention1Analyser());
                 break;
             default:
                 Optional.empty();

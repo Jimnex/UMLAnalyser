@@ -4,6 +4,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import parser.XML;
 import parser.classdiagram.InterfaceParser;
+import uml.diagrams.umlclass.Attribute;
+import uml.metaclasses.Visibility;
+import uml.metaclasses.relationship.directed.Dependency;
+import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +29,31 @@ class VS15XMLInterfaceParser extends InterfaceParser {
     @Override
     public String parseID() {
         return XML.getValue(this.node,"Id");
+    }
+
+    @Override
+    protected List<Attribute> parseAttributes() {
+        return null;
+    }
+
+    @Override
+    protected List<Generalization> parseGeneralizations() {
+        return null;
+    }
+
+    @Override
+    protected Visibility parseVisibility() {
+        return null;
+    }
+
+    @Override
+    protected boolean parseIsLeaf() {
+        return false;
+    }
+
+    @Override
+    protected List<Dependency> parseDependencies() {
+        return null;
     }
 
     @Override
