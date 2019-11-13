@@ -16,17 +16,16 @@ public class MainForm {
     private JPanel buttonsPanel;
     private JButton parseBtn;
     private JButton analyseBtn;
-    private JCheckBox UpperStartNamingAnalyserCB;
-    private JCheckBox checkBox2;
-    private JCheckBox checkBox3;
-    private JCheckBox checkBox4;
-    private JCheckBox checkBox5;
-    private JCheckBox checkBox6;
-    private JCheckBox checkBox7;
+    private JCheckBox upperCaseNamingCb;
+    private JCheckBox atLeastOneAttributeOrBehaviore;
+    private JCheckBox NoCommonAttributeOrBehavireWithSuper;
+    private JCheckBox InterfaceOnlyPublic;
+    private JCheckBox InterfaceContainsAttribute;
+    private JCheckBox InterfaceContainsOnlyStaticAttributes;
     private JCheckBox checkBox8;
     private JCheckBox checkBox9;
     private JCheckBox checkBox10;
-    private JLabel UpperStartNamingAnalyserLabel;
+    private JCheckBox checkBox11;
     private JPanel analyseConventionsPanel;
     List<File> files = new ArrayList<>();
     DiagramFactory diagramFactory;
@@ -34,39 +33,13 @@ public class MainForm {
 
 
     public MainForm() {
-        analyseConventionsPanel.setVisible(false);
-
 
         parseBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //region File handling
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                fileChooser.showOpenDialog(buttonsPanel);
-                File probableFile = fileChooser.getSelectedFile();
-                if(probableFile.isFile()) {
-                   handleSingleFile(probableFile);
-                } else if(probableFile.isDirectory()) {
-                    handleFolder(probableFile);
-                } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Nem támogatott megnyitási lehetőség");
-                }
-                //endregion
-                //region Diagram parsing
-                for (File file: files) {
-                    diagramFactory = new DiagramFactory(probableFile.getAbsolutePath());
-                    Optional<Diagram> diagram = diagramFactory.create();
-                    if (diagram.isPresent()) {
-                        diagrams.add(diagram.get());
-                    }
-                }
-                for (Diagram diagram: diagrams) {
-                    diagram.parse();
-                }
-
-                analyseConventionsPanel.setVisible(false);
-                //endregion
+                fileHandling();
+                diagramCreating();
+                diagramParsing();
             }
         });
         analyseBtn.addActionListener(new ActionListener() {
@@ -84,12 +57,51 @@ public class MainForm {
         try {
             files.addAll(Arrays.asList(folder.listFiles()));
         }catch (Exception e){
-            JOptionPane.showMessageDialog(mainPanel, "Hiba a fájlok megnyitásánál");
+            showMessage("Hiba a fájlok megnyitásánál");
         }
     }
 
     private void handleSingleFile(File file){
         files.add(file);
+    }
+
+    private void showMessage(String errorMessage){
+        JOptionPane.showMessageDialog(mainPanel, errorMessage);
+    }
+
+    private void fileHandling(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        fileChooser.showOpenDialog(buttonsPanel);
+        File probableFile = fileChooser.getSelectedFile();
+        if(probableFile.isFile()) {
+            handleSingleFile(probableFile);
+        } else if(probableFile.isDirectory()) {
+            handleFolder(probableFile);
+        } else {
+            JOptionPane.showMessageDialog(mainPanel, "Hiba a fájl dialogus során");
+        }
+    }
+
+    private void diagramCreating(){
+        for (File file: files) {
+            diagramFactory = new DiagramFactory(file.getAbsolutePath());
+            Optional<Diagram> diagram = diagramFactory.create();
+            if (diagram.isPresent()) {
+                diagrams.add(diagram.get());
+            }
+        }
+    }
+
+    private void diagramParsing(){
+        String successFullMessage = "";
+        for (Diagram diagram: diagrams) {
+            diagram.parse();
+            if(diagram.checkStructureIsPresent() == true){
+                successFullMessage += diagram.getStructure().getName() + " nevű " + diagram.getDisplayedName() + " sikeresen beolvasva\n";
+            }
+        }
+        showMessage(successFullMessage);
     }
 
 

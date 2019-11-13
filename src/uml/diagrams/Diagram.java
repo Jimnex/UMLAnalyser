@@ -6,9 +6,10 @@ import parser.Parser;
 import visualizer.Visualizer;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Diagram<T extends Structure> {
-    protected T structure;
+    protected Optional<T> structure;
     protected Parser<T> structureParser;
     protected Reporter reporter;
     protected String displayedName;
@@ -19,13 +20,13 @@ public class Diagram<T extends Structure> {
     }
 
     public void parse(){
-        this.structure = this.structureParser.parse();
+        this.structure = Optional.ofNullable(this.structureParser.parse());
     }
 
     public void analyse(List<Analyser> analysers){
         this.reporter = new Reporter();
         for (Analyser analyser : analysers) {
-            reporter.addReports(analyser.analyse(structure));
+            reporter.addReports(analyser.analyse(structure.get()));
         }
     }
 
@@ -34,7 +35,11 @@ public class Diagram<T extends Structure> {
     }
 
     public Structure getStructure(){
-        return this.structure;
+        return this.structure.get();
+    }
+
+    public boolean checkStructureIsPresent(){
+        return this.structure.isPresent();
     }
 
     public String getDisplayedName(){
