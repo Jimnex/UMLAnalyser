@@ -45,6 +45,10 @@ public class Diagram<T extends Structure> {
     public String getDisplayedName(){
         return this.displayedName;
     }
+    
+    public String getReport(){
+        return reporter.toString();
+    }
 }
 
 

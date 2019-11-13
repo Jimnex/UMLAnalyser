@@ -1,6 +1,8 @@
 package factory;
 
 import analyser.Analyser;
+import analyser.umlclass.AtLeastOneAttribiteOrOperationConvention;
+import analyser.umlclass.FirstUpperCharNamingConvention;
 import analyser.umlclass.association.AssociationConvention1Analyser;
 import analyser.umlclass.inheritance.InheritanceConvention1Analyser;
 import uml.diagrams.Structure;
@@ -10,22 +12,23 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClassDiagramAnalysersFactory extends AnalysersFactory{
-    public ClassDiagramAnalysersFactory(List<String> conventions, ClassDiagramStructure classDiagramStructure) {
+    public ClassDiagramAnalysersFactory(List<String> conventions) {
         super(conventions);
     }
 
     @Override
     protected Optional<Analyser> create(String convention) {
-        Optional<Analyser> analyser = Optional.empty();
+        Optional<Analyser> analyser;
         switch (convention){
-            case "a":
-                //Optional.of(new AssociationConvention1Analyser());
+            case "firstUpperNameC":
+                analyser = Optional.of(new FirstUpperCharNamingConvention());
                 break;
-            case "b":
-                //Optional.of(new InheritanceConvention1Analyser());
+            case "atLeastOneAttributeOrOperation":
+                analyser = Optional.of(new AtLeastOneAttribiteOrOperationConvention());
                 break;
             default:
-                Optional.empty();
+                analyser = Optional.empty();
+                break;
         }
 
         return analyser;

@@ -1,3 +1,7 @@
+import analyser.Analyser;
+import analyser.umlclass.FirstUpperCharNamingConvention;
+import factory.AnalysersFactory;
+import factory.ClassDiagramAnalysersFactory;
 import factory.DiagramFactory;
 import uml.diagrams.Diagram;
 
@@ -27,16 +31,21 @@ public class MainForm {
     private JCheckBox checkBox10;
     private JCheckBox checkBox11;
     private JPanel analyseConventionsPanel;
-    List<File> files = new ArrayList<>();
+    List<File> files;
     DiagramFactory diagramFactory;
-    List<Diagram> diagrams = new ArrayList<>();
+    List<Diagram> diagrams;
+    List<String> conventions = new ArrayList<>();
 
 
     public MainForm() {
+        analyseBtn.setEnabled(false);
+        analyseConventionsPanel.setVisible(false);
 
         parseBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                files = new ArrayList<>();
+                diagrams = new ArrayList<>();
                 fileHandling();
                 diagramCreating();
                 diagramParsing();
@@ -46,9 +55,24 @@ public class MainForm {
 
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                AnalysersFactory analysersFactory;
                 for (Diagram diagram: diagrams) {
+                    analysersFactory = new ClassDiagramAnalysersFactory(conventions);
+                    diagram.analyse(analysersFactory.create());
                 }
+                showResult();
+            }
+        });
+        upperCaseNamingCb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("firstUpperNameC");
+            }
+        });
+        atLeastOneAttributeOrBehaviore.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("atLeastOneAttributeOrOperation");
             }
         });
     }
@@ -94,14 +118,30 @@ public class MainForm {
     }
 
     private void diagramParsing(){
-        String successFullMessage = "";
+        String parseMessage = "";
         for (Diagram diagram: diagrams) {
             diagram.parse();
             if(diagram.checkStructureIsPresent() == true){
-                successFullMessage += diagram.getStructure().getName() + " nevű " + diagram.getDisplayedName() + " sikeresen beolvasva\n";
+                parseMessage += diagram.getStructure().getName() + " nevű " + diagram.getDisplayedName() + " sikeresen beolvasva\n";
+            } else {
+                parseMessage += diagram.getStructure().getName() + " nevű " + diagram.getDisplayedName() + " nem sikerült beolvasni\n";
+                diagrams.remove(diagram);
             }
         }
-        showMessage(successFullMessage);
+        showMessage(parseMessage);
+        if(diagrams.size() > 0){
+            analyseBtn.setEnabled(true);
+            analyseConventionsPanel.setVisible(true);
+        }
+
+    }
+
+    private void showResult(){
+        String reports = "";
+        for (Diagram diagram: diagrams) {
+            reports += diagram.getReport() + "\n";
+        }
+        showMessage(reports);
     }
 
 
@@ -110,7 +150,7 @@ public class MainForm {
         JFrame frame = new JFrame("MainForm");
         frame.setContentPane(new MainForm().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,500);
+        frame.setSize(700,600);
         frame.setVisible(true);
     }
 }

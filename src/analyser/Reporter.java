@@ -3,6 +3,7 @@ package analyser;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Reporter{
     private final HashMap<String, String> reports;
@@ -21,5 +22,14 @@ public class Reporter{
 
     public void addReports(Reporter externalReports){
         reports.putAll(externalReports.getReports());
+    }
+
+    @Override
+    public String toString(){
+        String report = "";
+        for (Map.Entry<String, String> entry : reports.entrySet()) {
+            report += "Konvenció típus: " + entry.getKey() + ", üzenet: " + entry.getValue() + "\n";
+        }
+        return report;
     }
 }
