@@ -15,7 +15,7 @@ public class InterfaceHasOnlyStaticAttributes extends Analyser<ClassDiagramStruc
     public Reporter analyse(ClassDiagramStructure structure) {
         for (Classifier interface_: structure.getInterfaces()) {
             if(interface_.getStructuralFeatures().stream().anyMatch(i -> i.checkIsStatic() == false)){
-                reporter.addReport(conventionType, "Nem statikus valamelyik attribútuma a " + interface_.getName() + "nevű interfésznek a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Nem statikus valamelyik attribútuma a(z) " + interface_.getName() + " nevű interfésznek a következő diagramban: " + structure.getName());
             }
         }
         return reporter;

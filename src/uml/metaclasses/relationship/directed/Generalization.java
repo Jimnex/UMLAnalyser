@@ -9,19 +9,28 @@ public class Generalization implements DirectedRelationship<Classifier> {
     /** A generalization is directed relationship between a more general
      * classifier (superclass) and a more specific classifier (subclass). */
 
-    private Classifier superClassifier;
+    //private Classifier superClassifier;
     private String superClassifierID;
 
     public Generalization(String superClassifierID) {
         this.superClassifierID = superClassifierID;
     }
 
+    public String getSuperClassifierIdentifier() {
+        return superClassifierID;
+    }
+
+    /*
     public Classifier getSuperClassifier() {
         return superClassifier;
     }
 
+
+
     public void setSuperClassifier(Classifier superClassifier) {
         this.superClassifier = superClassifier;
     }
+
+     */
 }
 

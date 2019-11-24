@@ -14,13 +14,13 @@ public class AtLeastOneAttribiteOrOperationConvention extends Analyser<ClassDiag
     @Override
     public Reporter analyse(ClassDiagramStructure structure) {
         for (Classifier class_: structure.getClasses()) {
-            if(meetsAtLeastOneAttribiteOrOperationConvention(class_)){
-                reporter.addReport(conventionType, "Legalbb egy tulajdonsággal vagy viselkedéssel kell rendelkezzen " + class_.getName() + "nevű osztálynak a következő diagramban: " + structure.getName());
+            if(meetsAtLeastOneAttribiteOrOperationConvention(class_) == false){
+                reporter.addReport(conventionType, "Legalább egy tulajdonsággal vagy viselkedéssel kell rendelkezzen a(z) " + class_.getName() + " nevű osztály a következő diagramban: " + structure.getName());
             }
         }
         for (Classifier interface_: structure.getInterfaces()) {
-            if(meetsAtLeastOneAttribiteOrOperationConvention(interface_)){
-                reporter.addReport(conventionType, "Legalbb egy viselkedéssel kell rendelkezzen " + interface_.getName() + "nevű interfésznek a következő diagramban: " + structure.getName());
+            if(meetsAtLeastOneAttribiteOrOperationConvention(interface_) == false){
+                reporter.addReport(conventionType, "Legalább egy viselkedéssel kell rendelkezzen a(z) " + interface_.getName() + " nevű interfész a következő diagramban: " + structure.getName());
             }
         }
         return this.reporter;

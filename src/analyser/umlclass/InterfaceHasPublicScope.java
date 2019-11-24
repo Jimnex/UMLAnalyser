@@ -15,7 +15,7 @@ public class InterfaceHasPublicScope extends Analyser<ClassDiagramStructure> {
     public Reporter analyse(ClassDiagramStructure structure) {
         for (Classifier interface_: structure.getInterfaces()) {
             if(interface_.getVisibility() != Visibility.PUBLIC){
-                reporter.addReport(conventionType, "Nem publikus a(z)" + interface_.getName() + " interfész a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Nem publikus a(z) " + interface_.getName() + " interfész a következő diagramban: " + structure.getName());
             }
         }
         return reporter;

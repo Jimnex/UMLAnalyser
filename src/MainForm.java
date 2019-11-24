@@ -30,6 +30,7 @@ public class MainForm {
     private JCheckBox checkBox11;
     private JPanel analyseConventionsPanel;
     private JCheckBox interfaceOrAbstractClassHasAtLeastOneDerived;
+    private JCheckBox ALLCheckEvent;
     List<File> files;
     DiagramFactory diagramFactory;
     List<Diagram> diagrams;
@@ -63,55 +64,72 @@ public class MainForm {
             }
         });
 
+        ALLCheckEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+            }
+        });
+
+
         upperCaseNamingCb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("firstUpperNameC");
+                handleConventionUponEvent("firstUpperNameC",upperCaseNamingCb);
             }
         });
         atLeastOneAttributeOrBehaviore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("atLeastOneAttributeOrOperation");
+                handleConventionUponEvent("atLeastOneAttributeOrOperation",atLeastOneAttributeOrBehaviore);
             }
+
         });
         NoCommonAttributeOrBehavireWithSuper.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("noCommonAttributeOrBehaviorWithSuper");
+                handleConventionUponEvent("noCommonAttributeOrBehaviorWithSuper",NoCommonAttributeOrBehavireWithSuper);
             }
         });
         interfaceOrAbstractClassHasAtLeastOneDerived.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("interfaceOrAbstractClassHasAtLeastOneDerived");
+                handleConventionUponEvent("interfaceOrAbstractClassHasAtLeastOneDerived",interfaceOrAbstractClassHasAtLeastOneDerived);
             }
         });
         InterfaceOnlyPublic.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("interfaceOnlyPublicFieldsAndOperations");
+                handleConventionUponEvent("interfaceOnlyPublicFieldsAndOperations",InterfaceOnlyPublic);
             }
         });
         InterfaceContainsAttribute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("interfaceContainsFields");
+                handleConventionUponEvent("interfaceContainsFields",InterfaceContainsAttribute);
             }
         });
         InterfaceContainsOnlyStaticAttributes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("interfaceOnlyStaticFields");
+                handleConventionUponEvent("interfaceOnlyStaticFields",InterfaceContainsOnlyStaticAttributes);
             }
         });
         InterfaceHasPublicScope.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                conventions.add("interfaceHasPublicScope");
+                handleConventionUponEvent("interfaceHasPublicScope",InterfaceHasPublicScope);
             }
         });
 
+
+    }
+
+    private void handleConventionUponEvent(String convention, JCheckBox checkBox){
+        if(checkBox.isSelected()) {
+            conventions.add(convention);
+        } else {
+            conventions.remove(convention);
+        }
     }
 
     private void handleFolder(File folder){

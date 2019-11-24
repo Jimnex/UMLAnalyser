@@ -15,12 +15,12 @@ public class FirstUpperCharNamingConvention extends Analyser<ClassDiagramStructu
     public Reporter analyse(ClassDiagramStructure structure) {
         for (Classifier class_: structure.getClasses()) {
             if(meetsNamingConvention(class_.getName()) == false){
-                reporter.addReport(conventionType, "Nem nagybetűvel kezdődik az " + class_.getName() + " osztály a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Nem nagybetűvel kezdődik a(z) " + class_.getName() + " nevű osztály a következő diagramban: " + structure.getName());
             }
         }
         for (Classifier interface_: structure.getInterfaces()) {
             if(meetsNamingConvention(interface_.getName()) == false){
-                reporter.addReport(conventionType, "Nem nagybetűvel kezdődik az " + interface_.getName() + " interfész a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Nem nagybetűvel kezdődik a(z) " + interface_.getName() + " nevű interfész a következő diagramban: " + structure.getName());
             }
         }
         return this.reporter;

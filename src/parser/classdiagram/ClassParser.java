@@ -15,8 +15,6 @@ public abstract class ClassParser implements Parser<Class> {
     protected Parser<Operation> operationParser;
     protected Parser<Attribute> attributeParser;
     protected Parser<Association> associationParser;
-    protected Parser<Generalization> generalizationParser;
-    protected Parser<Dependency> dependencyParser;
 
     public Class parse(){
         return new Class(this.parseID(),this.parseName(),this.parseIsAbstract(),this.parseIsLeaf(),this.parseVisibility(),this.parseAttributes(),this.parseOperations(),this.parseAssociations(),this.parseGeneralization(),this.parseDependencies());

@@ -19,7 +19,7 @@ public class InterfaceHasOnlyPublicFieldsAndOperations extends Analyser<ClassDia
     public Reporter analyse(ClassDiagramStructure structure) {
         for (Classifier interface_: structure.getInterfaces()) {
             if(interface_.getBehaviorFeatures().stream().anyMatch(i -> i.getVisibility() != Visibility.PUBLIC)){
-                reporter.addReport(conventionType, "Nem publikus valamelyik attribútuma vagy tulajdonsága " + interface_.getName() + " interfésznek a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Nem publikus attribútuma vagy tulajdonsága " + interface_.getName() + " interfésznek a következő diagramban: " + structure.getName());
             }
 
             if(interface_.getStructuralFeatures().stream().anyMatch(i -> i.getVisibility() != Visibility.PUBLIC)){

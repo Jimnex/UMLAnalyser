@@ -2,7 +2,6 @@ package uml.diagrams.umlclass;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import uml.metaclasses.Classifier;
-import uml.metaclasses.NamedElement;
 import uml.metaclasses.Visibility;
 import uml.metaclasses.feature.BehavioralFeature;
 import uml.metaclasses.feature.StructuralFeature;
@@ -11,7 +10,6 @@ import uml.metaclasses.relationship.directed.Dependency;
 import uml.metaclasses.relationship.directed.Generalization;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Interface implements Classifier {
@@ -20,17 +18,17 @@ public class Interface implements Classifier {
     private boolean isLeaf;
     private Visibility visibility;
     private List<Operation> operations;
-    private List<Attribute> staticAttributes;
+    private List<Attribute> attributes;
     private List<Generalization> generalizations;
     private List<Dependency> dependencies;
 
-    public Interface(String id, String name, boolean isLeaf, Visibility visibility, List<Operation> operations, List<Attribute> staticAttributes, List<Generalization> generalizations, List<Dependency> dependencies) {
+    public Interface(String id, String name, boolean isLeaf, Visibility visibility, List<Operation> operations, List<Attribute> attributes, List<Generalization> generalizations, List<Dependency> dependencies) {
         this.id = id;
         this.name = name;
         this.isLeaf = isLeaf;
         this.visibility = visibility;
         this.operations = operations;
-        this.staticAttributes = staticAttributes;
+        this.attributes = attributes;
         this.generalizations = generalizations;
         this.dependencies = dependencies;
     }
@@ -43,7 +41,7 @@ public class Interface implements Classifier {
 
     @Override
     public List<StructuralFeature> getStructuralFeatures() {
-        return new ArrayList<>(staticAttributes);
+        return new ArrayList<>(attributes);
     }
 
     @Override

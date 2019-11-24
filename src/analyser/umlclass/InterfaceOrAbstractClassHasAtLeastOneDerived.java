@@ -20,18 +20,19 @@ public class InterfaceOrAbstractClassHasAtLeastOneDerived extends Analyser<Class
     public Reporter analyse(ClassDiagramStructure structure) {
         List<Classifier> classes = structure.getClasses().stream().filter(c -> c.checkIsAbstract() == true).collect(Collectors.toList());
         for (Classifier class_ : classes) {
-            if(structure.getClasses().stream().anyMatch(c -> c.getGeneralizations().stream().anyMatch(inner -> inner.getSuperClassifier().equals(class_.getIndentifier())))){
-                reporter.addReport(conventionType, "Legalább egy leszármazottal kell rendelkeznie az " + class_.getName() + "nevű absztrakt osztálynak a következő diagramban: " + structure.getName());
+            if(class_.checkIsAbstract()){
+                if(structure.getClasses().stream().anyMatch(c -> c.getGeneralizations().stream().anyMatch(inner -> inner.getSuperClassifierIdentifier().equals(class_.getIndentifier()))) == false){
+                    reporter.addReport(conventionType, "Legalább egy leszármazottal kell rendelkeznie az " + class_.getName() + " nevű absztrakt osztálynak a következő diagramban: " + structure.getName());
+                }
             }
         }
 
         List<Classifier> interfaces = structure.getInterfaces().stream().filter(c -> c.checkIsAbstract() == true).collect(Collectors.toList());
         for (Classifier interface_: interfaces) {
-            if(structure.getClasses().stream().anyMatch(c -> c.getGeneralizations().stream().anyMatch(inner -> inner.getSuperClassifier().equals(interface_.getIndentifier())))){
-                reporter.addReport(conventionType, "Legalább egy leszármazottal kell rendelkeznie az " + interface_.getName() + "nevű interfésznek a következő diagramban: " + structure.getName());
+            if(structure.getClasses().stream().anyMatch(c -> c.getGeneralizations().stream().anyMatch(inner -> inner.getSuperClassifierIdentifier().equals(interface_.getIndentifier()))) == false){
+                reporter.addReport(conventionType, "Legalább egy leszármazottal kell rendelkeznie az " + interface_.getName() + " nevű interfésznek a következő diagramban: " + structure.getName());
             }
         }
-
         return this.reporter;
     }
 
