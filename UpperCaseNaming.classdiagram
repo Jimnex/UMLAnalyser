@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="bf0828d2-97ab-4381-971c-a6e647e04322" name="NoInterface" linkedPackageId="187a4457-0a90-49db-99a2-928865277f0d" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="6d0c80ba-1937-4b2f-8b4e-d8fd7e376e1a">
+      <profileInstance Id="7f4e5fcc-77e2-4b39-81cd-5e9b84ff4a44" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="170a3e90-fb4f-4644-b06e-6a1f4b5d30dc">
+      <profileInstance Id="dbc6efb1-801e-4995-be7a-42a8752b40a6" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="23eb0a97-a0e3-41dd-980a-019e1c995957" name="UpperNameClass" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ac21fe0c-3010-4efb-8da4-6ed5f25002fb" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fe7149fa-c003-4219-8d51-58bc7e3b76c1" name="lowerCaseClass" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8cf2d8a2-f681-4e16-8fe2-e1edbd0e0638" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="0a2f1098-325a-4cf7-9c47-b41d8c436427" name="UpperCaseInterface" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="10fc8c80-020a-4de1-b6b2-5dc8059d2eba" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="dd0beade-97a6-494a-85ad-a33333588720" name="lowerCaseInterface" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2ce09553-49a6-411a-93a2-178cc754e916" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="187a4457-0a90-49db-99a2-928865277f0d" name="end2endTest">
+    <elementDefinition Id="cc9b1352-1918-423c-84b9-79892ea54091" />
+  </package>
+</logicalClassDesignerModel>

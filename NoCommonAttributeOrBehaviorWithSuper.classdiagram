@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="0f3a131b-a418-4997-83a2-610956975d14" name="UMLClassDiagram2" linkedPackageId="bc521cd4-3243-4140-8870-cb55e98a15fb" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="4565f98e-7264-4c00-af4a-2f927db983dd">
+      <profileInstance Id="75677427-cb03-4a8d-976f-6bc21c2c190f" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="5f58ee49-8596-46d1-8830-84b98ed68d77">
+      <profileInstance Id="6471b9f6-b36a-4f0b-8e3c-42e87b988897" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0a3a68f1-d18d-4d90-987f-100048f88671" name="Super" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cfd78567-f0e6-47e4-8c6b-de278e792d5b" />
+        <ownedAttributesInternal>
+          <property Id="ce8a8625-9c55-4094-8fde-a678d5fb86fd" name="attr" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7738ddec-bb10-45ce-bccb-11266f367d2b" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="a00cdeaa-7055-4594-a388-375a82d2d95b" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="92432ea4-9f5c-4022-9558-7f0b2114869d" name="op" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="61b7bb90-8638-4bfe-9b5c-591b0be90b8d" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="a00cdeaa-7055-4594-a388-375a82d2d95b" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="649d7661-48e2-4b43-8670-8d2a26431a72" name="NoCommonAttrDerived" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dccf07d3-90b0-48a9-a8ab-3b61224c8832" />
+        <generalsInternal>
+          <generalization Id="772f941b-26e8-434a-8825-f28556c4b119" isSubstitutable="false">
+            <classMoniker Id="0a3a68f1-d18d-4d90-987f-100048f88671" LastKnownName="Super" />
+            <elementDefinition Id="ed00091c-36be-4101-9e09-2738e768b49d" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="715da55f-fc43-4177-8f6c-304207e5bf81" name="attr1" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0c717f05-fec9-4623-b83a-514e2ef39d83" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8f1bfe8c-1140-45cc-9d53-6aa4ea01446a" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="4a96d518-c05c-43ad-9458-61b8dce78183" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1f1d8ea2-5e91-43a2-9af6-5b080435266b" name="CommonAttrDerived" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ea4c4c46-a678-4e26-a6c1-2e164d9ba86d" />
+        <generalsInternal>
+          <generalization Id="18cdf664-68e2-4e8f-9600-6bffcc4357cd" isSubstitutable="false">
+            <classMoniker Id="0a3a68f1-d18d-4d90-987f-100048f88671" LastKnownName="Super" />
+            <elementDefinition Id="730d5ed1-906b-433d-bc9b-9fdb0586f04c" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="add83c8b-5125-47a3-84e6-e56dde56c884" name="attr" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="43de4c10-6073-41e9-b7f5-32f07967f69c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4a96d518-c05c-43ad-9458-61b8dce78183" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="8f1bfe8c-1140-45cc-9d53-6aa4ea01446a" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="06af511b-fc42-4cfa-af82-e11e74362c00" name="CommonOprDerived" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d78d79e2-c8e6-4db7-a6f8-2bdc418f48ed" />
+        <generalsInternal>
+          <generalization Id="db0a889d-b8d3-4bbd-8e51-fab0bd7bf9bd" isSubstitutable="false">
+            <classMoniker Id="0a3a68f1-d18d-4d90-987f-100048f88671" LastKnownName="Super" />
+            <elementDefinition Id="eb23b149-b82e-45e9-b4ab-c92eb8883e1c" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="b49c29f5-789b-43b2-ad9b-99cbdf85d4d7" name="op" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="36716919-09be-49b5-aa07-65b509ce813f" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a77d97f5-b80b-4a2b-96a2-a3cd97b5b6ee" name="NoCommonOprDerived" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e903b619-fa71-4d49-9006-c7aec4144723" />
+        <generalsInternal>
+          <generalization Id="cf5718f7-8994-48eb-8cf1-069f287ea4c7" isSubstitutable="false">
+            <classMoniker Id="0a3a68f1-d18d-4d90-987f-100048f88671" LastKnownName="Super" />
+            <elementDefinition Id="0d362e00-b73d-4a8f-b64c-fa45762a0426" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="4cfb821b-edf8-4c1b-a275-10a4a5729ec1" name="op12" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ecf5f00c-8b71-47d9-9d8f-657332803b9e" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f33401fa-40a1-46be-bb87-5d44ef9ed0fd" name="CommonAttrAndOprDerived" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c491a6fb-247f-461f-a947-e63dd9c184ee" />
+        <generalsInternal>
+          <generalization Id="73d37d4e-956b-427f-bbe1-76d1f9e9bbcc" isSubstitutable="false">
+            <classMoniker Id="0a3a68f1-d18d-4d90-987f-100048f88671" LastKnownName="Super" />
+            <elementDefinition Id="32e7377f-b258-4581-a7e7-b11ca5314e13" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="2ae3b6ce-52a5-4d3d-b169-e2d32bd14ec1" name="attr" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2cc992cc-4387-4ed9-b35d-d7ee90d18842" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="a25771e9-7a00-4322-a982-03804935e0a8" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="28b66e68-741e-4203-8294-5b5fbf8cb41f" name="op" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="5d151da1-01f0-4367-a2fb-c62f0a8e2bad" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="a25771e9-7a00-4322-a982-03804935e0a8" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="bc521cd4-3243-4140-8870-cb55e98a15fb" name="end2endTest">
+    <elementDefinition Id="cc9b1352-1918-423c-84b9-79892ea54091" />
+  </package>
+</logicalClassDesignerModel>
