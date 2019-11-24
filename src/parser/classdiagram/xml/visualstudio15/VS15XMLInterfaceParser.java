@@ -9,16 +9,22 @@ import uml.metaclasses.Visibility;
 import uml.metaclasses.relationship.directed.Dependency;
 import uml.metaclasses.relationship.directed.Generalization;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 class VS15XMLInterfaceParser extends InterfaceParser {
     private final Node node;
-    private final Optional<NodeList> operationsNodeList;
+    private Optional<NodeList> attributesNodeList;
+    private Optional<NodeList> operationsNodeList;
+    private Optional<NodeList> baseNodeList;
 
     public VS15XMLInterfaceParser(Node interfaceNode) {
         this.node = interfaceNode;
+        this.attributesNodeList = XML.getNodeList(this.node,"ownedAttributes/property");
         this.operationsNodeList = XML.getNodeList(this.node, "ownedOperations/operation");
+        this.baseNodeList = XML.getNodeList(this.node,"generals/generalization/classMoniker");
+
     }
 
     @Override
@@ -32,33 +38,39 @@ class VS15XMLInterfaceParser extends InterfaceParser {
     }
 
     @Override
-    protected List<Attribute> parseAttributes() {
-        return null;
+    protected int getNumberOfAttributes() {
+        return getNumberOfNodes(this.attributesNodeList);
+    }
+
+    @Override
+    protected void getDataForAttribute(int index) {
+        super.attributeParser = new VS15XMLClassAttributeParser(this.attributesNodeList.get().item(index));
     }
 
     @Override
     protected List<Generalization> parseGeneralizations() {
-        return null;
+        List<Generalization> generalizations = new ArrayList<>();
+        if(this.baseNodeList.isPresent()){
+            for (int i = 0; i < this.baseNodeList.get().getLength(); i++) {
+                generalizations.add(new Generalization(XML.getValue(this.baseNodeList.get().item(i),"Id")));
+            }
+        }
+        return generalizations;
     }
 
     @Override
     protected Visibility parseVisibility() {
-        return null;
+        return Visibility.createFromStr(XML.getValue(this.node, "visibility"));
     }
 
     @Override
     protected boolean parseIsLeaf() {
-        return false;
+        return Boolean.parseBoolean(XML.getValue(this.node,"isLeaf"));
     }
 
     @Override
     protected List<Dependency> parseDependencies() {
-        return null;
-    }
-
-    @Override
-    protected List<String> parseBases() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -73,5 +85,13 @@ class VS15XMLInterfaceParser extends InterfaceParser {
     @Override
     protected void getDataForOperation(int index) {
         super.operationParser = new VS15XMLClassOperationParser(this.operationsNodeList.get().item(index));
+    }
+
+    private int getNumberOfNodes(Optional<NodeList> nodeList){
+        if(nodeList.isPresent()){
+            return nodeList.get().getLength();
+        } else {
+            return 0;
+        }
     }
 }

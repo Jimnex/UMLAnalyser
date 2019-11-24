@@ -15,12 +15,11 @@ import java.util.List;
 
 public abstract class InterfaceParser implements Parser<Interface>, NameParser, IDParser {
     protected Parser<Operation> operationParser;
+    protected Parser<Attribute> attributeParser;
 
     public Interface parse(){
         return new Interface(this.parseID(),this.parseName(),this.parseIsLeaf(),this.parseVisibility(),this.parseOperations(),this.parseAttributes(),this.parseGeneralizations(),this.parseDependencies());
     }
-
-    protected abstract List<Attribute> parseAttributes();
 
     protected abstract List<Generalization> parseGeneralizations();
 
@@ -30,7 +29,28 @@ public abstract class InterfaceParser implements Parser<Interface>, NameParser, 
 
     protected abstract List<Dependency> parseDependencies();
 
-    protected abstract List<String> parseBases();
+    //region Attribute
+
+    private List<Attribute> parseAttributes() {
+        List<Attribute> attributes = new ArrayList<>();
+        for (int i = 0; i < getNumberOfAttributes(); i++) {
+            attributes.add(parseAttribute(i));
+        }
+        return attributes;
+    }
+
+    protected abstract int getNumberOfAttributes();
+
+    protected Attribute parseAttribute(int index) {
+        getDataForAttribute(index);
+        return attributeParser.parse();
+    }
+
+    protected abstract void getDataForAttribute(int index);
+
+    //endregion
+
+    //region Operation
 
     private List<Operation> parseOperations() {
         List<Operation> operations = new ArrayList<>();
@@ -48,5 +68,7 @@ public abstract class InterfaceParser implements Parser<Interface>, NameParser, 
     }
 
     protected abstract void getDataForOperation(int index);
+
+    //endregion
 
 }
