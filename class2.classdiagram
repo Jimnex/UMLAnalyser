@@ -2,7 +2,7 @@
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="24ab871e-2dc4-42e0-babf-06b7c2b23e05" name="First" linkedPackageId="6a06554d-2d66-4720-9989-b04d35ba7707" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
-      <class Id="bc8cd731-6987-4e22-a998-780a6009eae6" name="Animal" isAbstract="true" isLeaf="false" isActiveClass="false">
+      <class Id="bc8cd731-6987-4e22-a998-780a6009eae6" name="animal" isAbstract="true" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="d43d92cc-51a2-4783-879d-832b08dd9d5e" />
         <targetEnds>
           <association Id="f6d31dfd-fd07-4b0c-876e-0537343a0ceb" isDerived="false" sourceEndRoleName="Animal" targetEndRoleName="Food" isLeaf="false" name="eat()" isAbstract="false">
@@ -124,6 +124,10 @@
             </ownedParameters>
           </operation>
         </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bc8cd731-6987-4e22-a998-780a6009eae6" name="animal" isAbstract="true" isLeaf="false" isActiveClass="false">
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
@@ -556,7 +560,7 @@
       </enumeration>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <Interface Id="e2e2a17f-3126-45f4-b8d9-c08ffdb3b58f" name="IPet" isAbstract="false" isLeaf="false">
+      <Interface Id="e2e2a17f-3126-45f4-b8d9-c08ffdb3b58f" name="iPet" isAbstract="false" isLeaf="false">
         <elementDefinition Id="53da2a3f-273f-4ce5-81cf-0831c0516e10" />
         <ownedOperations>
           <operation Id="838965a9-3f7d-4008-a32d-56a6010710b8" name="doTrick" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">

@@ -15,12 +15,12 @@ public class AtLeastOneAttribiteOrOperationConvention extends Analyser<ClassDiag
     public Reporter analyse(ClassDiagramStructure structure) {
         for (Classifier class_: structure.getClasses()) {
             if(meetsAtLeastOneAttribiteOrOperationConvention(class_)){
-                reporter.addReport(conventionType, "Nem nagybetűvel kezdődik az " + class_.getName() + " osztály a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Legalbb egy tulajdonsággal vagy viselkedéssel kell rendelkezzen " + class_.getName() + "nevű osztálynak a következő diagramban: " + structure.getName());
             }
         }
         for (Classifier interface_: structure.getInterfaces()) {
             if(meetsAtLeastOneAttribiteOrOperationConvention(interface_)){
-                reporter.addReport(conventionType, "Nem nagybetűvel kezdődik az " + interface_.getName() + " interfész a következő diagramban: " + structure.getName());
+                reporter.addReport(conventionType, "Legalbb egy viselkedéssel kell rendelkezzen " + interface_.getName() + "nevű interfésznek a következő diagramban: " + structure.getName());
             }
         }
         return this.reporter;

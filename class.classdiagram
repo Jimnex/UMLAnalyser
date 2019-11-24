@@ -2,7 +2,7 @@
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="41834756-d3eb-4146-94d9-dce817e3e1a2" name="Test" linkedPackageId="6355068f-e46f-4ca7-84b2-10e94987c554" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
-      <class Id="1a612c55-e9c0-45bd-bde6-5a882870aa06" name="Source" visibility="Private" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="1a612c55-e9c0-45bd-bde6-5a882870aa06" name="source" visibility="Private" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="bd680410-5097-49fa-958b-f66e3a8b3fd5" />
         <targetEnds>
           <association Id="f5a797eb-1216-4dd6-8cc1-8255d13d60a9" isDerived="false" sourceEndRoleName="Source" targetEndRoleName="Target" isLeaf="false" isAbstract="false">

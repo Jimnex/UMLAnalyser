@@ -1,5 +1,5 @@
 package parser;
 
-public interface NameParser {
+public interface NameParser{
     String parseName();
 }

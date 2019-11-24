@@ -1,11 +1,11 @@
 package parser.classdiagram;
 
+import parser.NameParser;
 import uml.metaclasses.Multiplicity;
 import uml.metaclasses.relationship.association.AggregationType;
 import uml.diagrams.umlclass.Attribute;
 import uml.metaclasses.Type;
 import uml.metaclasses.Visibility;
-import parser.NameParser;
 import parser.Parser;
 
 public abstract class AttributeParser implements Parser<Attribute>, NameParser {

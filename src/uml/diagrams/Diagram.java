@@ -3,16 +3,14 @@ package uml.diagrams;
 import analyser.Analyser;
 import analyser.Reporter;
 import parser.Parser;
-import visualizer.Visualizer;
-
 import java.util.List;
 import java.util.Optional;
 
 public class Diagram<T extends Structure> {
-    protected Optional<T> structure;
-    protected Parser<T> structureParser;
-    protected Reporter reporter;
-    protected String displayedName;
+    private Optional<T> structure;
+    private Parser<T> structureParser;
+    private Reporter reporter;
+    private String displayedName;
 
     public Diagram(String displayedName, Parser<T> structureParser){
         this.displayedName = displayedName;
@@ -30,12 +28,8 @@ public class Diagram<T extends Structure> {
         }
     }
 
-    public void visualize(Visualizer visualizer){
-        visualizer.visualize(this.reporter);
-    }
-
-    public Structure getStructure(){
-        return this.structure.get();
+    public String getStructureName(){
+        return this.structure.get().getName();
     }
 
     public boolean checkStructureIsPresent(){
@@ -50,6 +44,10 @@ public class Diagram<T extends Structure> {
         return reporter.toString();
     }
 }
+
+
+
+
 
 
 

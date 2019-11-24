@@ -1,5 +1,3 @@
-import analyser.Analyser;
-import analyser.umlclass.FirstUpperCharNamingConvention;
 import factory.AnalysersFactory;
 import factory.ClassDiagramAnalysersFactory;
 import factory.DiagramFactory;
@@ -26,11 +24,12 @@ public class MainForm {
     private JCheckBox InterfaceOnlyPublic;
     private JCheckBox InterfaceContainsAttribute;
     private JCheckBox InterfaceContainsOnlyStaticAttributes;
-    private JCheckBox checkBox8;
+    private JCheckBox InterfaceHasPublicScope;
     private JCheckBox checkBox9;
     private JCheckBox checkBox10;
     private JCheckBox checkBox11;
     private JPanel analyseConventionsPanel;
+    private JCheckBox interfaceOrAbstractClassHasAtLeastOneDerived;
     List<File> files;
     DiagramFactory diagramFactory;
     List<Diagram> diagrams;
@@ -63,6 +62,7 @@ public class MainForm {
                 showResult();
             }
         });
+
         upperCaseNamingCb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -75,6 +75,43 @@ public class MainForm {
                 conventions.add("atLeastOneAttributeOrOperation");
             }
         });
+        NoCommonAttributeOrBehavireWithSuper.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("noCommonAttributeOrBehaviorWithSuper");
+            }
+        });
+        interfaceOrAbstractClassHasAtLeastOneDerived.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("interfaceOrAbstractClassHasAtLeastOneDerived");
+            }
+        });
+        InterfaceOnlyPublic.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("interfaceOnlyPublicFieldsAndOperations");
+            }
+        });
+        InterfaceContainsAttribute.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("interfaceContainsFields");
+            }
+        });
+        InterfaceContainsOnlyStaticAttributes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("interfaceOnlyStaticFields");
+            }
+        });
+        InterfaceHasPublicScope.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                conventions.add("interfaceHasPublicScope");
+            }
+        });
+
     }
 
     private void handleFolder(File folder){
@@ -122,9 +159,9 @@ public class MainForm {
         for (Diagram diagram: diagrams) {
             diagram.parse();
             if(diagram.checkStructureIsPresent() == true){
-                parseMessage += diagram.getStructure().getName() + " nevű " + diagram.getDisplayedName() + " sikeresen beolvasva\n";
+                parseMessage += diagram.getStructureName() + " nevű " + diagram.getDisplayedName() + " sikeresen beolvasva\n";
             } else {
-                parseMessage += diagram.getStructure().getName() + " nevű " + diagram.getDisplayedName() + " nem sikerült beolvasni\n";
+                parseMessage += diagram.getStructureName() + " nevű " + diagram.getDisplayedName() + " nem sikerült beolvasni\n";
                 diagrams.remove(diagram);
             }
         }
@@ -152,5 +189,9 @@ public class MainForm {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700,600);
         frame.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
