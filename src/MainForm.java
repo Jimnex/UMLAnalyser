@@ -49,6 +49,7 @@ public class MainForm {
                 fileHandling();
                 diagramCreating();
                 diagramParsing();
+
             }
         });
         analyseBtn.addActionListener(new ActionListener() {

@@ -61,8 +61,6 @@ public class XML{
         if(node.isPresent()){
             Element e = (Element) node.get();
             value = e.getAttribute(name);
-        } else {
-            System.out.println("There was no node, value set to N/A");
         }
         return value;
     }
