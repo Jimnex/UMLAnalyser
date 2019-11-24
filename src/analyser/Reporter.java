@@ -23,13 +23,4 @@ public class Reporter{
     public void addReports(Reporter externalReports){
         reports.putAll(externalReports.getReports());
     }
-
-    @Override
-    public String toString(){
-        String report = "";
-        for (Map.Entry<String, String> entry : reports.entrySet()) {
-            report += "Konvenció típus: " + entry.getKey() + ", üzenet: " + entry.getValue() + "\n";
-        }
-        return report;
-    }
 }

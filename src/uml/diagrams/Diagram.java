@@ -3,13 +3,15 @@ package uml.diagrams;
 import analyser.Analyser;
 import analyser.Reporter;
 import parser.Parser;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 public class Diagram<T extends Structure> {
     private Optional<T> structure;
     private Parser<T> structureParser;
-    private Reporter reporter;
+    private Reporter reporter = new Reporter();
     private String displayedName;
 
     public Diagram(String displayedName, Parser<T> structureParser){
@@ -22,7 +24,6 @@ public class Diagram<T extends Structure> {
     }
 
     public void analyse(List<Analyser> analysers){
-        this.reporter = new Reporter();
         for (Analyser analyser : analysers) {
             reporter.addReports(analyser.analyse(structure.get()));
         }
@@ -40,8 +41,12 @@ public class Diagram<T extends Structure> {
         return this.displayedName;
     }
     
-    public String getReport(){
-        return reporter.toString();
+    public boolean isReportEmpty(){
+        return reporter.getReports().isEmpty();
+    }
+
+    public HashMap<String,String> getReports(){
+        return reporter.getReports();
     }
 }
 
