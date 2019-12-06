@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class DiagramFactory implements Factory<Optional<Diagram>> {
     private final String filePath;
+    private final String CLASSDIAGRAM_NAME = "Osztály diagram";
 
     public DiagramFactory(String filePath) {
         this.filePath = filePath;
@@ -25,8 +26,7 @@ public class DiagramFactory implements Factory<Optional<Diagram>> {
         Optional<Diagram> diagram;
         switch (this.getExtension(filePath)){
             case "classdiagram":
-                diagram = Optional.ofNullable(new Diagram("Class diagram",
-                                                           new VS15XMLClassDiagramStructureParser(new File(filePath))));
+                diagram = Optional.ofNullable(new Diagram(CLASSDIAGRAM_NAME, new VS15XMLClassDiagramStructureParser(new File(filePath))));
                 break;
             default:
                 diagram = Optional.empty();

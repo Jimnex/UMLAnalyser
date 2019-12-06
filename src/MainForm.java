@@ -29,9 +29,6 @@ public class MainForm {
     private JCheckBox InterfaceContainsAttribute;
     private JCheckBox InterfaceContainsOnlyStaticAttributes;
     private JCheckBox InterfaceHasPublicScope;
-    private JCheckBox checkBox9;
-    private JCheckBox checkBox10;
-    private JCheckBox checkBox11;
     private JPanel analyseConventionsPanel;
     private JCheckBox interfaceOrAbstractClassHasAtLeastOneDerived;
     private JCheckBox ALLCheckEvent;
