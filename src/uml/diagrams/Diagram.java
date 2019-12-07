@@ -11,7 +11,7 @@ import java.util.Optional;
 public class Diagram<T extends Structure> {
     private Optional<T> structure;
     private Parser<T> structureParser;
-    private Reporter reporter = new Reporter();
+    private Reporter reporter;
     private String displayedName;
 
     public Diagram(String displayedName, Parser<T> structureParser){
@@ -24,6 +24,7 @@ public class Diagram<T extends Structure> {
     }
 
     public void analyse(List<Analyser> analysers){
+        reporter = new Reporter();
         for (Analyser analyser : analysers) {
             reporter.addReports(analyser.analyse(structure.get()));
         }

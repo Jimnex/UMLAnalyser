@@ -34,7 +34,7 @@
           </component>
         </children>
       </grid>
-      <grid id="789e6" binding="analyseConventionsPanel" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="789e6" binding="analyseConventionsPanel" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -58,17 +58,9 @@
               <text value="Legalább egy tulajdonság vagy viselkedés a Classifiernek"/>
             </properties>
           </component>
-          <component id="fa0db" class="javax.swing.JCheckBox" binding="NoCommonAttributeOrBehavireWithSuper">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="származtatott  osztálynak nincsen olyan tulajdonsága vagy viselkedése, amely az ősben már definiálva van."/>
-            </properties>
-          </component>
           <component id="28d26" class="javax.swing.JCheckBox" binding="interfaceOrAbstractClassHasAtLeastOneDerived">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Egy interfésznek legalább egy implementációjának léteznie kell "/>
@@ -76,7 +68,7 @@
           </component>
           <component id="4b37a" class="javax.swing.JCheckBox" binding="InterfaceOnlyPublic">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Interfész csak publikus tulajdonságokkal és viselkedésekkel rendelkezhet "/>
@@ -84,7 +76,7 @@
           </component>
           <component id="42089" class="javax.swing.JCheckBox" binding="InterfaceContainsAttribute">
             <constraints>
-              <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Interfész nem tartalmazhat tulajdonságot"/>
@@ -92,7 +84,7 @@
           </component>
           <component id="86215" class="javax.swing.JCheckBox" binding="InterfaceContainsOnlyStaticAttributes">
             <constraints>
-              <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Interfész csak statikus tulajdonságot tartalmaz"/>
@@ -100,7 +92,7 @@
           </component>
           <component id="97fbb" class="javax.swing.JCheckBox" binding="InterfaceHasPublicScope">
             <constraints>
-              <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Interfész láthatósága publikus"/>
