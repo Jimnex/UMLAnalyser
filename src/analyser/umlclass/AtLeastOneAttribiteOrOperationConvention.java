@@ -7,8 +7,8 @@ import uml.metaclasses.Classifier;
 
 public class AtLeastOneAttribiteOrOperationConvention extends Analyser<ClassDiagramStructure> {
 
-    public AtLeastOneAttribiteOrOperationConvention() {
-        conventionType = "Classifier szabály";
+    public AtLeastOneAttribiteOrOperationConvention()  {
+        this.conventionType = "Classifier szabály";
     }
 
     @Override

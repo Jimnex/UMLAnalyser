@@ -12,4 +12,5 @@ public abstract class Analyser<T extends Structure> {
     }
 
     public abstract Reporter analyse(T structure);
+
 }

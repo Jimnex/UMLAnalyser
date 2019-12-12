@@ -1,4 +1,5 @@
 import analyser.Analyser;
+import analyser.Reporter;
 import factory.AnalysersFactory;
 import factory.ClassDiagramAnalysersFactory;
 import factory.DiagramFactory;
@@ -159,12 +160,9 @@ public class MainForm {
 
                 for (Diagram diagram: diagrams) {
                     if(diagram.isReportEmpty() == false){
-                        HashMap<String, String> map = diagram.getReports();
-                        Iterator it = map.entrySet().iterator();
-                        while (it.hasNext()) {
-                            Map.Entry pair = (Map.Entry)it.next();
-                            dtm.addRow(new Object[] { pair.getKey(), pair.getValue()});
-                            it.remove();
+                        List<Reporter.Report> reports = diagram.getReports();
+                        for (Reporter.Report report: reports) {
+                            dtm.addRow(new Object[] { report.getConventionType(), report.getDescription()});
                         }
                     }
                 }

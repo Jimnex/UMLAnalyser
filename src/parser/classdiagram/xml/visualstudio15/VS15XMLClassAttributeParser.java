@@ -19,7 +19,7 @@ class VS15XMLClassAttributeParser extends AttributeParser {
 
     @Override
     protected Multiplicity parseMultiplicity() {
-        return null;
+        return new Multiplicity("1", "1");
     }
 
     @Override
@@ -29,14 +29,14 @@ class VS15XMLClassAttributeParser extends AttributeParser {
 
     @Override
     protected Boolean parseIsLeaf() {
-        return null;
+        return false;
     }
 
     @Override
     protected Type parseType() {
         Optional<Node> typeNode = XML.getNode(this.node, "type_NamedElement/referencedTypeMoniker");
         if(typeNode.isPresent()){
-            return new Type(XML.getValue(typeNode,"Id"),XML.getValue(typeNode,"LastKnownName"));
+            return new Type(XML.getValue(typeNode,"LastKnownName"));
         } else {
             System.out.println("There was no typeNode, Type set to N/A");
             return new Type();

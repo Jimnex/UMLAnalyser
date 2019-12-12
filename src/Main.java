@@ -16,12 +16,12 @@ public class Main {
 
 
     public static void main(String[] args) {
-        DiagramFactory diagramFactory = new DiagramFactory("/home/izsof/Code/UMLAnalyser/class2.classdiagram");
+        DiagramFactory diagramFactory = new DiagramFactory("class2.classdiagram");
         Optional<Diagram> diagram = diagramFactory.create();
         if(diagram.isPresent()){
             diagram.get().parse();
         }
-        List<String> conventions = new ArrayList<>();
+        System.out.println("asdas");
     }
 
 }

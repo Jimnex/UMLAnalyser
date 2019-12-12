@@ -41,7 +41,9 @@ public class VS15XMLClassDiagramStructureParser extends ClassDiagramStructurePar
 
     @Override
     protected void setClassParserParserWithData(int index) {
-        super.classParser = Optional.ofNullable(new VS15XMLClassParser(this.classesNodeList.get().item(index)));
+        if(index > 0 || index <= getNumberOfClasses()){
+            super.classParser = Optional.ofNullable(new VS15XMLClassParser(this.classesNodeList.get().item(index)));
+        }
     }
 
     @Override

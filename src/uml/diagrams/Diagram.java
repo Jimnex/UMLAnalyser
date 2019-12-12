@@ -46,7 +46,7 @@ public class Diagram<T extends Structure> {
         return reporter.getReports().isEmpty();
     }
 
-    public HashMap<String,String> getReports(){
+    public List<Reporter.Report> getReports(){
         return reporter.getReports();
     }
 }

@@ -15,7 +15,7 @@ public class Attribute implements StructuralFeature {
     private Boolean isStatic;
     private Boolean isReadOnly;
     private Multiplicity multiplicity;
-    private Boolean isUnique;
+    private Boolean isUnique = false;
     private AggregationType aggregation;
     private Boolean isComposite;
 

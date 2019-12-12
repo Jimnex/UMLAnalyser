@@ -84,4 +84,17 @@ public class Interface implements Classifier {
         return visibility;
     }
 
+    @Override
+    public String toString() {
+        return "Interface{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", isLeaf=" + isLeaf +
+                ", visibility=" + visibility +
+                ", operations=" + operations +
+                ", attributes=" + attributes +
+                ", generalizations=" + generalizations +
+                ", dependencies=" + dependencies +
+                '}';
+    }
 }
